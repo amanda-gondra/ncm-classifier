@@ -1,5 +1,20 @@
 # Labeled data
 
+| File | What it is | Used for |
+|---|---|---|
+| `test_v1.csv` | Real descriptions, frozen with a checksum | Evaluation only |
+| `train_real_v1.csv` | Real descriptions from pages that never fed the test set | Training |
+| `train_synthetic_v1.csv` | Descriptions written by an LLM (Claude Opus 5.5), marked `synthetic` | Training, decided by experiment |
+
+Training rows are only used after a human sets `reviewed` to `true`. The official NCM
+descriptions are a third training source, built from the table by
+`scripts/build_train_set.py`, so they are not stored here.
+
+Synthetic rows imitate the way products are written in ads and public tenders (abbreviations,
+upper case, missing accents). They include small-package fertilizers on purpose, to teach the
+31.05 rule. Whether they help is measured, not assumed: the model is trained with and without
+them and both results are reported.
+
 ## `test_v1.csv` — frozen test set
 
 Real product descriptions copied verbatim from public sources, used **only for evaluation**.
