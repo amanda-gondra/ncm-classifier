@@ -31,9 +31,7 @@ def build_baseline(c: float = DEFAULT_C, seed: int = 0) -> Pipeline:
         [
             (
                 "words",
-                TfidfVectorizer(
-                    preprocessor=normalize_text, ngram_range=(1, 2), sublinear_tf=True
-                ),
+                TfidfVectorizer(preprocessor=normalize_text, ngram_range=(1, 2), sublinear_tf=True),
             ),
             (
                 "chars",
