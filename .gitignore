@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+
+# Data and model artifacts (versioned on the Hugging Face Hub, not in Git)
+data/raw/*
+data/interim/*
+data/processed/*
+!data/**/.gitkeep
+models/
+*.safetensors
+*.onnx
+*.joblib
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

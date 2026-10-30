@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ncm-classifier"
+version = "0.1.0"
+description = "Suggests NCM codes from commercial product descriptions (Brazilian agribusiness)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Amanda Gondra" }]
+dependencies = [
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<3",
+    "pyarrow>=15",
+    "scikit-learn>=1.5,<2",
+    "pydantic>=2.7,<3",
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.30,<1",
+]
+
+[project.optional-dependencies]
+# Heavy training stack: installed in Colab/Kaggle, not needed to run the API with the baseline.
+train = [
+    "torch>=2.3",
+    "transformers>=4.44,<5",
+    "datasets>=2.20",
+    "accelerate>=0.33",
+]
+dev = [
+    "pytest>=8",
+    "httpx>=0.27",
+    "ruff>=0.6",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "N", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
