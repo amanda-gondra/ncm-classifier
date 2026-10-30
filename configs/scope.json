@@ -1,0 +1,45 @@
+{
+  "ncm_table": "Vigente em 30/10/2026 (Resolução Gecex nº 926/2026)",
+  "classification_level": "position",
+  "groups": {
+    "animals": {
+      "label": "Animais e produtos de origem animal",
+      "positions": ["0102", "0103", "0104", "0105", "0407", "0511"]
+    },
+    "seeds_grains_forage": {
+      "label": "Sementes, grãos e forragens",
+      "positions": ["0713", "1005", "1006", "1007", "1201", "1209", "1213", "1214"]
+    },
+    "feed_supplements_salt": {
+      "label": "Rações, suplementos e sal",
+      "positions": ["2302", "2304", "2309", "2501"]
+    },
+    "fertilizers": {
+      "label": "Adubos",
+      "positions": ["3101", "3102", "3103", "3104", "3105"]
+    },
+    "pesticides": {
+      "label": "Defensivos agrícolas",
+      "positions": ["3808"]
+    },
+    "tools_wire_fencing": {
+      "label": "Ferramentas, arames e cercas",
+      "positions": ["7217", "7313", "7314", "7317", "8201", "8543"]
+    },
+    "machinery": {
+      "label": "Máquinas e implementos agrícolas",
+      "positions": ["8424", "8432", "8433", "8434", "8436", "8701", "8716"]
+    }
+  },
+  "known_exclusions": [
+    {
+      "product": "Calcário agrícola (corretivo de solo)",
+      "reason": "A tabela NCM não tem código explícito; há mais de uma leitura possível (25.21 e 25.18) e não foi encontrada Solução de Consulta específica."
+    },
+    {
+      "product": "Medicamentos veterinários e vacinas",
+      "positions": ["3002", "3004"],
+      "reason": "Mais de 200 códigos com regulação específica; fora do MVP para reduzir o risco de rótulos errados."
+    }
+  ]
+}
