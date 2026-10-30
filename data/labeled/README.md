@@ -26,9 +26,25 @@ fiscal classification. The label comes from the heading text of the NCM and its 
 Labels are validated at the **4-digit position** level only. They are not a validation of the
 full 8-digit NCM code, and this project is a decision-support tool, not a fiscal opinion.
 
+### Labeling conventions
+
+- **Text is kept verbatim**, typos included (for example, `t055` says "barro" where it means
+  "barra"). Real descriptions contain errors, and the model must handle them.
+- **Fertilizer package size:** when the text does not state the package, the product is read as
+  sold in bulk or in packages above 10 kg, and keeps the position of the fertilizer itself.
+  Only texts that state a gross weight of 10 kg or less go to 31.05.
+- **"Sal mineral" and supplements:** in the Brazilian market the term names a mixture of salt
+  and minerals prepared for animal feed, so it goes to 23.09. Plain salt sold for cattle, with
+  no added minerals in the text, goes to 25.01.
+
+### Sources
+
+Texts were collected in October 2026. Many marketplace URLs are search-result pages, which change
+over time; the text in the file is the snapshot that was reviewed. Product pages are preferred
+for new rows.
+
 ### Known gaps
 
 - `t039` was removed: its label depended on context that is not in the text.
-- Descriptions that are ambiguous on purpose are kept out of the set. Examples: products whose
-  position depends on composition the text does not state, or on the size of the package when
-  the text omits it.
+- Descriptions whose position depends on facts the text does not give, and that no convention
+  above settles, are kept out of the set.
