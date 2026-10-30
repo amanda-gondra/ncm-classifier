@@ -38,6 +38,12 @@ def test_parses_levels_codes_and_clean_descriptions() -> None:
     assert table.metadata.legal_act == "Resolução Gecex nº 926/2026"
 
 
+def test_descriptions_drop_html_tags() -> None:
+    table = parse_ncm_payload(_payload(_entry("1213.00.00", "Palhas, em <i>pellets</i>.")))
+    assert table.entries.loc[0, "description"] == "Palhas, em pellets."
+    assert table.entries.loc[0, "raw_description"] == "Palhas, em <i>pellets</i>."
+
+
 def test_codes_keep_leading_zeros_as_text() -> None:
     table = parse_ncm_payload(_payload(_entry("0101.21.00", "-- Reprodutores de raça pura")))
     assert table.entries.loc[0, "code"] == "01012100"
@@ -46,6 +52,31 @@ def test_codes_keep_leading_zeros_as_text() -> None:
 def test_positions_returns_only_four_digit_codes() -> None:
     positions = parse_ncm_payload(SAMPLE).positions()
     assert list(positions["code"]) == ["3105"]
+    assert positions.loc[0, "description"].startswith("Adubos que contenham dois ou três")
+    assert positions.loc[0, "subitem_count"] == 1
+
+
+def test_positions_include_single_code_positions_without_header_row() -> None:
+    table = parse_ncm_payload(
+        _payload(_entry("73", "Obras de ferro."), _entry("7313.00.00", "Arame farpado"))
+    )
+    positions = table.positions()
+    assert list(positions["code"]) == ["7313"]
+    assert positions.loc[0, "description"] == "Arame farpado"
+    assert positions.loc[0, "chapter"] == "73"
+
+
+def test_positions_without_header_use_most_general_description() -> None:
+    table = parse_ncm_payload(
+        _payload(
+            _entry("2304.00", "Tortas e outros resíduos sólidos da extração do óleo de soja"),
+            _entry("2304.00.10", "Farinhas e pellets"),
+            _entry("2304.00.90", "Outros"),
+        )
+    )
+    positions = table.positions()
+    assert positions.loc[0, "description"].startswith("Tortas e outros resíduos")
+    assert positions.loc[0, "subitem_count"] == 2
 
 
 def test_active_on_drops_expired_codes() -> None:

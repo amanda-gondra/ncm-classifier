@@ -32,6 +32,8 @@ LEVEL_BY_DIGITS: Final[dict[int, str]] = {
 }
 _DATE_FORMAT: Final = "%d/%m/%Y"
 _LEADING_DASHES: Final = re.compile(r"^[\s\-–]+")
+# Some official descriptions carry HTML formatting, e.g. "<i>pellets</i>".
+_HTML_TAGS: Final = re.compile(r"<[^>]+>")
 
 
 class NcmTableError(ValueError):
@@ -52,8 +54,29 @@ class NcmTable:
     entries: pd.DataFrame
 
     def positions(self) -> pd.DataFrame:
-        """Return only the 4-digit positions, the classification level of the MVP."""
-        return self.entries[self.entries["level"] == "position"].reset_index(drop=True)
+        """Return one row per 4-digit position that has at least one 8-digit code.
+
+        This is the classification level of the MVP. Some positions have no
+        4-digit row in the official table (e.g. 73.13 only appears as 7313.00.00),
+        so the description comes from the most general entry inside the position:
+        the one with the shortest code.
+        """
+        within_positions = self.entries[self.entries["position"].notna()]
+        most_general = (
+            within_positions.assign(code_length=within_positions["code"].str.len())
+            .sort_values(["position", "code_length"])
+            .groupby("position")["description"]
+            .first()
+        )
+        subitems = within_positions[within_positions["level"] == "subitem"]
+        grouped = subitems.groupby("position").agg(
+            chapter=("chapter", "first"),
+            subitem_count=("code", "size"),
+        )
+        grouped["description"] = most_general.reindex(grouped.index)
+        return grouped.reset_index().rename(columns={"position": "code"})[
+            ["code", "chapter", "description", "subitem_count"]
+        ]
 
     def active_on(self, reference: date) -> NcmTable:
         """Return a copy keeping only codes valid on the reference date."""
@@ -86,7 +109,7 @@ def _parse_entry(raw: dict[str, str]) -> dict[str, object]:
         "level": LEVEL_BY_DIGITS[len(code)],
         "chapter": code[:2],
         "position": code[:4] if len(code) >= 4 else None,
-        "description": _LEADING_DASHES.sub("", raw_description).strip(),
+        "description": _LEADING_DASHES.sub("", _HTML_TAGS.sub("", raw_description)).strip(),
         "raw_description": raw_description,
         "valid_from": _parse_date(start, code=formatted_code),
         "valid_to": _parse_date(end, code=formatted_code),
