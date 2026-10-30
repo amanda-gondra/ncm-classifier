@@ -1,0 +1,413 @@
+{
+  "model": "tfidf_word_char_logistic_regression",
+  "train_file": "train_v1_no_synthetic.parquet",
+  "train_rows": 601,
+  "train_rows_by_source": {
+    "marketplace": 241,
+    "ncm_official": 359,
+    "public_reference": 1
+  },
+  "test_file": "test_v1.csv",
+  "test_sha256": "70841daa02d223401ecc64a5397971a0970c9c35e0958569ac6e6934c7dfcff9",
+  "selection": {
+    "C_grid": [
+      1.0,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "best_C": 1.0,
+    "cv_macro_f1": 0.8287380597058016
+  },
+  "metrics": {
+    "rows": 146,
+    "top1": {
+      "value": 0.7945,
+      "low": 0.7259,
+      "high": 0.8563
+    },
+    "top3": {
+      "value": 0.9521,
+      "low": 0.9178,
+      "high": 0.9796
+    },
+    "macro_f1": {
+      "value": 0.7843,
+      "low": 0.6804,
+      "high": 0.823
+    },
+    "ece": 0.6215
+  },
+  "f1_by_position": {
+    "0102": 0.8571,
+    "0103": 0.6667,
+    "0104": 0.8,
+    "0105": 1.0,
+    "0407": 1.0,
+    "0511": 1.0,
+    "0713": 0.4,
+    "1005": 0.6667,
+    "1006": 0.0,
+    "1007": 0.8571,
+    "1201": 0.8889,
+    "1209": 0.6,
+    "1213": 0.6667,
+    "1214": 0.8889,
+    "2302": 0.5,
+    "2304": 0.5714,
+    "2309": 0.25,
+    "2501": 0.8,
+    "3101": 0.7273,
+    "3102": 0.8571,
+    "3103": 0.6667,
+    "3104": 0.8571,
+    "3105": 0.25,
+    "3808": 0.9091,
+    "7217": 1.0,
+    "7313": 0.75,
+    "7314": 1.0,
+    "7317": 0.6667,
+    "8201": 1.0,
+    "8424": 1.0,
+    "8432": 0.9231,
+    "8433": 1.0,
+    "8434": 1.0,
+    "8436": 1.0,
+    "8543": 1.0,
+    "8701": 1.0,
+    "8716": 1.0
+  },
+  "errors": [
+    {
+      "id": "t001",
+      "text": "ADUBO 20 5 20 – SACO 50 KG",
+      "true": "3105",
+      "top3": [
+        "0103",
+        "3101",
+        "8432"
+      ],
+      "confidence": 0.067
+    },
+    {
+      "id": "t002",
+      "text": "ADUBO 10 10 10 – SACO 10 KG",
+      "true": "3105",
+      "top3": [
+        "3101",
+        "8432",
+        "8201"
+      ],
+      "confidence": 0.058
+    },
+    {
+      "id": "t003",
+      "text": "ADUBO QUÍMICO NPK 05-20-20 EM SACAS DE 50 KG",
+      "true": "3105",
+      "top3": [
+        "3101",
+        "0103",
+        "1005"
+      ],
+      "confidence": 0.061
+    },
+    {
+      "id": "t004",
+      "text": "Adubo NPK 16-06-20 com ou sem micronutrientes",
+      "true": "3105",
+      "top3": [
+        "3101",
+        "8432",
+        "8424"
+      ],
+      "confidence": 0.065
+    },
+    {
+      "id": "t008",
+      "text": "Adubo Ureia Granulado Gramados E Plantas Fracione 5kg",
+      "true": "3105",
+      "top3": [
+        "8432",
+        "3101",
+        "3102"
+      ],
+      "confidence": 0.056
+    },
+    {
+      "id": "t009",
+      "text": "5kg Adubo Fertilizante Cloreto De Potássio KCL Vermelho",
+      "true": "3105",
+      "top3": [
+        "3104",
+        "3105",
+        "3101"
+      ],
+      "confidence": 0.38
+    },
+    {
+      "id": "t015",
+      "text": "Grampo Cerca 1x9 Gerdau P/ Arame Farpado Liso - 1kg",
+      "true": "7317",
+      "top3": [
+        "7313",
+        "7217",
+        "7317"
+      ],
+      "confidence": 0.217
+    },
+    {
+      "id": "t019",
+      "text": "Sal Mineral Cattle 80 em saco de 30kg",
+      "true": "2309",
+      "top3": [
+        "2501",
+        "2309",
+        "1005"
+      ],
+      "confidence": 0.061
+    },
+    {
+      "id": "t020",
+      "text": "SAL MINERAL SACO 25,00 KG",
+      "true": "2309",
+      "top3": [
+        "2501",
+        "2309",
+        "0103"
+      ],
+      "confidence": 0.077
+    },
+    {
+      "id": "t021",
+      "text": "Sal mineral para ovinos",
+      "true": "2309",
+      "top3": [
+        "0104",
+        "2309",
+        "2501"
+      ],
+      "confidence": 0.116
+    },
+    {
+      "id": "t022",
+      "text": "Suplemento Mineral para Equinos Agromix - 5kg",
+      "true": "2309",
+      "top3": [
+        "1214",
+        "2309",
+        "0103"
+      ],
+      "confidence": 0.06
+    },
+    {
+      "id": "t024",
+      "text": "Ração extrusada para peixes onívoros com mínimo de 36 % de Proteína bruta",
+      "true": "2309",
+      "top3": [
+        "2304",
+        "2309",
+        "0511"
+      ],
+      "confidence": 0.079
+    },
+    {
+      "id": "t030",
+      "text": "Farelo De Soja 5kg Galinha Porco Peixe Ceva Cavalo Vaca Farelos e Grãos Trigo",
+      "true": "2304",
+      "top3": [
+        "2302",
+        "2304",
+        "1201"
+      ],
+      "confidence": 0.139
+    },
+    {
+      "id": "t032",
+      "text": "FARELO TRIGO, INGREDIENTES UMIDADE, PRAZO VALIDADE 60 DIAS, DOSAGEM PROTEÍNA BRUTA- MÍNIMO 14 PER",
+      "true": "2302",
+      "top3": [
+        "2304",
+        "2302",
+        "2309"
+      ],
+      "confidence": 0.085
+    },
+    {
+      "id": "t034",
+      "text": "Ração concentrada ave. Ingredientes: Farelo de soja, de trigo e de amendoim. Aplicação: Aves em fase de postura e crescimento.",
+      "true": "2309",
+      "top3": [
+        "2302",
+        "2304",
+        "2309"
+      ],
+      "confidence": 0.118
+    },
+    {
+      "id": "t036",
+      "text": "Sementes de arroz (Variedades: Esmerada, Primavera, BRS A502)",
+      "true": "1006",
+      "top3": [
+        "1209",
+        "1006",
+        "1213"
+      ],
+      "confidence": 0.182
+    },
+    {
+      "id": "t037",
+      "text": "Sementes de feijão (Variedades: IAPAR, Rosinha, Roxinho e Jale)",
+      "true": "0713",
+      "top3": [
+        "1209",
+        "0713",
+        "8432"
+      ],
+      "confidence": 0.311
+    },
+    {
+      "id": "t038",
+      "text": "Sementes de cultivares de Milho do tipo variedade, direcionada a produção de grãos, de classe fiscalizada",
+      "true": "1005",
+      "top3": [
+        "1209",
+        "1005",
+        "2302"
+      ],
+      "confidence": 0.103
+    },
+    {
+      "id": "t047",
+      "text": "Inseticida liquido para uso profissional/saúde publica, especifico em termonebulilzação, formulação solução aquosa",
+      "true": "3808",
+      "top3": [
+        "3102",
+        "3808",
+        "2501"
+      ],
+      "confidence": 0.056
+    },
+    {
+      "id": "t048",
+      "text": "sacos com 50 kg de Adubo supersimples",
+      "true": "3103",
+      "top3": [
+        "0103",
+        "3101",
+        "3103"
+      ],
+      "confidence": 0.08
+    },
+    {
+      "id": "t079",
+      "text": "Novilhas Jersey prenhas e vazias disponíveis em Pelotas - RS.",
+      "true": "0102",
+      "top3": [
+        "0104",
+        "0103",
+        "0102"
+      ],
+      "confidence": 0.067
+    },
+    {
+      "id": "t098",
+      "text": "Sorgo ensacado em 50 kg, ideal para alimentação animal em Natal/RN.",
+      "true": "1007",
+      "top3": [
+        "1005",
+        "1007",
+        "2309"
+      ],
+      "confidence": 0.083
+    },
+    {
+      "id": "t106",
+      "text": "TSP de Alta Disponibilidade para Plantas - Itumbiara, GO",
+      "true": "3103",
+      "top3": [
+        "1209",
+        "1201",
+        "8432"
+      ],
+      "confidence": 0.069
+    },
+    {
+      "id": "t113",
+      "text": "Feijão carioca 10 sacas de 50 kg colhido em fevereiro, condição saída da máquina, disponível em Araçariguama, SP",
+      "true": "0713",
+      "top3": [
+        "0103",
+        "1005",
+        "1213"
+      ],
+      "confidence": 0.06
+    },
+    {
+      "id": "t114",
+      "text": "Feijão Caupi disponível em Nova Mutum, MT. Excelente qualidade e ótimo preço para saca.",
+      "true": "0713",
+      "top3": [
+        "1201",
+        "0713",
+        "1005"
+      ],
+      "confidence": 0.068
+    },
+    {
+      "id": "t116",
+      "text": "Arroz Cateto em Casca disponível para retirada em Porto Alegre, RS.",
+      "true": "1006",
+      "top3": [
+        "1213",
+        "1006",
+        "1201"
+      ],
+      "confidence": 0.201
+    },
+    {
+      "id": "t117",
+      "text": "Arroz para uso animal em São Luís - MA. Saca com 40kg, ideal para ração.",
+      "true": "1006",
+      "top3": [
+        "1213",
+        "1006",
+        "1005"
+      ],
+      "confidence": 0.08
+    },
+    {
+      "id": "t118",
+      "text": "Venda de Quirela de Arroz em Campinas/SP. Ideal para nutrição animal.",
+      "true": "1006",
+      "top3": [
+        "1213",
+        "1006",
+        "1214"
+      ],
+      "confidence": 0.066
+    },
+    {
+      "id": "t124",
+      "text": "Farelo de arroz puro ensacado em sacos de 30kg disponível em Miranda do Norte, MA.",
+      "true": "2302",
+      "top3": [
+        "1213",
+        "2302",
+        "2304"
+      ],
+      "confidence": 0.12
+    },
+    {
+      "id": "t144",
+      "text": "Grampo P/ Cerca Arame Farpado E Liso 1x9 Pacote 1kg - Belgo",
+      "true": "7317",
+      "top3": [
+        "7313",
+        "7217",
+        "7317"
+      ],
+      "confidence": 0.315
+    }
+  ],
+  "seed": 0
+}

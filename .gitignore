@@ -15,7 +15,7 @@ data/raw/*
 data/interim/*
 data/processed/*
 !data/**/.gitkeep
-models/
+/models/
 *.safetensors
 *.onnx
 *.joblib
