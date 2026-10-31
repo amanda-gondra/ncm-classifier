@@ -18,6 +18,11 @@
     "cv_macro_f1": 0.8287380597058016,
     "temperature": 0.2447
   },
+  "rule_31_05_out_of_fold": {
+    "top1_without_rule": 0.8686,
+    "top1_with_rule": 0.8686,
+    "rows_changed": 0
+  },
   "tests": [
     {
       "file": "test_v1.csv",
@@ -60,6 +65,29 @@
         },
         "ece": 0.0846
       },
+      "metrics_calibrated_with_rules": {
+        "rows": 146,
+        "top1": {
+          "value": 0.8082,
+          "low": 0.7397,
+          "high": 0.87
+        },
+        "top3": {
+          "value": 0.9589,
+          "low": 0.9247,
+          "high": 0.9863
+        },
+        "macro_f1": {
+          "value": 0.7996,
+          "low": 0.7258,
+          "high": 0.8492
+        },
+        "ece": 0.0841
+      },
+      "rule_31_05_rows": [
+        "t002",
+        "t009"
+      ],
       "f1_by_position": {
         "0102": 0.8571,
         "0103": 0.6667,
@@ -79,11 +107,11 @@
         "2304": 0.5714,
         "2309": 0.25,
         "2501": 0.8,
-        "3101": 0.7273,
+        "3101": 0.8,
         "3102": 0.8571,
         "3103": 0.6667,
-        "3104": 0.8571,
-        "3105": 0.25,
+        "3104": 1.0,
+        "3105": 0.6,
         "3808": 0.9091,
         "7217": 1.0,
         "7313": 0.75,
@@ -109,18 +137,8 @@
             "3101",
             "8432"
           ],
-          "confidence": 0.399
-        },
-        {
-          "id": "t002",
-          "text": "ADUBO 10 10 10 – SACO 10 KG",
-          "true": "3105",
-          "top3": [
-            "3101",
-            "8432",
-            "8201"
-          ],
-          "confidence": 0.324
+          "confidence": 0.399,
+          "rule_31_05": false
         },
         {
           "id": "t003",
@@ -131,7 +149,8 @@
             "0103",
             "1005"
           ],
-          "confidence": 0.335
+          "confidence": 0.335,
+          "rule_31_05": false
         },
         {
           "id": "t004",
@@ -142,7 +161,8 @@
             "8432",
             "8424"
           ],
-          "confidence": 0.467
+          "confidence": 0.467,
+          "rule_31_05": false
         },
         {
           "id": "t008",
@@ -153,18 +173,8 @@
             "3101",
             "3102"
           ],
-          "confidence": 0.258
-        },
-        {
-          "id": "t009",
-          "text": "5kg Adubo Fertilizante Cloreto De Potássio KCL Vermelho",
-          "true": "3105",
-          "top3": [
-            "3104",
-            "3105",
-            "3101"
-          ],
-          "confidence": 1.0
+          "confidence": 0.258,
+          "rule_31_05": false
         },
         {
           "id": "t015",
@@ -175,7 +185,8 @@
             "7217",
             "7317"
           ],
-          "confidence": 0.921
+          "confidence": 0.921,
+          "rule_31_05": false
         },
         {
           "id": "t019",
@@ -186,7 +197,8 @@
             "2309",
             "1005"
           ],
-          "confidence": 0.352
+          "confidence": 0.352,
+          "rule_31_05": false
         },
         {
           "id": "t020",
@@ -197,7 +209,8 @@
             "2309",
             "0103"
           ],
-          "confidence": 0.583
+          "confidence": 0.583,
+          "rule_31_05": false
         },
         {
           "id": "t021",
@@ -208,7 +221,8 @@
             "2309",
             "2501"
           ],
-          "confidence": 0.758
+          "confidence": 0.758,
+          "rule_31_05": false
         },
         {
           "id": "t022",
@@ -219,7 +233,8 @@
             "2309",
             "0103"
           ],
-          "confidence": 0.305
+          "confidence": 0.305,
+          "rule_31_05": false
         },
         {
           "id": "t024",
@@ -230,7 +245,8 @@
             "2309",
             "0511"
           ],
-          "confidence": 0.653
+          "confidence": 0.653,
+          "rule_31_05": false
         },
         {
           "id": "t030",
@@ -241,7 +257,8 @@
             "2304",
             "1201"
           ],
-          "confidence": 0.535
+          "confidence": 0.535,
+          "rule_31_05": false
         },
         {
           "id": "t032",
@@ -252,7 +269,8 @@
             "2302",
             "2309"
           ],
-          "confidence": 0.443
+          "confidence": 0.443,
+          "rule_31_05": false
         },
         {
           "id": "t034",
@@ -263,7 +281,8 @@
             "2304",
             "2309"
           ],
-          "confidence": 0.711
+          "confidence": 0.711,
+          "rule_31_05": false
         },
         {
           "id": "t036",
@@ -274,7 +293,8 @@
             "1006",
             "1213"
           ],
-          "confidence": 0.96
+          "confidence": 0.96,
+          "rule_31_05": false
         },
         {
           "id": "t037",
@@ -285,7 +305,8 @@
             "0713",
             "8432"
           ],
-          "confidence": 0.998
+          "confidence": 0.998,
+          "rule_31_05": false
         },
         {
           "id": "t038",
@@ -296,7 +317,8 @@
             "1005",
             "2302"
           ],
-          "confidence": 0.685
+          "confidence": 0.685,
+          "rule_31_05": false
         },
         {
           "id": "t047",
@@ -307,7 +329,8 @@
             "3808",
             "2501"
           ],
-          "confidence": 0.267
+          "confidence": 0.267,
+          "rule_31_05": false
         },
         {
           "id": "t048",
@@ -318,7 +341,8 @@
             "3101",
             "3103"
           ],
-          "confidence": 0.645
+          "confidence": 0.645,
+          "rule_31_05": false
         },
         {
           "id": "t079",
@@ -329,7 +353,8 @@
             "0103",
             "0102"
           ],
-          "confidence": 0.479
+          "confidence": 0.479,
+          "rule_31_05": false
         },
         {
           "id": "t098",
@@ -340,7 +365,8 @@
             "1007",
             "2309"
           ],
-          "confidence": 0.507
+          "confidence": 0.507,
+          "rule_31_05": false
         },
         {
           "id": "t106",
@@ -351,7 +377,8 @@
             "1201",
             "8432"
           ],
-          "confidence": 0.498
+          "confidence": 0.498,
+          "rule_31_05": false
         },
         {
           "id": "t113",
@@ -362,7 +389,8 @@
             "1005",
             "1213"
           ],
-          "confidence": 0.296
+          "confidence": 0.296,
+          "rule_31_05": false
         },
         {
           "id": "t114",
@@ -373,7 +401,8 @@
             "0713",
             "1005"
           ],
-          "confidence": 0.368
+          "confidence": 0.368,
+          "rule_31_05": false
         },
         {
           "id": "t116",
@@ -384,7 +413,8 @@
             "1006",
             "1201"
           ],
-          "confidence": 0.986
+          "confidence": 0.986,
+          "rule_31_05": false
         },
         {
           "id": "t117",
@@ -395,7 +425,8 @@
             "1006",
             "1005"
           ],
-          "confidence": 0.541
+          "confidence": 0.541,
+          "rule_31_05": false
         },
         {
           "id": "t118",
@@ -406,7 +437,8 @@
             "1006",
             "1214"
           ],
-          "confidence": 0.317
+          "confidence": 0.317,
+          "rule_31_05": false
         },
         {
           "id": "t124",
@@ -417,7 +449,8 @@
             "2302",
             "2304"
           ],
-          "confidence": 0.598
+          "confidence": 0.598,
+          "rule_31_05": false
         },
         {
           "id": "t144",
@@ -428,7 +461,8 @@
             "7217",
             "7317"
           ],
-          "confidence": 0.996
+          "confidence": 0.996,
+          "rule_31_05": false
         }
       ]
     },
@@ -473,6 +507,28 @@
         },
         "ece": 0.1089
       },
+      "metrics_calibrated_with_rules": {
+        "rows": 74,
+        "top1": {
+          "value": 0.8514,
+          "low": 0.7568,
+          "high": 0.9189
+        },
+        "top3": {
+          "value": 0.973,
+          "low": 0.9324,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.851,
+          "low": 0.7591,
+          "high": 0.9121
+        },
+        "ece": 0.0953
+      },
+      "rule_31_05_rows": [
+        "v045"
+      ],
       "f1_by_position": {
         "0102": 0.4,
         "0103": 0.5455,
@@ -490,9 +546,9 @@
         "2501": 0.6667,
         "3101": 1.0,
         "3102": 1.0,
-        "3103": 0.8,
+        "3103": 1.0,
         "3104": 1.0,
-        "3105": 0.75,
+        "3105": 0.8889,
         "3808": 0.0,
         "7313": 0.8,
         "7314": 1.0,
@@ -517,7 +573,8 @@
             "0102",
             "0104"
           ],
-          "confidence": 0.652
+          "confidence": 0.652,
+          "rule_31_05": false
         },
         {
           "id": "v003",
@@ -528,7 +585,8 @@
             "0102",
             "8432"
           ],
-          "confidence": 0.837
+          "confidence": 0.837,
+          "rule_31_05": false
         },
         {
           "id": "v004",
@@ -539,7 +597,8 @@
             "8432",
             "8701"
           ],
-          "confidence": 0.175
+          "confidence": 0.175,
+          "rule_31_05": false
         },
         {
           "id": "v009",
@@ -550,7 +609,8 @@
             "0713",
             "0104"
           ],
-          "confidence": 0.109
+          "confidence": 0.109,
+          "rule_31_05": false
         },
         {
           "id": "v012",
@@ -561,7 +621,8 @@
             "0105",
             "8432"
           ],
-          "confidence": 0.207
+          "confidence": 0.207,
+          "rule_31_05": false
         },
         {
           "id": "v032",
@@ -572,7 +633,8 @@
             "0102",
             "2501"
           ],
-          "confidence": 0.836
+          "confidence": 0.836,
+          "rule_31_05": false
         },
         {
           "id": "v041",
@@ -583,18 +645,8 @@
             "1005",
             "3101"
           ],
-          "confidence": 0.404
-        },
-        {
-          "id": "v045",
-          "text": "Superfosfato Simples 1kg Fósforo, Cálcio E Enxofre",
-          "true": "3105",
-          "top3": [
-            "3103",
-            "3105",
-            "2309"
-          ],
-          "confidence": 1.0
+          "confidence": 0.404,
+          "rule_31_05": false
         },
         {
           "id": "v046",
@@ -605,7 +657,8 @@
             "3808",
             "8432"
           ],
-          "confidence": 0.128
+          "confidence": 0.128,
+          "rule_31_05": false
         },
         {
           "id": "v053",
@@ -616,7 +669,8 @@
             "7217",
             "7317"
           ],
-          "confidence": 0.933
+          "confidence": 0.933,
+          "rule_31_05": false
         },
         {
           "id": "v060",
@@ -627,7 +681,8 @@
             "8433",
             "8432"
           ],
-          "confidence": 0.278
+          "confidence": 0.278,
+          "rule_31_05": false
         },
         {
           "id": "v061",
@@ -638,7 +693,8 @@
             "8433",
             "8701"
           ],
-          "confidence": 0.272
+          "confidence": 0.272,
+          "rule_31_05": false
         }
       ]
     }

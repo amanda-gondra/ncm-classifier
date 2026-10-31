@@ -36,6 +36,7 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold, cross_val_pre
 from ncm_classifier.evaluation.metrics import EvaluationResult, evaluate
 from ncm_classifier.models.baseline import build_baseline
 from ncm_classifier.models.calibration import apply_temperature, fit_temperature
+from ncm_classifier.rules.small_package import apply_small_package_rule
 
 logger = logging.getLogger(__name__)
 
@@ -84,12 +85,16 @@ def _evaluate_file(
     classes = model.classes_
     truth = test["position"].to_numpy()
 
+    final, rule_applied = apply_small_package_rule(test["text"].tolist(), calibrated, classes)
+
     result_raw = evaluate(truth, raw, classes, seed=seed)
     result_cal = evaluate(truth, calibrated, classes, seed=seed)
+    result_final = evaluate(truth, final, classes, seed=seed)
     _log(path.name, "raw", result_raw)
     _log(path.name, "calibrated", result_cal)
+    _log(path.name, "calibrated + 31.05 rule", result_final)
 
-    ranked = classes[np.argsort(-calibrated, axis=1, kind="stable")[:, :3]]
+    ranked = classes[np.argsort(-final, axis=1, kind="stable")[:, :3]]
     labels = sorted(set(truth))
     per_position = f1_score(truth, ranked[:, 0], labels=labels, average=None)
     errors = [
@@ -98,7 +103,8 @@ def _evaluate_file(
             "text": text,
             "true": true,
             "top3": list(top3),
-            "confidence": round(float(calibrated[i].max()), 3),
+            "confidence": round(float(final[i].max()), 3),
+            "rule_31_05": bool(rule_applied[i]),
         }
         for i, (row_id, text, true, top3) in enumerate(
             zip(test["id"], test["text"], truth, ranked, strict=True)
@@ -110,6 +116,10 @@ def _evaluate_file(
         "sha256": _sha256(path),
         "metrics_raw": result_raw.to_dict(),
         "metrics_calibrated": result_cal.to_dict(),
+        "metrics_calibrated_with_rules": result_final.to_dict(),
+        "rule_31_05_rows": [
+            row_id for row_id, hit in zip(test["id"], rule_applied, strict=True) if hit
+        ],
         "f1_by_position": {
             label: round(float(score), 4) for label, score in zip(labels, per_position, strict=True)
         },
@@ -155,6 +165,19 @@ def main() -> None:
     temperature = fit_temperature(out_of_fold, labels, classes)
     logger.info("Calibration temperature (out-of-fold, training only): %.3f", temperature)
 
+    # The 31.05 rule comes from the heading text, not from data; its effect is measured
+    # on the training folds too, so it is not judged on the test sets alone.
+    oof_calibrated = apply_temperature(out_of_fold, temperature)
+    oof_final, oof_applied = apply_small_package_rule(texts, oof_calibrated, classes)
+    oof_top1 = float((classes[oof_calibrated.argmax(axis=1)] == labels).mean())
+    oof_top1_rule = float((classes[oof_final.argmax(axis=1)] == labels).mean())
+    logger.info(
+        "Out-of-fold top1: %.4f -> %.4f with the 31.05 rule (%d rows changed)",
+        oof_top1,
+        oof_top1_rule,
+        int(oof_applied.sum()),
+    )
+
     report = {
         "model": "tfidf_word_char_logistic_regression",
         "train_file": args.train.name,
@@ -165,6 +188,11 @@ def main() -> None:
             "best_C": best_c,
             "cv_macro_f1": search.best_score_,
             "temperature": round(temperature, 4),
+        },
+        "rule_31_05_out_of_fold": {
+            "top1_without_rule": round(oof_top1, 4),
+            "top1_with_rule": round(oof_top1_rule, 4),
+            "rows_changed": int(oof_applied.sum()),
         },
         "tests": [_evaluate_file(model, temperature, path, args.seed) for path in args.test],
         "seed": args.seed,
