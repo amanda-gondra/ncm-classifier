@@ -8,8 +8,6 @@
     "public_reference": 1,
     "synthetic": 299
   },
-  "test_file": "test_v1.csv",
-  "test_sha256": "70841daa02d223401ecc64a5397971a0970c9c35e0958569ac6e6934c7dfcff9",
   "selection": {
     "C_grid": [
       1.0,
@@ -18,176 +16,202 @@
       30.0
     ],
     "best_C": 3.0,
-    "cv_macro_f1": 0.863755564844595
+    "cv_macro_f1": 0.863755564844595,
+    "temperature": 0.4012
   },
-  "metrics": {
-    "rows": 146,
-    "top1": {
-      "value": 0.9315,
-      "low": 0.8836,
-      "high": 0.9658
-    },
-    "top3": {
-      "value": 0.9932,
-      "low": 0.9795,
-      "high": 1.0
-    },
-    "macro_f1": {
-      "value": 0.9326,
-      "low": 0.838,
-      "high": 0.9593
-    },
-    "ece": 0.4502
-  },
-  "f1_by_position": {
-    "0102": 0.8571,
-    "0103": 1.0,
-    "0104": 0.8889,
-    "0105": 1.0,
-    "0407": 1.0,
-    "0511": 1.0,
-    "0713": 0.8571,
-    "1005": 1.0,
-    "1006": 0.6667,
-    "1007": 1.0,
-    "1201": 1.0,
-    "1209": 0.6667,
-    "1213": 0.8889,
-    "1214": 1.0,
-    "2302": 0.75,
-    "2304": 0.8571,
-    "2309": 0.9231,
-    "2501": 1.0,
-    "3101": 1.0,
-    "3102": 0.8571,
-    "3103": 0.6667,
-    "3104": 0.8571,
-    "3105": 0.7692,
-    "3808": 1.0,
-    "7217": 1.0,
-    "7313": 1.0,
-    "7314": 1.0,
-    "7317": 1.0,
-    "8201": 1.0,
-    "8424": 1.0,
-    "8432": 1.0,
-    "8433": 1.0,
-    "8434": 1.0,
-    "8436": 1.0,
-    "8543": 1.0,
-    "8701": 1.0,
-    "8716": 1.0
-  },
-  "errors": [
+  "tests": [
     {
-      "id": "t008",
-      "text": "Adubo Ureia Granulado Gramados E Plantas Fracione 5kg",
-      "true": "3105",
-      "top3": [
-        "3102",
-        "3105",
-        "8432"
-      ],
-      "confidence": 0.177
-    },
-    {
-      "id": "t009",
-      "text": "5kg Adubo Fertilizante Cloreto De Potássio KCL Vermelho",
-      "true": "3105",
-      "top3": [
-        "3104",
-        "3105",
-        "8432"
-      ],
-      "confidence": 0.792
-    },
-    {
-      "id": "t032",
-      "text": "FARELO TRIGO, INGREDIENTES UMIDADE, PRAZO VALIDADE 60 DIAS, DOSAGEM PROTEÍNA BRUTA- MÍNIMO 14 PER",
-      "true": "2302",
-      "top3": [
-        "2304",
-        "2302",
-        "2309"
-      ],
-      "confidence": 0.125
-    },
-    {
-      "id": "t034",
-      "text": "Ração concentrada ave. Ingredientes: Farelo de soja, de trigo e de amendoim. Aplicação: Aves em fase de postura e crescimento.",
-      "true": "2309",
-      "top3": [
-        "2302",
-        "2304",
-        "2309"
-      ],
-      "confidence": 0.241
-    },
-    {
-      "id": "t036",
-      "text": "Sementes de arroz (Variedades: Esmerada, Primavera, BRS A502)",
-      "true": "1006",
-      "top3": [
-        "1209",
-        "1006",
-        "1213"
-      ],
-      "confidence": 0.252
-    },
-    {
-      "id": "t037",
-      "text": "Sementes de feijão (Variedades: IAPAR, Rosinha, Roxinho e Jale)",
-      "true": "0713",
-      "top3": [
-        "1209",
-        "0713",
-        "1005"
-      ],
-      "confidence": 0.32
-    },
-    {
-      "id": "t048",
-      "text": "sacos com 50 kg de Adubo supersimples",
-      "true": "3103",
-      "top3": [
-        "3105",
-        "3103",
-        "0103"
-      ],
-      "confidence": 0.183
-    },
-    {
-      "id": "t079",
-      "text": "Novilhas Jersey prenhas e vazias disponíveis em Pelotas - RS.",
-      "true": "0102",
-      "top3": [
-        "0104",
-        "0102",
-        "0713"
-      ],
-      "confidence": 0.095
-    },
-    {
-      "id": "t106",
-      "text": "TSP de Alta Disponibilidade para Plantas - Itumbiara, GO",
-      "true": "3103",
-      "top3": [
-        "1209",
-        "8432",
-        "1201"
-      ],
-      "confidence": 0.097
-    },
-    {
-      "id": "t116",
-      "text": "Arroz Cateto em Casca disponível para retirada em Porto Alegre, RS.",
-      "true": "1006",
-      "top3": [
-        "1213",
-        "1006",
-        "1201"
-      ],
-      "confidence": 0.326
+      "file": "test_v1.csv",
+      "sha256": "70841daa02d223401ecc64a5397971a0970c9c35e0958569ac6e6934c7dfcff9",
+      "metrics_raw": {
+        "rows": 146,
+        "top1": {
+          "value": 0.9315,
+          "low": 0.8836,
+          "high": 0.9658
+        },
+        "top3": {
+          "value": 0.9932,
+          "low": 0.9795,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.9326,
+          "low": 0.838,
+          "high": 0.9593
+        },
+        "ece": 0.4502
+      },
+      "metrics_calibrated": {
+        "rows": 146,
+        "top1": {
+          "value": 0.9315,
+          "low": 0.8836,
+          "high": 0.9658
+        },
+        "top3": {
+          "value": 0.9932,
+          "low": 0.9795,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.9326,
+          "low": 0.838,
+          "high": 0.9593
+        },
+        "ece": 0.0635
+      },
+      "f1_by_position": {
+        "0102": 0.8571,
+        "0103": 1.0,
+        "0104": 0.8889,
+        "0105": 1.0,
+        "0407": 1.0,
+        "0511": 1.0,
+        "0713": 0.8571,
+        "1005": 1.0,
+        "1006": 0.6667,
+        "1007": 1.0,
+        "1201": 1.0,
+        "1209": 0.6667,
+        "1213": 0.8889,
+        "1214": 1.0,
+        "2302": 0.75,
+        "2304": 0.8571,
+        "2309": 0.9231,
+        "2501": 1.0,
+        "3101": 1.0,
+        "3102": 0.8571,
+        "3103": 0.6667,
+        "3104": 0.8571,
+        "3105": 0.7692,
+        "3808": 1.0,
+        "7217": 1.0,
+        "7313": 1.0,
+        "7314": 1.0,
+        "7317": 1.0,
+        "8201": 1.0,
+        "8424": 1.0,
+        "8432": 1.0,
+        "8433": 1.0,
+        "8434": 1.0,
+        "8436": 1.0,
+        "8543": 1.0,
+        "8701": 1.0,
+        "8716": 1.0
+      },
+      "errors": [
+        {
+          "id": "t008",
+          "text": "Adubo Ureia Granulado Gramados E Plantas Fracione 5kg",
+          "true": "3105",
+          "top3": [
+            "3102",
+            "3105",
+            "8432"
+          ],
+          "confidence": 0.59
+        },
+        {
+          "id": "t009",
+          "text": "5kg Adubo Fertilizante Cloreto De Potássio KCL Vermelho",
+          "true": "3105",
+          "top3": [
+            "3104",
+            "3105",
+            "8432"
+          ],
+          "confidence": 0.996
+        },
+        {
+          "id": "t032",
+          "text": "FARELO TRIGO, INGREDIENTES UMIDADE, PRAZO VALIDADE 60 DIAS, DOSAGEM PROTEÍNA BRUTA- MÍNIMO 14 PER",
+          "true": "2302",
+          "top3": [
+            "2304",
+            "2302",
+            "2309"
+          ],
+          "confidence": 0.401
+        },
+        {
+          "id": "t034",
+          "text": "Ração concentrada ave. Ingredientes: Farelo de soja, de trigo e de amendoim. Aplicação: Aves em fase de postura e crescimento.",
+          "true": "2309",
+          "top3": [
+            "2302",
+            "2304",
+            "2309"
+          ],
+          "confidence": 0.652
+        },
+        {
+          "id": "t036",
+          "text": "Sementes de arroz (Variedades: Esmerada, Primavera, BRS A502)",
+          "true": "1006",
+          "top3": [
+            "1209",
+            "1006",
+            "1213"
+          ],
+          "confidence": 0.696
+        },
+        {
+          "id": "t037",
+          "text": "Sementes de feijão (Variedades: IAPAR, Rosinha, Roxinho e Jale)",
+          "true": "0713",
+          "top3": [
+            "1209",
+            "0713",
+            "1005"
+          ],
+          "confidence": 0.614
+        },
+        {
+          "id": "t048",
+          "text": "sacos com 50 kg de Adubo supersimples",
+          "true": "3103",
+          "top3": [
+            "3105",
+            "3103",
+            "0103"
+          ],
+          "confidence": 0.647
+        },
+        {
+          "id": "t079",
+          "text": "Novilhas Jersey prenhas e vazias disponíveis em Pelotas - RS.",
+          "true": "0102",
+          "top3": [
+            "0104",
+            "0102",
+            "0713"
+          ],
+          "confidence": 0.326
+        },
+        {
+          "id": "t106",
+          "text": "TSP de Alta Disponibilidade para Plantas - Itumbiara, GO",
+          "true": "3103",
+          "top3": [
+            "1209",
+            "8432",
+            "1201"
+          ],
+          "confidence": 0.393
+        },
+        {
+          "id": "t116",
+          "text": "Arroz Cateto em Casca disponível para retirada em Porto Alegre, RS.",
+          "true": "1006",
+          "top3": [
+            "1213",
+            "1006",
+            "1201"
+          ],
+          "confidence": 0.867
+        }
+      ]
     }
   ],
   "seed": 0
