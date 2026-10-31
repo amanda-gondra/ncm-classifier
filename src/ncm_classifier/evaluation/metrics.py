@@ -103,7 +103,10 @@ def evaluate(
     samples = rng.integers(0, len(truth), size=(n_bootstrap, len(truth)))
     boot_top1 = hits1[samples].mean(axis=1)
     boot_top3 = hits3[samples].mean(axis=1)
-    boot_f1 = np.array([_macro_f1(truth[s], predicted[s], eval_labels) for s in samples])
+    # Each resample is scored over the positions it actually contains. Scoring it over
+    # every test position would count a position missing from the resample as F1 = 0
+    # and drag the interval below the real value when positions have few rows.
+    boot_f1 = np.array([_macro_f1(truth[s], predicted[s], sorted(set(truth[s]))) for s in samples])
 
     def interval(value: float, boot: NDArray[np.float64]) -> Interval:
         low, high = np.percentile(boot, [2.5, 97.5])

@@ -36,8 +36,8 @@
         },
         "macro_f1": {
           "value": 0.7843,
-          "low": 0.6804,
-          "high": 0.823
+          "low": 0.7127,
+          "high": 0.8338
         },
         "ece": 0.6215
       },
@@ -55,8 +55,8 @@
         },
         "macro_f1": {
           "value": 0.7843,
-          "low": 0.6804,
-          "high": 0.823
+          "low": 0.7127,
+          "high": 0.8338
         },
         "ece": 0.0846
       },
@@ -429,6 +429,216 @@
             "7317"
           ],
           "confidence": 0.996
+        }
+      ]
+    },
+    {
+      "file": "test_v2.csv",
+      "sha256": "034c834cc05acd1113c8f50d01692421b414e3de448a8503774000c8e231338f",
+      "metrics_raw": {
+        "rows": 74,
+        "top1": {
+          "value": 0.8378,
+          "low": 0.7432,
+          "high": 0.9054
+        },
+        "top3": {
+          "value": 0.973,
+          "low": 0.9324,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.8404,
+          "low": 0.7417,
+          "high": 0.9051
+        },
+        "ece": 0.6715
+      },
+      "metrics_calibrated": {
+        "rows": 74,
+        "top1": {
+          "value": 0.8378,
+          "low": 0.7432,
+          "high": 0.9054
+        },
+        "top3": {
+          "value": 0.973,
+          "low": 0.9324,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.8404,
+          "low": 0.7417,
+          "high": 0.9051
+        },
+        "ece": 0.1089
+      },
+      "f1_by_position": {
+        "0102": 0.4,
+        "0103": 0.5455,
+        "0104": 0.5,
+        "0105": 0.8,
+        "0407": 1.0,
+        "0713": 1.0,
+        "1005": 1.0,
+        "1201": 1.0,
+        "1209": 1.0,
+        "1214": 1.0,
+        "2302": 1.0,
+        "2304": 1.0,
+        "2309": 0.8571,
+        "2501": 0.6667,
+        "3101": 1.0,
+        "3102": 1.0,
+        "3103": 0.8,
+        "3104": 1.0,
+        "3105": 0.75,
+        "3808": 0.0,
+        "7313": 0.8,
+        "7314": 1.0,
+        "7317": 0.6667,
+        "8201": 1.0,
+        "8424": 1.0,
+        "8432": 0.75,
+        "8433": 0.5,
+        "8434": 1.0,
+        "8436": 0.8571,
+        "8543": 1.0,
+        "8701": 1.0,
+        "8716": 1.0
+      },
+      "errors": [
+        {
+          "id": "v002",
+          "text": "Vendo 28 bezerros machos, 13 meses, raça Nelore, peso médio 270kg na cidade de Promissão, SP.",
+          "true": "0102",
+          "top3": [
+            "0103",
+            "0102",
+            "0104"
+          ],
+          "confidence": 0.652
+        },
+        {
+          "id": "v003",
+          "text": "Novilhas nelore média 150kg Vazias Para engorda ou plantel",
+          "true": "0102",
+          "top3": [
+            "0103",
+            "0102",
+            "8432"
+          ],
+          "confidence": 0.837
+        },
+        {
+          "id": "v004",
+          "text": "VENDO EXCLENTE GARROTE GIROLANDA APENAS 10 MESES",
+          "true": "0102",
+          "top3": [
+            "0103",
+            "8432",
+            "8701"
+          ],
+          "confidence": 0.175
+        },
+        {
+          "id": "v009",
+          "text": "Vendo ovelhas",
+          "true": "0104",
+          "top3": [
+            "8432",
+            "0713",
+            "0104"
+          ],
+          "confidence": 0.109
+        },
+        {
+          "id": "v012",
+          "text": "Vendo casal de Ganso Sinaleiro",
+          "true": "0105",
+          "top3": [
+            "0103",
+            "0105",
+            "8432"
+          ],
+          "confidence": 0.207
+        },
+        {
+          "id": "v032",
+          "text": "Bloco de Sal Rosa do Himalaia KLOPR 3kg para Cavalos Bovinos Caprinos",
+          "true": "2501",
+          "top3": [
+            "0104",
+            "0102",
+            "2501"
+          ],
+          "confidence": 0.836
+        },
+        {
+          "id": "v041",
+          "text": "Adubo 05-20-20. Saca de 50 Kg.",
+          "true": "3105",
+          "top3": [
+            "0103",
+            "1005",
+            "3101"
+          ],
+          "confidence": 0.404
+        },
+        {
+          "id": "v045",
+          "text": "Superfosfato Simples 1kg Fósforo, Cálcio E Enxofre",
+          "true": "3105",
+          "top3": [
+            "3103",
+            "3105",
+            "2309"
+          ],
+          "confidence": 1.0
+        },
+        {
+          "id": "v046",
+          "text": "FIPRONIL, CONCENTRAÇÃO 80% P/P, APRESENTAÇÃO GRANULADO DISPERSÍVEL",
+          "true": "3808",
+          "top3": [
+            "2309",
+            "3808",
+            "8432"
+          ],
+          "confidence": 0.128
+        },
+        {
+          "id": "v053",
+          "text": "Grampo Para Cerca de Arame Farpado 2cm Galvanizado - 1 kg",
+          "true": "7317",
+          "top3": [
+            "7313",
+            "7217",
+            "7317"
+          ],
+          "confidence": 0.933
+        },
+        {
+          "id": "v060",
+          "text": "Enfardadeira em otimo estado de funcionamento",
+          "true": "8433",
+          "top3": [
+            "8436",
+            "8433",
+            "8432"
+          ],
+          "confidence": 0.278
+        },
+        {
+          "id": "v061",
+          "text": "Enfardadeira de rolo John Deere",
+          "true": "8433",
+          "top3": [
+            "8432",
+            "8433",
+            "8701"
+          ],
+          "confidence": 0.272
         }
       ]
     }

@@ -37,8 +37,8 @@
         },
         "macro_f1": {
           "value": 0.9326,
-          "low": 0.838,
-          "high": 0.9593
+          "low": 0.8786,
+          "high": 0.9678
         },
         "ece": 0.4502
       },
@@ -56,8 +56,8 @@
         },
         "macro_f1": {
           "value": 0.9326,
-          "low": 0.838,
-          "high": 0.9593
+          "low": 0.8786,
+          "high": 0.9678
         },
         "ece": 0.0635
       },
@@ -210,6 +210,139 @@
             "1201"
           ],
           "confidence": 0.867
+        }
+      ]
+    },
+    {
+      "file": "test_v2.csv",
+      "sha256": "034c834cc05acd1113c8f50d01692421b414e3de448a8503774000c8e231338f",
+      "metrics_raw": {
+        "rows": 74,
+        "top1": {
+          "value": 0.9324,
+          "low": 0.8784,
+          "high": 0.9865
+        },
+        "top3": {
+          "value": 1.0,
+          "low": 1.0,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.9101,
+          "low": 0.85,
+          "high": 0.9815
+        },
+        "ece": 0.4554
+      },
+      "metrics_calibrated": {
+        "rows": 74,
+        "top1": {
+          "value": 0.9324,
+          "low": 0.8784,
+          "high": 0.9865
+        },
+        "top3": {
+          "value": 1.0,
+          "low": 1.0,
+          "high": 1.0
+        },
+        "macro_f1": {
+          "value": 0.9101,
+          "low": 0.85,
+          "high": 0.9815
+        },
+        "ece": 0.0504
+      },
+      "f1_by_position": {
+        "0102": 1.0,
+        "0103": 1.0,
+        "0104": 0.8,
+        "0105": 1.0,
+        "0407": 1.0,
+        "0713": 1.0,
+        "1005": 1.0,
+        "1201": 1.0,
+        "1209": 1.0,
+        "1214": 1.0,
+        "2302": 1.0,
+        "2304": 1.0,
+        "2309": 0.6667,
+        "2501": 0.5,
+        "3101": 1.0,
+        "3102": 1.0,
+        "3103": 0.8,
+        "3104": 1.0,
+        "3105": 0.8889,
+        "3808": 0.0,
+        "7313": 0.8,
+        "7314": 1.0,
+        "7317": 0.6667,
+        "8201": 1.0,
+        "8424": 1.0,
+        "8432": 1.0,
+        "8433": 1.0,
+        "8434": 1.0,
+        "8436": 1.0,
+        "8543": 1.0,
+        "8701": 1.0,
+        "8716": 1.0
+      },
+      "errors": [
+        {
+          "id": "v028",
+          "text": "Sal mineral tipo 1 – CATMAT 315758: Sal mineral, ingredientes: micro e macro elementos minerais,cloreto de sódio, aplicação: animal.",
+          "true": "2309",
+          "top3": [
+            "2501",
+            "2309",
+            "3105"
+          ],
+          "confidence": 0.531
+        },
+        {
+          "id": "v032",
+          "text": "Bloco de Sal Rosa do Himalaia KLOPR 3kg para Cavalos Bovinos Caprinos",
+          "true": "2501",
+          "top3": [
+            "0104",
+            "2501",
+            "2309"
+          ],
+          "confidence": 0.633
+        },
+        {
+          "id": "v045",
+          "text": "Superfosfato Simples 1kg Fósforo, Cálcio E Enxofre",
+          "true": "3105",
+          "top3": [
+            "3103",
+            "3105",
+            "2309"
+          ],
+          "confidence": 1.0
+        },
+        {
+          "id": "v046",
+          "text": "FIPRONIL, CONCENTRAÇÃO 80% P/P, APRESENTAÇÃO GRANULADO DISPERSÍVEL",
+          "true": "3808",
+          "top3": [
+            "2309",
+            "3808",
+            "3102"
+          ],
+          "confidence": 0.43
+        },
+        {
+          "id": "v053",
+          "text": "Grampo Para Cerca de Arame Farpado 2cm Galvanizado - 1 kg",
+          "true": "7317",
+          "top3": [
+            "7313",
+            "7317",
+            "7217"
+          ],
+          "confidence": 0.509
         }
       ]
     }

@@ -29,6 +29,16 @@ def test_evaluate_values_and_interval_bounds() -> None:
         assert 0.0 <= interval.low <= interval.value <= interval.high <= 1.0
 
 
+def test_perfect_model_with_one_row_per_class_has_f1_interval_at_one() -> None:
+    # Regression: resamples miss some classes; those must not count as F1 = 0.
+    classes = np.array([f"{i:04d}" for i in range(20)])
+    truth = classes.copy()
+    proba = np.eye(20)
+    result = evaluate(truth, proba, classes, n_bootstrap=200, seed=0)
+    assert result.macro_f1.value == 1.0
+    assert result.macro_f1.low == 1.0
+
+
 def test_perfectly_calibrated_bin_has_zero_error() -> None:
     hits = np.array([True, False])
     confidence = np.array([0.5, 0.5])
