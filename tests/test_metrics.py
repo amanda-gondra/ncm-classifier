@@ -29,6 +29,16 @@ def test_evaluate_values_and_interval_bounds() -> None:
         assert 0.0 <= interval.low <= interval.value <= interval.high <= 1.0
 
 
+def test_macro_precision_and_recall() -> None:
+    # Every row is predicted as 0102: precision of 0102 is 1/3, recall is 1; the other
+    # two positions are never predicted, so their precision and recall are 0.
+    result = evaluate(TRUTH, PROBA, CLASSES, n_bootstrap=200, seed=1)
+    assert result.macro_precision.value == pytest.approx(1 / 9, abs=1e-4)
+    assert result.macro_recall.value == pytest.approx(1 / 3, abs=1e-4)
+    for interval in (result.macro_precision, result.macro_recall):
+        assert 0.0 <= interval.low <= interval.high <= 1.0
+
+
 def test_perfect_model_with_one_row_per_class_has_f1_interval_at_one() -> None:
     # Regression: resamples miss some classes; those must not count as F1 = 0.
     classes = np.array([f"{i:04d}" for i in range(20)])
