@@ -95,23 +95,30 @@ No GitHub Actions:
 - **ao disparar à mão o workflow** (*Run workflow*), rodam também o teste com o Hub e o build e
   teste da imagem Docker.
 
-## Hugging Face Spaces (implantação ainda não feita)
+## Implantação gratuita na Render
 
-A imagem já é compatível com um Space do tipo Docker:
+Os Spaces Docker e Gradio do Hugging Face passaram a exigir o plano PRO (ADR 0004). A API roda
+num serviço web gratuito da Render, construído a partir do mesmo `Dockerfile`, conforme
+`render.yaml`.
 
-- **Porta e usuário:** porta 7860 e usuário UID 1000.
-- **Modelo:** é baixado no build, na revisão fixa. Os Spaces voltam o disco à imagem a cada
-  reinício, então baixar no build evita um novo download a cada arranque.
-- **Recursos:** no plano gratuito de CPU, a imagem usa cerca de 100 MB de memória para o modelo
-  e responde em poucos milissegundos por texto. O tempo de arranque é o de subir o Python e
-  carregar o modelo, de alguns segundos.
-- **Segredos:** nenhum é necessário. Se for preciso, `HF_TOKEN` vai como *secret* do Space, nunca
-  no Dockerfile.
-- **Disponibilidade:** o plano gratuito não garante disponibilidade. O Space pode hibernar sem
-  uso e reiniciar sem aviso.
-- **CORS:** se a interface da etapa 9 chamar a API de outro domínio, a origem dela precisa entrar
-  em `ALLOWED_ORIGINS`.
+**Primeira vez (feito pela dona da conta):**
+1. Crie a conta em render.com entrando com o GitHub.
+2. Clique em **New → Blueprint** e escolha o repositório `amanda-gondra/ncm-classifier`.
+3. Clique em **Apply**. A Render constrói a imagem e publica o serviço `ncm-classifier-api`.
 
-Para implantar, crie um Space Docker e envie `Dockerfile`, `requirements-api.txt`,
-`pyproject.toml`, `README.md` e `src/`, com o cabeçalho do Space (`sdk: docker`,
-`app_port: 7860`). Isso só deve ser feito com aprovação.
+**Novos deploys** são sempre manuais: no painel do serviço, **Manual Deploy → Deploy latest
+commit**.
+
+**Depois de cada deploy:**
+
+```bash
+python scripts/verify_deployment.py --url https://<serviço>.onrender.com
+```
+
+**O que esperar do plano gratuito:**
+- 512 MB de RAM e CPU compartilhada. A API usa cerca de 100 MB.
+- O serviço dorme depois de 15 minutos sem uso. A primeira requisição depois disso leva perto
+  de um minuto.
+- Nenhum segredo é necessário, porque o modelo é público. A origem da interface da etapa 9 vai
+  em `ALLOWED_ORIGINS`, no painel da Render.
+- O plano gratuito não garante disponibilidade, e as condições podem mudar.

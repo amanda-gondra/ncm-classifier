@@ -1,0 +1,18 @@
+# Render Blueprint for the NCM Classifier API (free web service built from the Dockerfile).
+# Created from the Render dashboard (New > Blueprint > this repository). Deploys happen only
+# when triggered by hand (autoDeployTrigger: off), never on every push.
+services:
+  - type: web
+    name: ncm-classifier-api
+    runtime: docker
+    plan: free
+    region: virginia
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: PORT
+        value: "7860"
+      # Origins of the web interface (stage 9), set in the dashboard once it exists.
+      - key: ALLOWED_ORIGINS
+        sync: false
