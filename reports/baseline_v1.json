@@ -33,7 +33,6 @@
     "value": 0.6525225029026532,
     "target_accuracy": 0.95,
     "target_reached": true,
-    "threshold": 0.6525225029026532,
     "rows": 900,
     "accepted_rows": 766,
     "review_rate": {

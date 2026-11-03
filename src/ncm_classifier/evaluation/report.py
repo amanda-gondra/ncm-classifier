@@ -125,7 +125,11 @@ def calibrate_out_of_fold(
             "top1_with_rule": round(float(hits_final.mean()), 4),
             "rows_changed": int(rule_applied.sum()),
         },
-        "review": {**asdict(review), **review_summary.to_dict()},
+        # The fitted threshold is reported once, as "value", next to its out-of-fold summary.
+        "review": {
+            **asdict(review),
+            **{k: v for k, v in review_summary.to_dict().items() if k != "threshold"},
+        },
     }
     return OutOfFoldCalibration(temperature, review, summary)
 

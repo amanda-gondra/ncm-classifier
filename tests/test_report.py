@@ -37,6 +37,7 @@ def test_out_of_fold_calibration_reports_rule_and_review(calibration) -> None:
     assert summary["rule_31_05"]["top1_with_rule"] == 1.0
     assert summary["review"]["target_reached"]
     assert summary["review"]["value"] == calibration.review.value
+    assert "threshold" not in summary["review"]
 
 
 def test_evaluate_split_keeps_one_prediction_per_row(calibration) -> None:
