@@ -38,7 +38,7 @@
 # Parâmetros do experimento. `REPO_COMMIT` fixa a versão exata do código e dos
 # testes congelados usados nesta execução.
 
-# %% tags=["parameters"]
+# %%
 EXPERIMENT = "bertimbau_v1"
 REPO_URL = "https://github.com/amanda-gondra/ncm-classifier.git"
 REPO_COMMIT = "529bf1ceca77d5c46cf9a1663419824150a72878"
