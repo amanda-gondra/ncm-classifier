@@ -1,0 +1,12 @@
+{
+  "repo_commit": "529bf1ceca77d5c46cf9a1663419824150a72878",
+  "train_file": "train_v1.parquet",
+  "train_sha256": "2c075ec49ffcbba81b6e324c36e9bf9d06439d54c603cbe2dc790622b3f85a18",
+  "train_rows": 900,
+  "folds": 5,
+  "folds_sha256": "59611f6771f10d2c601009368dd868d2f83dcc91e3353a3340e1c2803f438cd0",
+  "tests": {
+    "test_v1.csv": "70841daa02d223401ecc64a5397971a0970c9c35e0958569ac6e6934c7dfcff9",
+    "test_v2.csv": "034c834cc05acd1113c8f50d01692421b414e3de448a8503774000c8e231338f"
+  }
+}

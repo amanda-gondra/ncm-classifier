@@ -1,0 +1,221 @@
+test,id,text,true,a_top1,a_top2,a_top3,a_p_top1,a_rule_31_05,a_needs_review,a_hit_top1,b_top1,b_top2,b_top3,b_p_top1,b_rule_31_05,b_needs_review,b_hit_top1,outcome
+test_v1,t001,ADUBO 20 5 20 – SACO 50 KG,3105,3105,3101,3102,0.752014,False,False,True,3105,3101,3102,0.960067,False,False,True,both_right
+test_v1,t002,ADUBO 10 10 10 – SACO 10 KG,3105,3105,3101,8432,0.957698,False,False,True,3105,3101,3102,0.969772,False,False,True,both_right
+test_v1,t003,ADUBO QUÍMICO NPK 05-20-20 EM SACAS DE 50 KG,3105,3105,3101,3102,0.963032,False,False,True,3105,3102,3103,0.96984,False,False,True,both_right
+test_v1,t004,Adubo NPK 16-06-20 com ou sem micronutrientes,3105,3105,8432,3101,0.975505,False,False,True,3105,3102,3103,0.965878,False,False,True,both_right
+test_v1,t005,1kg NPK 4-14-8 Adubo Fertilizante Rosa do Deserto Frutas Orquídeas,3105,3105,8432,3101,0.999215,False,False,True,3105,3101,1209,0.956307,False,False,True,both_right
+test_v1,t006,Uréia Fertilizante Nitrogenado Adubo Nitrogênio Saco 50 Kg,3102,3102,3105,3101,0.968633,False,False,True,3102,3105,3104,0.917985,False,False,True,both_right
+test_v1,t007,Saco 50kg Ureia 46%n Adubo Fertilizante Granulado - Solúvel,3102,3102,3105,3103,0.826259,False,False,True,3102,3105,3104,0.951934,False,False,True,both_right
+test_v1,t008,Adubo Ureia Granulado Gramados E Plantas Fracione 5kg,3105,3105,8432,3808,0.854942,True,False,True,3105,7317,1214,0.995519,True,False,True,both_right
+test_v1,t009,5kg Adubo Fertilizante Cloreto De Potássio KCL Vermelho,3105,3105,8432,0407,0.99995,True,False,True,3105,7217,7317,0.996388,True,False,True,both_right
+test_v1,t010,Humus De Minhoca Adubo Organico 20 Kg,3101,3101,3105,8432,0.915142,False,False,True,3101,3105,1209,0.965706,False,False,True,both_right
+test_v1,t011,Arame Farpado 350kgf 500m Vonder,7313,7313,7217,8424,0.999917,False,False,True,7313,7217,1006,0.997606,False,False,True,both_right
+test_v1,t012,"Arame Farpado Gerdau 1,60 ''Gir'' Rl250M",7313,7313,7217,0102,0.999675,False,False,True,7313,7217,1006,0.99756,False,False,True,both_right
+test_v1,t013,"Arame Farpado Rodeio Belgo 500 Metros Zincado 1,60mm Para Cerca 350kgf",7313,7313,7217,7317,0.999265,False,False,True,7313,7217,1006,0.997589,False,False,True,both_right
+test_v1,t014,"Arame Liso Para Cerca Rural Fio 15 1,83mm Aço Galvanizado 500m",7217,7217,7313,7317,0.999819,False,False,True,7217,7317,7314,0.99522,False,False,True,both_right
+test_v1,t015,Grampo Cerca 1x9 Gerdau P/ Arame Farpado Liso - 1kg,7317,7317,7313,7217,0.550622,False,True,True,7317,7217,8201,0.994537,False,False,True,both_right
+test_v1,t016,Grampo para Cercas Aroeira Polido BWG 9 x 7/8 Pol. 1Kg MORLAN-968,7317,7317,7217,1006,0.987641,False,False,True,7317,7217,8201,0.995782,False,False,True,both_right
+test_v1,t017,Eletrificador Cerca Elétrica Pequenas Propriedades 4.500m Ppcr Bivolt,8543,8543,8701,7217,0.998607,False,False,True,8543,8424,8432,0.997384,False,False,True,both_right
+test_v1,t018,Eletrificador Cercas Elétricas Grandes Propriedades Zk300 220v,8543,8543,8701,7217,0.98732,False,False,True,8543,8424,8432,0.997646,False,False,True,both_right
+test_v1,t019,Sal Mineral Cattle 80 em saco de 30kg,2309,2309,2501,3105,0.965547,False,False,True,2309,3102,2302,0.979796,False,False,True,both_right
+test_v1,t020,"SAL MINERAL SACO 25,00 KG",2309,2309,2501,3105,0.607579,False,True,True,2309,3102,2302,0.974467,False,False,True,both_right
+test_v1,t021,Sal mineral para ovinos,2309,2309,0104,2501,0.939545,False,False,True,2309,2302,3102,0.979276,False,False,True,both_right
+test_v1,t022,Suplemento Mineral para Equinos Agromix - 5kg,2309,2309,1214,3105,0.987151,False,False,True,2309,2302,2304,0.985629,False,False,True,both_right
+test_v1,t023,"Núcleo mineral com probióticos e vitaminas, ideal para Bovinos.",2309,2309,0102,3101,0.993359,False,False,True,2309,2302,3102,0.985999,False,False,True,both_right
+test_v1,t024,Ração extrusada para peixes onívoros com mínimo de 36 % de Proteína bruta,2309,2309,2304,0511,0.877592,False,False,True,2309,3102,2302,0.991789,False,False,True,both_right
+test_v1,t025,Sal comum,2501,2501,2309,0713,0.996829,False,False,True,2501,0407,1213,0.997368,False,False,True,both_right
+test_v1,t026,"Sal Rosa do Himalaia para Equinos em Londrina - 2,9Kg",2501,2501,2309,1214,0.456086,False,True,True,2501,0407,1214,0.996905,False,False,True,both_right
+test_v1,t027,Milho em grão,1005,1005,2302,0713,0.999999,False,False,True,1005,1201,2302,0.995963,False,False,True,both_right
+test_v1,t028,"Farelo de soja, ensacado, proteina bruta minimo 46%, fibra max 6%, extrato etéreo min 0,50 atividade ureatica max 0,15. - saco com 50 kg.",2304,2304,3102,2302,0.998343,False,False,True,2304,2302,1201,0.992857,False,False,True,both_right
+test_v1,t029,Farelo de soja com mínimo de 45% de preteína. Saco 50 kg.,2304,2304,2302,3102,0.998932,False,False,True,2304,2302,1201,0.994287,False,False,True,both_right
+test_v1,t030,Farelo De Soja 5kg Galinha Porco Peixe Ceva Cavalo Vaca Farelos e Grãos Trigo,2304,2304,2302,1201,0.686509,False,False,True,2304,2302,1201,0.989707,False,False,True,both_right
+test_v1,t031,"Farelo de trigo, ensacado, proteina bruta min 14%, fibra bruta ou materia fibrosa max. 15%, cálcio max 0,66% e fósforo min. 0,36%. - saco com 30 kg",2302,2302,2304,2309,0.732807,False,False,True,2302,2304,2309,0.987024,False,False,True,both_right
+test_v1,t032,"FARELO TRIGO, INGREDIENTES UMIDADE, PRAZO VALIDADE 60 DIAS, DOSAGEM PROTEÍNA BRUTA- MÍNIMO 14 PER",2302,2304,2302,2309,0.401272,False,True,False,2302,2304,2309,0.972749,False,False,True,only_b
+test_v1,t033,"Feno de Capim Tifton 85, fardo com 12 kg",1214,1214,1209,8433,0.999989,False,False,True,1214,1201,2501,0.996011,False,False,True,both_right
+test_v1,t034,"Ração concentrada ave. Ingredientes: Farelo de soja, de trigo e de amendoim. Aplicação: Aves em fase de postura e crescimento.",2309,2302,2304,2309,0.652242,False,True,False,2304,2302,2309,0.960705,False,False,False,both_wrong
+test_v1,t035,"Milho, tipo: grão, aplicação: alimento para animais, características adicionais: umidade máxima de 13,00% e sem presença de insetos",1005,1005,2309,0511,0.692875,False,False,True,1005,1201,1209,0.995963,False,False,True,both_right
+test_v1,t036,"Sementes de arroz (Variedades: Esmerada, Primavera, BRS A502)",1006,1209,1006,1213,0.695955,False,False,False,1006,1213,2302,0.604681,False,True,True,only_b
+test_v1,t037,"Sementes de feijão (Variedades: IAPAR, Rosinha, Roxinho e Jale)",0713,1209,0713,1005,0.613842,False,True,False,0713,1209,1007,0.993014,False,False,True,only_b
+test_v1,t038,"Sementes de cultivares de Milho do tipo variedade, direcionada a produção de grãos, de classe fiscalizada",1005,1005,1209,2302,0.5457,False,True,True,1005,1209,1201,0.991104,False,False,True,both_right
+test_v1,t040,SÊMEN BOVINO PARA USO EM INSEMINAÇÃO ARTIFICIAL,0511,0511,2309,3808,0.992553,False,False,True,0511,3101,0104,0.992357,False,False,True,both_right
+test_v1,t041,animais reprodutores e matrizes de caprinos e ovinos,0104,0104,0102,0103,0.99988,False,False,True,0104,0102,0103,0.752828,False,False,True,both_right
+test_v1,t042,galões de 20 litros de Glifosato Herbicida,3808,3808,8424,0105,0.994234,False,False,True,3808,0511,3101,0.985199,False,False,True,both_right
+test_v1,t043,"HERBICIDA PARA CAPINA QUÍMICA, LIQUIDO, GLIFOSATO COM CONCENTRAÇÃO DE 480 g DE SAL ISOPROPILAMINICO POR LITRO, PRODUTO NÃO AGRÍCOLA.",3808,3808,2309,2501,0.752023,False,False,True,3808,8424,3101,0.999165,False,False,True,both_right
+test_v1,t044,"HERBICIDA SELETIVO, SISTEMICO, A BASE DE CLETODIM (CLETHODIM), EMBALAGEM GALÃO DE 20 LITROS.",3808,3808,3105,8424,0.99516,False,False,True,3808,3101,8424,0.999138,False,False,True,both_right
+test_v1,t045,"Glifosato, concentração: 72% p,p, apresentação: granulado dispersível, número de referência química: 1071-83-6. Saco 5 kg.",3808,3808,2309,3105,0.166003,False,True,True,3105,2309,3808,0.982723,True,False,False,only_a
+test_v1,t046,HERBICIDA A BASE GLIFOSATO galão,3808,3808,8424,2309,0.99975,False,False,True,3808,8432,3101,0.999228,False,False,True,both_right
+test_v1,t047,"Inseticida liquido para uso profissional/saúde publica, especifico em termonebulilzação, formulação solução aquosa",3808,3808,3102,2309,0.530461,False,True,True,3808,8424,3101,0.999025,False,False,True,both_right
+test_v1,t048,sacos com 50 kg de Adubo supersimples,3103,3105,3103,0103,0.646702,False,True,False,3101,1209,3105,0.67135,False,False,False,both_wrong
+test_v1,t049,Enxada com cabo,8201,8201,8432,8701,0.999994,False,False,True,8201,8432,7317,0.994588,False,False,True,both_right
+test_v1,t050,Pá de corte com cabo de madeira,8201,8201,8433,2309,0.999024,False,False,True,8201,8433,7317,0.990904,False,False,True,both_right
+test_v1,t051,"Cavadeira articulada aço carbono, alta resistência, Gr. com cabo em ferro.",8201,8201,7217,1209,0.996516,False,False,True,8201,7317,3101,0.994705,False,False,True,both_right
+test_v1,t052,Trator agrícola de pneus ano 2017/2018,8701,8701,8716,8432,0.968276,False,False,True,8701,8716,2501,0.997895,False,False,True,both_right
+test_v1,t053,"Trator Agrícola 75 CV – potência mínima do motor de 75 CV, mínimo 3 cilindros, capacidade mínima do tanque de combustível de 90 litros, tração 4x4",8701,8701,8716,8424,0.997267,False,False,True,8701,8716,2501,0.998351,False,False,True,both_right
+test_v1,t054,"Trator agrícola novo, com tração dianteira auxiliar (TDA), potência mínima 24 CV",8701,8701,8716,8543,0.996714,False,False,True,8701,8716,2501,0.99832,False,False,True,both_right
+test_v1,t055,"Pulverizador de barro agrícola 12 mts de comprimento, altura de trabalho de 0,50 a 1,30metros",8424,8424,8716,8432,0.99431,False,False,True,8424,8543,8433,0.996445,False,False,True,both_right
+test_v1,t056,"Pulverizador turbo com tanque tipo carreta de 1500 litros, em fibra de vidro",8424,8424,8716,2309,0.950423,False,False,True,8424,8543,8433,0.996822,False,False,True,both_right
+test_v1,t057,"Pulverizador tipo barras Produto confeccionado com material extremamente resistente, para acoplamento nos três pontos do trator",8424,8424,8701,2309,0.798411,False,False,True,8424,8543,8701,0.996181,False,False,True,both_right
+test_v1,t058,"Grade aradora, intermediária de arrasto com sistema hidráulico controle remoto, com 14 discos de 28 polegadas, pneus novos.",8432,8432,8701,8201,0.949284,False,False,True,8432,8433,0713,0.991049,False,False,True,both_right
+test_v1,t059,"Plantadeira adubadeira, 4 linhas de arrasto, sistema hidráulico com controle remoto.",8432,8432,8433,8201,0.995731,False,False,True,8432,8433,7217,0.99114,False,False,True,both_right
+test_v1,t060,"Grade Aradora com controle remoto 16 discos de 26” e espessura de 6,0mm",8432,8432,8433,8424,0.983452,False,False,True,8432,8433,7217,0.992433,False,False,True,both_right
+test_v1,t061,ARADO SUBSOLAR,8432,8432,0103,2309,0.866902,False,False,True,8432,7217,1209,0.939536,False,False,True,both_right
+test_v1,t062,Distribuidor de Calcário,8432,8432,3808,8424,0.992531,False,False,True,8432,8433,8434,0.906236,False,False,True,both_right
+test_v1,t063,Discos grade aradora – Disco de arado para lavrar (arar) o solo,8432,8432,8433,8436,0.99877,False,False,True,8432,8433,7217,0.991858,False,False,True,both_right
+test_v1,t064,COLHEDORA DE FORRAGENS (ENSILADEIRA),8433,8433,8436,8432,0.999973,False,False,True,8433,8434,8436,0.986345,False,False,True,both_right
+test_v1,t065,Moinho Triturador Forrageiro 3CV,8436,8436,8433,8432,0.998583,False,False,True,8436,8433,8434,0.987865,False,False,True,both_right
+test_v1,t066,"Triturador forrageiro completo, para desintegrar, moer e picar capim, cana, mandioca",8436,8436,1209,2309,0.999745,False,False,True,8436,8433,2501,0.992891,False,False,True,both_right
+test_v1,t067,Triturador Forrageiro Trapp TRF 400 2CV Bivolt Picador Capim Milho Cana Ração Moedor Grãos Cereais Quirera Rolão 10 Martelos 2 Facas,8436,8436,1005,2302,0.997869,False,False,True,8436,8433,2501,0.993028,False,False,True,both_right
+test_v1,t068,Ordenhadeira móvel com 01 conjunto duplo comleto. Com 01 conjunto duplo completo para 02 vacas por vez,8434,8434,2309,8201,0.997279,False,False,True,8434,8433,8424,0.993254,False,False,True,both_right
+test_v1,t069,"Ordenhadeira, mecânica.",8434,8434,8433,8432,0.999972,False,False,True,8434,8433,8436,0.993926,False,False,True,both_right
+test_v1,t070,"Carreta reboque agrícola, de madeira com capacidade mínima de 6 (seis) toneladas, c/ 4 rodas e pneus novos.",8716,8716,8201,8433,0.998237,False,False,True,8716,8701,8201,0.997571,False,False,True,both_right
+test_v1,t071,"Carreta agrícola de madeira - chassi de aço, carroceria de madeira, capacidade mínima de carga 4,0 toneladas, 2 eixos com molas",8716,8716,8201,8433,0.983669,False,False,True,8716,8701,8201,0.997469,False,False,True,both_right
+test_v1,t072,"TELA HEXAGONAL GALINHEIRO TAG MALHA 2"" FIO BWG 18 (1,24mm) RL 50X1,0m",7314,7314,7217,0105,0.998974,False,False,True,7314,7217,7313,0.997293,False,False,True,both_right
+test_v1,t073,"Tela Mangueirão Fio 18 Malha 3 Galvanizada 1,80 x 50 m Alambrado Hexagonal Rural",7314,7314,7217,8543,0.999984,False,False,True,7314,7217,7313,0.997609,False,False,True,both_right
+test_v1,t074,"Tela Soldada para Alambrado Galvanizado Morlan 1,90 mm, 1,00 x 25 metros",7314,7314,7217,0103,0.998565,False,False,True,7314,7217,7313,0.997611,False,False,True,both_right
+test_v1,t075,"Tela Metálica Pinteiro Hex Malha 1'' BWG24 1,2m 50m Vonder",7314,7314,8424,0713,0.998397,False,False,True,7314,7217,7313,0.997437,False,False,True,both_right
+test_v1,t076,KCL 60% Cloreto de Potássio Granulado em Paranaguá - Fertilizante Potássico ideal para aplicação mecanizada. Disponível em Saco 25 kg.,3104,3104,3105,2501,0.983533,False,False,True,3104,3105,3103,0.991972,False,False,True,both_right
+test_v1,t077,Matriz caprina da raça Anglo Nubiana,0104,0104,0103,0102,0.933067,False,False,True,0103,0102,0104,0.384695,False,True,False,only_a
+test_v1,t078,"Lote de novilhas Nelore em Caeté (MG), sadias e bem conformadas, pesando entre 10 e 13 arrobas, ideais para recria e terminação.",0102,0102,0103,0104,0.698916,False,False,True,0102,0103,0104,0.861484,False,False,True,both_right
+test_v1,t079,Novilhas Jersey prenhas e vazias disponíveis em Pelotas - RS.,0102,0104,0102,0713,0.325599,False,True,False,0102,0104,0103,0.805321,False,False,True,only_b
+test_v1,t080,Boi Nelore de 3 anos com 16 a 18@. Cara limpa.,0102,0102,0104,8201,0.747815,False,False,True,0102,0104,0103,0.879919,False,False,True,both_right
+test_v1,t081,"Novilha Girolando, 3/4 Holandês em Itabuna - R$5000, sanidade em dia, 15-20 litros/dia.",0102,0102,0105,0104,0.901076,False,False,True,0102,0104,0103,0.868319,False,False,True,both_right
+test_v1,t082,PINTINHOS DE 1 DIA DE POSTURA,0105,0105,0102,8436,0.998869,False,False,True,0105,0103,0407,0.983011,False,False,True,both_right
+test_v1,t083,"Compre Galinhas Isabrow em Mateus Leme, Minas Gerais por R$ 30. Vacinadas e ideais para produção de ovos.",0105,0105,0407,0102,0.827293,False,False,True,0105,0103,0407,0.97875,False,False,True,both_right
+test_v1,t084,Ovos de galinhas criadas no sistema caipira,0407,0407,0105,0103,0.992275,False,False,True,0407,0105,2501,0.995232,False,False,True,both_right
+test_v1,t085,"Delicie-se com ovos caipiras frescos, direto da fazenda, embalados em cartelas de 30 unidades.",0407,0407,0105,0103,0.999795,False,False,True,0407,1007,2501,0.995832,False,False,True,both_right
+test_v1,t086,"Deliciosos ovos de codorna, entregues em Caçapava-SP.",0407,0407,0511,8433,0.96512,False,False,True,0407,0105,1213,0.995931,False,False,True,both_right
+test_v1,t087,"Venda de soja localizada em Redenção, PA. Saca de 60 quilos, safra de 2025, disponível para compra.",1201,1201,1005,2304,0.954375,False,False,True,1201,1005,2304,0.991566,False,False,True,both_right
+test_v1,t088,Soja a granel ou em sacas de 60kg.,1201,1201,2304,1005,0.993944,False,False,True,1201,1005,1214,0.992658,False,False,True,both_right
+test_v1,t089,"Semente de Pastagem Massaí, saca de 20kg.",1209,1209,1005,0713,0.993489,False,False,True,1209,1005,3101,0.995078,False,False,True,both_right
+test_v1,t090,"Semente Braquiária Marandú em saco de 20kg, ideal para pastagem.",1209,1209,1005,2309,0.997635,False,False,True,1209,3101,1007,0.997417,False,False,True,both_right
+test_v1,t091,Sementes Capim Mombaça Revestidas 20kg Ideal Gado De Leite,1209,1209,2309,7217,0.984186,False,False,True,1209,3101,1005,0.997139,False,False,True,both_right
+test_v1,t092,Casca de arroz prensada para agricultura e construção.,1213,1213,1006,8201,0.996298,False,False,True,1213,1006,2302,0.995831,False,False,True,both_right
+test_v1,t093,"Casca e palha de arroz moída à venda em Palmares do Sul, RS, ideal para ração animal e cama de aviário",1213,1213,1006,2309,0.99968,False,False,True,1213,1006,2302,0.995835,False,False,True,both_right
+test_v1,t094,Leitões Baé e Canastro para engorda à venda em São Roque do Canaã.,0103,0103,0105,0102,0.984607,False,False,True,0103,0102,0105,0.906845,False,False,True,both_right
+test_v1,t095,"Leitões castrados, vacinados e recém-apartados da Granja AJG para engorda em Juazeirinho, PB.",0103,0103,0105,0102,0.965063,False,False,True,0103,0105,0102,0.702356,False,False,True,both_right
+test_v1,t096,"Leitões de 3 meses com 30kg à venda em Ituverava, SP. Ideais para quem busca qualidade e saúde para seu rebanho.",0103,0103,2309,0102,0.952375,False,False,True,0103,0102,0105,0.828192,False,False,True,both_right
+test_v1,t097,"Saco de 60kg de sorgo padrão disponível a granel em Joviânia, GO.",1007,1007,1201,1005,0.9823,False,False,True,1007,0407,1209,0.997119,False,False,True,both_right
+test_v1,t098,"Sorgo ensacado em 50 kg, ideal para alimentação animal em Natal/RN.",1007,1007,1005,2309,0.808281,False,False,True,1007,0407,0713,0.997151,False,False,True,both_right
+test_v1,t099,Venda de 6.000 sacos de sorgo disponíveis em Campo Alegre de Goiás - GO.,1007,1007,0103,1213,0.981209,False,False,True,1007,0407,0713,0.997008,False,False,True,both_right
+test_v1,t100,"Semente de sorgo Di Solo em saco de 10 kg, germinação mínima de 80%.",1007,1007,1209,1201,0.781655,False,False,True,1007,0407,0713,0.997046,False,False,True,both_right
+test_v1,t101,"Esterco bovino curtido com 20% serragem, ideal para uso agrícola. Disponível a granel em Bragança Paulista, SP.",3101,3101,1213,8716,0.996697,False,False,True,3101,0511,3105,0.994037,False,False,True,both_right
+test_v1,t102,"Esterco de galinha seco de Bastos, SP - Direto da granja.",3101,3101,0407,3105,0.965664,False,False,True,3101,3105,0511,0.992649,False,False,True,both_right
+test_v1,t103,"Esterco Bovino Curtido, ideal para incrementar a fertilidade do solo, aumentar a umidade e substituir fertilizantes químicos.",3101,3101,3105,8432,0.996298,False,False,True,3101,1209,0511,0.992873,False,False,True,both_right
+test_v1,t104,Adubo superfosfato simples (Fertilizante). Composição: 6 a 18% de P2O5 e 18 a 20% de Ca - Cálcio. Comercialização ensacado. Saco de 50kg,3103,3103,3105,3102,0.959302,False,False,True,3105,3103,3101,0.892786,False,False,False,only_a
+test_v1,t105,SUPERFOSFATO SIMPLES 00-18-00 GRANULADO E PÓ,3103,3103,3105,0104,0.902078,False,False,True,3103,3105,3104,0.98536,False,False,True,both_right
+test_v1,t106,"TSP de Alta Disponibilidade para Plantas - Itumbiara, GO",3103,1209,8432,1201,0.393115,False,True,False,3105,3103,3808,0.510574,False,True,False,both_wrong
+test_v1,t107,Adubo cloreto de potássio (Fertilizante). Concentração de no mínimo 58% de K2O. Comercialização ensacado. Saco de 50kg,3104,3104,3105,3102,0.962069,False,False,True,3104,3105,3102,0.977897,False,False,True,both_right
+test_v1,t108,Sulfato de potássio 50% em sacos de 25 kg e Big Bag 1000 kg.,3104,3104,3105,3102,0.999311,False,False,True,3104,3105,3103,0.993994,False,False,True,both_right
+test_v1,t109,Adubo Uréia agrícola (fertilizante). Apresentação: Pérolas brancas (prilada) ou granulada. No mínimo composto de 44% de azoto (N). Comercialização ensacado. Saco de 50kg,3102,3102,3105,3101,0.764425,False,False,True,3102,3105,3104,0.914871,False,False,True,both_right
+test_v1,t110,"Fardo de Feno Tifton e Jiggs - 15 a 17 kg - Campo Verde, MT.",1214,1214,3105,8433,0.999557,False,False,True,1214,1201,2501,0.995897,False,False,True,both_right
+test_v1,t111,"Feno de Coast Cross à venda em Paranapanema, SP. Fardos de 18kg, preço fixo, estoque sujeito à disponibilidade.",1214,1214,1201,0103,0.978192,False,False,True,1214,1201,2501,0.995808,False,False,True,both_right
+test_v1,t112,"Feno de alfafa à venda em Itambaracá, PR.",1214,1214,0103,8433,0.999383,False,False,True,1214,1201,2501,0.995839,False,False,True,both_right
+test_v1,t113,"Feijão carioca 10 sacas de 50 kg colhido em fevereiro, condição saída da máquina, disponível em Araçariguama, SP",0713,0713,1005,0103,0.757294,False,False,True,0713,8432,1005,0.99695,False,False,True,both_right
+test_v1,t114,"Feijão Caupi disponível em Nova Mutum, MT. Excelente qualidade e ótimo preço para saca.",0713,0713,1201,1005,0.926092,False,False,True,0713,1007,0103,0.997943,False,False,True,both_right
+test_v1,t115,"Semente de Feijão IPR Urutau, ideal para colheita mecânica em São José dos Pinhais, PR. Cultivar resistente a doenças.",0713,0713,1209,8433,0.729921,False,False,True,0713,1209,1007,0.995268,False,False,True,both_right
+test_v1,t116,"Arroz Cateto em Casca disponível para retirada em Porto Alegre, RS.",1006,1213,1006,1201,0.866635,False,False,False,1006,1213,0407,0.99784,False,False,True,only_b
+test_v1,t117,"Arroz para uso animal em São Luís - MA. Saca com 40kg, ideal para ração.",1006,1006,1213,2309,0.782221,False,False,True,1006,1213,2309,0.997745,False,False,True,both_right
+test_v1,t118,Venda de Quirela de Arroz em Campinas/SP. Ideal para nutrição animal.,1006,1006,1213,1214,0.55732,False,True,True,1006,1213,2309,0.989876,False,False,True,both_right
+test_v1,t119,"Sêmen Holandês de destaque mundial disponível em Monte Alto, SP. Oferece equilíbrio e alta produtividade.",0511,0511,1209,8432,0.8768,False,False,True,0511,3101,0104,0.992577,False,False,True,both_right
+test_v1,t120,Marília - SP: Sêmen Guzerá Leiteiro disponível à venda.,0511,0511,1201,0103,0.999543,False,False,True,0511,3101,0713,0.992646,False,False,True,both_right
+test_v1,t121,"Sêmen de touros Nelores antigos nas variedades Mocho e padrão, disponível para venda em Paranaíba, MS.",0511,0511,1201,1005,0.840373,False,False,True,0511,3101,0104,0.992308,False,False,True,both_right
+test_v1,t122,"Casca de arroz moída Comcás para ração animal, compostagem e uso agropecuário, em Santa Cruz do Rio Pardo, SP.",1213,1213,1006,2309,0.988298,False,False,True,1213,2302,1006,0.99592,False,False,True,both_right
+test_v1,t123,"Venda de casca de arroz prensada em fardos de 29kg, disponível em Paraíso do Tocantins - TO, pronta para entrega de carga fechada.",1213,1213,1006,1005,0.994842,False,False,True,1213,2302,1006,0.995591,False,False,True,both_right
+test_v1,t124,"Farelo de arroz puro ensacado em sacos de 30kg disponível em Miranda do Norte, MA.",2302,2302,1213,2304,0.703486,False,False,True,2302,2304,1213,0.991691,False,False,True,both_right
+test_v1,t125,"Farelo de Arroz 100% para ração em Mato Leitão, RS.",2302,2302,1006,1213,0.831022,False,False,True,2302,2304,1213,0.991224,False,False,True,both_right
+test_v1,t126,"Arame liso ovalado Quality 14x16 para cerca rural em Guariba, SP. Alta resistência e proteção contra corrosão, ideal para gado. Bobina 1000m, aço zincado 2,2x2,7mm.",7217,7217,8543,2309,0.998047,False,False,True,7217,7314,7317,0.995,False,False,True,both_right
+test_v1,t127,"Arame galvanizado BWG 12 para cerca, 50kg (1100m) por rolo.",7217,7217,7317,7313,0.991726,False,False,True,7217,7314,7317,0.995216,False,False,True,both_right
+test_v1,t128,"Rolo novo lacrado de arame liso galvanizado nº14 Morlan, 50 kg, disponível em Mogi das Cruzes, SP.",7217,7217,7313,7314,0.997336,False,False,True,7217,7314,7317,0.991167,False,False,True,both_right
+test_v1,t129,"Colhedora de Forragem Casale CFC Super - Itapira, SP. Ideal para colheita eficiente de capim e sorgo, garantindo alta produtividade e qualidade.",8433,8433,1209,8436,0.994165,False,False,True,8433,8436,8434,0.986939,False,False,True,both_right
+test_v1,t130,"Colhedora de forragem JF 192 AT disponível em Juara, MT. Excelente condição, pronta para uso.",8433,8433,8432,0713,0.994088,False,False,True,8433,8436,8434,0.985159,False,False,True,both_right
+test_v1,t131,"Máquina Forrageira John Deere 7350 com plataforma Kemper 6,0m largura, revisada, ano 2008/2009, ótima condição.",8433,8433,8701,0103,0.531433,False,True,True,8433,8434,8432,0.950751,False,False,True,both_right
+test_v1,t132,"Ordenha Balde ao Pé com bomba de 450L e lavador automático, ideal para 2 a 4 vacas.",8434,8434,0102,8424,0.993405,False,False,True,8434,8433,8436,0.993043,False,False,True,both_right
+test_v1,t133,"Ordenhadeira canalizada com 4 conjuntos, bomba de vácuo e motor para fosso de ordenha.",8434,8434,8701,8436,0.99999,False,False,True,8434,8433,8436,0.994136,False,False,True,both_right
+test_v1,t134,"Carreta agrícola basculante 2T com rodas internas, pneus 600X16 e freio, disponível em Lajeado, RS.",8716,8716,8424,8432,0.999711,False,False,True,8716,8701,8201,0.997116,False,False,True,both_right
+test_v1,t135,Reboque agrícola basculante de alta resistência com capacidade para 5m³ e carga de até 7 toneladas.,8716,8716,1209,8424,0.997324,False,False,True,8716,8701,8201,0.99737,False,False,True,both_right
+test_v1,t136,"Eletrificador para cerca rural 100KM com 6,5 joules de energia, disponível em 127V ou 220V.",8543,8543,7317,7217,0.999615,False,False,True,8543,8424,8432,0.997587,False,False,True,both_right
+test_v1,t137,"Eletrificador para cerca elétrica rural com 150km de alcance, bivolt, ideal para gado.",8543,8543,2309,7217,0.999713,False,False,True,8543,8424,8432,0.997617,False,False,True,both_right
+test_v1,t138,"Borregas Texel e Ile de France à venda! Localização: Tamboara, PR.",0104,0104,8432,0105,0.922941,False,False,True,0104,0103,0102,0.81711,False,False,True,both_right
+test_v1,t139,"Borregas Santa Inês com 8 a 12 meses disponíveis em Santaluz, BA.",0104,0104,0103,0105,0.996778,False,False,True,0104,0102,0103,0.930147,False,False,True,both_right
+test_v1,t140,"Frangas Poedeiras Avifran em Paracatu, MG. Início de postura entre 120-150 dias com média anual de 280 ovos.",0105,0105,0407,8436,0.928773,False,False,True,0105,0103,0407,0.975078,False,False,True,both_right
+test_v1,t141,Frangas Poedeiras Novogen Brown disponíveis em Ribeirão das Neves. Ótima conversão alimentar e produção de ovos de casca vermelha.,0105,0105,0407,0103,0.577301,False,True,True,0105,0103,0407,0.961716,False,False,True,both_right
+test_v1,t142,"Sal para gado disponível em Mossoró/RN. Produtos em sacos de 25kg com alto padrão de qualidade. Atendemos diversos segmentos com sal grosso, triturado, moído e extra fino.",2501,2501,2309,1201,0.999199,False,False,True,2501,0407,8436,0.997655,False,False,True,both_right
+test_v1,t143,"Sal marinho em sacaria laminada de 25kg, disponível em Mossoró, RN.",2501,2501,1005,2309,0.985886,False,False,True,2501,0407,8701,0.997602,False,False,True,both_right
+test_v1,t144,Grampo P/ Cerca Arame Farpado E Liso 1x9 Pacote 1kg - Belgo,7317,7317,7313,7217,0.530925,False,True,True,7317,7217,8201,0.992612,False,False,True,both_right
+test_v1,t145,"Grampo Para Cerca 7/8"" x 9 BWG (19 x 10 (JP x Lpp)), Galvanizado, Vonder",7317,7317,7217,7314,0.997895,False,False,True,7317,7217,1213,0.995765,False,False,True,both_right
+test_v1,t146,"Soja em grãos disponível para venda em Aguaí, SP. Quantidade: 1200kg, ótimo preço para compra à vista.",1201,1201,1005,0103,0.989788,False,False,True,1201,1214,1005,0.99316,False,False,True,both_right
+test_v1,t147,Grande quantidade de soja GMO certificada disponível em Campos Novos (MT). Oferta para mercado nacional e exportação.,1201,1201,2304,1213,0.974079,False,False,True,1201,1005,2304,0.991667,False,False,True,both_right
+test_v2,v001,"Bezerros Nelore IATF, 3 machos e 2 fêmeas (10 meses, ~240kg), vacinados e vermifugados. Localização: Tuiuti, SP.",0102,0102,0103,0105,0.671527,False,False,True,0102,0104,0103,0.911308,False,False,True,both_right
+test_v2,v002,"Vendo 28 bezerros machos, 13 meses, raça Nelore, peso médio 270kg na cidade de Promissão, SP.",0102,0102,0103,0104,0.62659,False,True,True,0102,0104,0103,0.920114,False,False,True,both_right
+test_v2,v003,Novilhas nelore média 150kg Vazias Para engorda ou plantel,0102,0102,0103,0105,0.466544,False,True,True,0102,0104,0103,0.885289,False,False,True,both_right
+test_v2,v004,VENDO EXCLENTE GARROTE GIROLANDA APENAS 10 MESES,0102,0102,0103,3105,0.83518,False,False,True,0103,0105,0102,0.617282,False,True,False,only_a
+test_v2,v005,LEITÕES CAPADOS DUROC × PIETRAIN - PRONTOS PARA ENGORDA,0103,0103,0105,0102,0.998846,False,False,True,0103,0102,0104,0.871786,False,False,True,both_right
+test_v2,v006,Porca com 9 leitões,0103,0103,8201,2309,0.994089,False,False,True,0103,0105,0102,0.819749,False,False,True,both_right
+test_v2,v007,Porcos de Raça Durock com a pietrain,0103,0103,0102,0104,0.985197,False,False,True,0103,0105,0102,0.65165,False,False,True,both_right
+test_v2,v008,Carneiros Reprodutores,0104,0104,0103,0102,0.958857,False,False,True,0104,0102,0103,0.874624,False,False,True,both_right
+test_v2,v009,Vendo ovelhas,0104,0104,0102,0103,0.299716,False,True,True,0104,0102,0103,0.873896,False,False,True,both_right
+test_v2,v010,Galinha postura embra51 e uma Postura branca,0105,0105,3105,0407,0.954813,False,False,True,0105,0103,0407,0.984209,False,False,True,both_right
+test_v2,v011,Pintas de postura Isa Brown,0105,0105,3808,8201,0.961753,False,False,True,0105,0103,0713,0.921294,False,False,True,both_right
+test_v2,v012,Vendo casal de Ganso Sinaleiro,0105,0105,0103,0102,0.299842,False,True,True,0105,0103,0713,0.433011,False,True,True,both_right
+test_v2,v013,Ovos fresquinho,0407,0407,0713,8433,0.992535,False,False,True,0407,0105,2501,0.996179,False,False,True,both_right
+test_v2,v014,Ovos férteis de galinha legorne pura,0407,0407,0105,3105,0.998727,False,False,True,0407,2501,0105,0.996152,False,False,True,both_right
+test_v2,v015,Feijão para ração animal,0713,0713,2309,1201,0.949183,False,False,True,0713,1007,0103,0.997401,False,False,True,both_right
+test_v2,v016,Milho em Grãos Venda Direta da Fazenda,1005,1005,2302,0103,0.998178,False,False,True,1005,1201,2302,0.995632,False,False,True,both_right
+test_v2,v017,Vendo Milho Padrão,1005,1005,2302,0103,0.966898,False,False,True,1005,1201,2302,0.992161,False,False,True,both_right
+test_v2,v018,"Venda de 500 sacas de soja verde com entrega em março de 2022, direto de Palotina - PR. Preço: R$150,00 por saca. Aceito propostas e negociações sobre pagamento e juros.",1201,1201,2304,2501,0.811692,False,False,True,1201,1005,2304,0.991698,False,False,True,both_right
+test_v2,v019,Semente Capim Buffel Grass - Saco c/ 06 kg - Ótima Qualidade!,1209,1209,0103,1214,0.993212,False,False,True,1209,3101,1007,0.997274,False,False,True,both_right
+test_v2,v020,5kg Sementes de capim Tanzãnia para pastagem excelente para Caprinos /Equinos /Bovinos,1209,1209,0104,1214,0.991601,False,False,True,1209,3101,1005,0.99699,False,False,True,both_right
+test_v2,v021,Capim Massai - 1kg De Sementes,1209,1209,3105,0511,0.999676,False,False,True,1209,8432,3101,0.994688,False,False,True,both_right
+test_v2,v022,FENO DE TIFTON ROLO 157KG,1214,1214,3105,8433,0.999981,False,False,True,1214,1201,2501,0.996049,False,False,True,both_right
+test_v2,v023,Feno tifton rolão,1214,1214,8433,8432,0.999978,False,False,True,1214,1201,2501,0.995756,False,False,True,both_right
+test_v2,v024,Farelo de trigo: Farelo;  ingrediente básico: trigo; aplicação alimento animal; características adicionais: farelado e ensacado; composição: mínimo 16% de proteína bruta.,2302,2302,2304,2309,0.932408,False,False,True,2302,2304,2309,0.990141,False,False,True,both_right
+test_v2,v025,"Farelo de trigo – CATMAT 293606: Farelo trigo, dosagem: proteína bruta - mínimo 14 e fibra bruta - máximo per, características adicionais: ensacado no máximo 13,5% de umidade.",2302,2302,2304,2309,0.929734,False,False,True,2302,2304,1213,0.985963,False,False,True,both_right
+test_v2,v026,"Farelo de Soja: Farelo; ingrediente básico: soja;  aplicação: alimento animal;  características adicionais: moído e ensacado; composição: mínimo 44% de proteína bruta; umidade: máximo 12,5 %.",2304,2304,1201,2302,0.998747,False,False,True,2304,2302,1201,0.993314,False,False,True,both_right
+test_v2,v027,Farelo de Soja - Acondicionado em saco de 50kg.,2304,2304,2302,1201,0.991554,False,False,True,2304,2302,1201,0.994155,False,False,True,both_right
+test_v2,v028,"Sal mineral tipo 1 – CATMAT 315758: Sal mineral, ingredientes: micro e macro elementos minerais,cloreto de sódio, aplicação: animal.",2309,2501,2309,3105,0.53093,False,True,False,2309,3102,2501,0.89522,False,False,True,only_b
+test_v2,v029,"Sal Mineral Dosagem Componentes: 88 G Fósforo , Aplicação: Vaca Em Lactação",2309,2309,0104,2501,0.686339,False,False,True,2309,3102,3105,0.732379,False,False,True,both_right
+test_v2,v030,Mineral Bovinos Repelente Allium Cav Suplemento C/ Alho 10kg,2309,2309,3105,0102,0.941261,False,False,True,3808,0511,3101,0.866512,False,False,False,only_a
+test_v2,v031,Sal Grosso Integral-sem Aditivo C/ Laudo 1k,2501,2501,1201,2302,0.99357,False,False,True,2501,0407,8701,0.99769,False,False,True,both_right
+test_v2,v032,Bloco de Sal Rosa do Himalaia KLOPR 3kg para Cavalos Bovinos Caprinos,2501,0104,2501,2309,0.632688,False,True,False,2501,0407,8436,0.99647,False,False,True,only_b
+test_v2,v033,Esterco de gado curtido pronto para o uso.,3101,3101,2309,3105,0.998904,False,False,True,3101,0511,1209,0.993809,False,False,True,both_right
+test_v2,v034,Esterco de galinha curtido pronto para o uso.,3101,3101,3105,0105,0.999735,False,False,True,3101,3105,0511,0.99271,False,False,True,both_right
+test_v2,v035,"Venda de ureia agrícola granulada com 46% de nitrogênio. Produto importado, entrega em São Paulo, SP, com garantia e opções flexíveis de pagamento.",3102,3102,3105,0105,0.837507,False,False,True,3102,3105,2309,0.988877,False,False,True,both_right
+test_v2,v036,"ADUBO QUÍMICO, ASPECTO FÍSICO GRANULADO, COMPOSIÇÃO BÁSICA UREIA, 44% DE NITROGÊNIO, APLICAÇÃO AGRÍCOLA",3102,3102,3105,8424,0.895849,False,False,True,3102,3105,3104,0.920293,False,False,True,both_right
+test_v2,v037,Adubo 00-41-00 (Superfosfato triplo). Saca com 50 kg.,3103,3103,3105,0103,0.989235,False,False,True,3105,3103,3102,0.74543,False,False,False,only_a
+test_v2,v038,"ADUBO QUÍMICO, ASPECTO FÍSICO GRANULADO, COMPOSIÇÃO BÁSICA SUPERFOSFATO TRIPLO, MÍNIMO 40% DE P2 O3, APLICAÇÃO AGRÍCOLA",3103,3103,3105,8424,0.951047,False,False,True,3105,3103,3101,0.845384,False,False,False,only_a
+test_v2,v039,Adubo 00-00-58 (Cloreto de potássio). Saca com 50 kg.,3104,3104,3105,2501,0.930067,False,False,True,3104,3105,3102,0.964127,False,False,True,both_right
+test_v2,v040,"Cloreto de Potássio 60% granulado vermelho à venda em Itaquaquecetuba, SP. Produto com nota fiscal. Retirada local disponível.",3104,3104,1007,1201,0.966409,False,False,True,3104,3105,3103,0.994435,False,False,True,both_right
+test_v2,v041,Adubo 05-20-20. Saca de 50 Kg.,3105,3105,1005,0103,0.931838,False,False,True,3105,3102,3101,0.970625,False,False,True,both_right
+test_v2,v042,Adubo 11-52-00 (Monoamônio fosfato). Saca de 50 Kg.,3105,3105,3103,3102,0.9973,False,False,True,3105,3103,3102,0.960441,False,False,True,both_right
+test_v2,v043,Adubo Fertilizante Npk 04-14-08 1kg,3105,3105,8432,3101,0.999892,False,False,True,3105,3102,3103,0.972918,False,False,True,both_right
+test_v2,v044,Ureia Adubo Fertilizante Npk 46.00.00 Com 5k,3105,3105,3102,8432,0.995507,False,False,True,3102,3105,3104,0.880082,False,False,False,only_a
+test_v2,v045,"Superfosfato Simples 1kg Fósforo, Cálcio E Enxofre",3105,3105,2309,0103,0.999993,True,False,True,3105,1201,3808,0.997459,True,False,True,both_right
+test_v2,v046,"FIPRONIL, CONCENTRAÇÃO 80% P/P, APRESENTAÇÃO GRANULADO DISPERSÍVEL",3808,2309,3808,3102,0.430012,False,True,False,3808,3103,0511,0.980484,False,False,True,only_b
+test_v2,v047,Arame Farpado 250 Metros Kit Com 2 Nelore Para Cerca Morlan,7313,7313,7217,7317,0.999084,False,False,True,7313,7217,1006,0.997561,False,False,True,both_right
+test_v2,v048,Arame Farpado 500m Galvanizado Para Sítios Chácaras Fazendas,7313,7313,7217,7314,0.979645,False,False,True,7313,7217,1006,0.997572,False,False,True,both_right
+test_v2,v049,"Tela Cerca Soldada Tag Malha 5x10cm Fio 1,90mm - Rl 20x1,8m",7314,7314,7217,8543,0.998576,False,False,True,7314,7217,7313,0.997524,False,False,True,both_right
+test_v2,v050,"Tela Viveiro Maritaca Fio 1,24mm Malha 20mm 5,00 X 1,50m",7314,7314,0103,3105,0.999288,False,False,True,7314,7217,7313,0.997339,False,False,True,both_right
+test_v2,v051,Tela soldada galvanizada Alambrado cerca malha fina 1/2 x 1/2 altura 60cm comprimento 25m,7314,7314,7217,7317,0.999923,False,False,True,7314,7217,7313,0.997527,False,False,True,both_right
+test_v2,v052,Grampo Cerca Arame Belgo 9x1 Pacote 1kg,7317,7317,3105,7217,0.997706,False,False,True,7317,7217,8201,0.995674,False,False,True,both_right
+test_v2,v053,Grampo Para Cerca de Arame Farpado 2cm Galvanizado - 1 kg,7317,7313,7317,7217,0.508716,False,True,False,7317,7217,8201,0.99197,False,False,True,only_b
+test_v2,v054,Gadanha com cabo de ferro,8201,8201,0102,7217,0.998533,False,False,True,8201,7317,3101,0.99466,False,False,True,both_right
+test_v2,v055,Pulverizador Costal Manual Jacto Pjh 20l Cor Azul,8424,8424,8201,0105,0.999935,False,False,True,8424,8543,8433,0.997125,False,False,True,both_right
+test_v2,v056,Pulverizador Elétrico Costal Brudden SS20B 20L Cor Amarelo Com Bateria Recarregável 12V,8424,8424,8543,0104,0.998099,False,False,True,8424,8543,8433,0.996933,False,False,True,both_right
+test_v2,v057,Plantadeira Massey Ferguson 7 linhas 2010,8432,8432,8433,8701,0.99478,False,False,True,8432,8433,7217,0.985359,False,False,True,both_right
+test_v2,v058,Arado Lavrale,8432,8432,2309,0103,0.54629,False,True,True,8432,7217,1209,0.974245,False,False,True,both_right
+test_v2,v059,"Plantadeira Jumil Invicta EX 16 linhas com distribuidor pneumático e monitor de plantio, disponível em Jandaia - GO.",8432,8432,8433,1005,0.997098,False,False,True,8432,8433,0713,0.988431,False,False,True,both_right
+test_v2,v060,Enfardadeira em otimo estado de funcionamento,8433,8433,8436,8432,0.618234,False,True,True,8433,8432,8436,0.970854,False,False,True,both_right
+test_v2,v061,Enfardadeira de rolo John Deere,8433,8433,8432,8701,0.801164,False,False,True,8433,8432,8436,0.979653,False,False,True,both_right
+test_v2,v062,cod. 1505 FORRAGEIRA / ENSILADEIRA JF 92 Z 10 - Tk Tratores Nova Andradina-MS,8433,8433,8701,0104,0.902706,False,False,True,8433,8432,8701,0.952859,False,False,True,both_right
+test_v2,v063,Máquina de ordenhar dupla,8434,8434,8432,8433,0.991608,False,False,True,8434,8433,8436,0.992599,False,False,True,both_right
+test_v2,v064,Chocadeira,8436,8436,8433,8432,0.942755,False,False,True,2309,8436,3102,0.279446,False,True,False,only_a
+test_v2,v065,Triturador Forrageiro Elétrico C/ Motor 2hp Te30t Tramontina,8436,8436,8701,8543,0.994212,False,False,True,8436,8433,2501,0.993598,False,False,True,both_right
+test_v2,v066,Triturador Forrageiro Picador Cid75 2cv Monof. Bivolt Cid,8436,8436,8543,8433,0.997699,False,False,True,8436,8433,2501,0.993533,False,False,True,both_right
+test_v2,v067,Eletrificador Rural Bivolt 30km 30ha 8000V Fazendeiro,8543,8543,8432,8436,0.997536,False,False,True,8543,8424,8701,0.997356,False,False,True,both_right
+test_v2,v068,Eletrificador De Cerca Zebu 2tt3 Automático 220v,8543,8543,8436,8424,0.998116,False,False,True,8543,8424,8701,0.997635,False,False,True,both_right
+test_v2,v069,Central Aparelho De Choque Cerca Elétrica Rural Eletrificador 30km Bivolt Automático Fazenda Manejo Gado Boi Ovelha,8543,8543,8424,8436,0.999807,False,False,True,8543,8424,8432,0.997476,False,False,True,both_right
+test_v2,v070,Trator JD7515,8701,8701,8433,8716,0.999989,False,False,True,8701,8716,2501,0.998357,False,False,True,both_right
+test_v2,v071,Trator new holland Tl 95  ano 2016 cabine,8701,8701,8433,8432,0.997687,False,False,True,8701,8716,2501,0.998368,False,False,True,both_right
+test_v2,v072,Trator Lindner 1450 – 4x4 | 50 Cavalos | Motor Perkins,8701,8701,8432,8433,0.998405,False,False,True,8701,8716,2501,0.998313,False,False,True,both_right
+test_v2,v073,Reboque Galucho 6250 Kg,8716,8716,3105,0103,0.984822,False,False,True,8716,8701,8201,0.997233,False,False,True,both_right
+test_v2,v074,Reboque agrícola 850€,8716,8716,8424,3105,0.999541,False,False,True,8716,8701,8201,0.997216,False,False,True,both_right

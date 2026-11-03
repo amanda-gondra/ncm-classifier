@@ -1,0 +1,37 @@
+{
+  "machine": {
+    "system": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "logical_cpus": 8,
+    "memory_gb": 8.4,
+    "python": "3.14.4"
+  },
+  "models": {
+    "baseline": {
+      "load_seconds": 2.05,
+      "memory_mb": 96.3,
+      "single_ms": {
+        "median": 1.33,
+        "p95": 2.64
+      },
+      "batch_ms_per_text": 0.14,
+      "disk_mb": 7.3,
+      "libraries_mb": 235.2,
+      "texts": 146
+    },
+    "bertimbau": {
+      "load_seconds": 9.85,
+      "memory_mb": 655.0,
+      "single_ms": {
+        "median": 63.1,
+        "p95": 78.13
+      },
+      "batch_ms_per_text": 44.6,
+      "disk_mb": 436.5,
+      "libraries_mb": 739.3,
+      "texts": 146,
+      "torch_threads": 4,
+      "input_mode": "normalized"
+    }
+  }
+}

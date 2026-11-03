@@ -30,6 +30,11 @@ train = [
     "datasets>=2.20",
     "accelerate>=0.33",
 ]
+# Model comparison and inference benchmark (scripts/compare_models.py, benchmark_inference.py).
+analysis = [
+    "matplotlib>=3.8",
+    "psutil>=5.9",
+]
 dev = [
     "pytest>=8",
     "httpx>=0.27",

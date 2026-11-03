@@ -1,0 +1,7 @@
+{
+  "temperature": 0.5391110877851999,
+  "review_threshold": 0.6424701105482659,
+  "review_target_accuracy": 0.95,
+  "review_target_reached": true,
+  "fitted_on": "out-of-fold predictions of the training set"
+}

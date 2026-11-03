@@ -1,0 +1,13 @@
+test,id,text,true,top3,confidence,rule_31_05,needs_review
+test_v1.csv,t034,"Ração concentrada ave. Ingredientes: Farelo de soja, de trigo e de amendoim. Aplicação: Aves em fase de postura e crescimento.",2309,2304 2302 2309,0.961,False,False
+test_v1.csv,t045,"Glifosato, concentração: 72% p,p, apresentação: granulado dispersível, número de referência química: 1071-83-6. Saco 5 kg.",3808,3105 2309 3808,0.983,True,False
+test_v1.csv,t048,sacos com 50 kg de Adubo supersimples,3103,3101 1209 3105,0.671,False,False
+test_v1.csv,t077,Matriz caprina da raça Anglo Nubiana,0104,0103 0102 0104,0.385,False,True
+test_v1.csv,t104,Adubo superfosfato simples (Fertilizante). Composição: 6 a 18% de P2O5 e 18 a 20% de Ca - Cálcio. Comercialização ensacado. Saco de 50kg,3103,3105 3103 3101,0.893,False,False
+test_v1.csv,t106,"TSP de Alta Disponibilidade para Plantas - Itumbiara, GO",3103,3105 3103 3808,0.511,False,True
+test_v2.csv,v004,VENDO EXCLENTE GARROTE GIROLANDA APENAS 10 MESES,0102,0103 0105 0102,0.617,False,True
+test_v2.csv,v030,Mineral Bovinos Repelente Allium Cav Suplemento C/ Alho 10kg,2309,3808 0511 3101,0.867,False,False
+test_v2.csv,v037,Adubo 00-41-00 (Superfosfato triplo). Saca com 50 kg.,3103,3105 3103 3102,0.745,False,False
+test_v2.csv,v038,"ADUBO QUÍMICO, ASPECTO FÍSICO GRANULADO, COMPOSIÇÃO BÁSICA SUPERFOSFATO TRIPLO, MÍNIMO 40% DE P2 O3, APLICAÇÃO AGRÍCOLA",3103,3105 3103 3101,0.845,False,False
+test_v2.csv,v044,Ureia Adubo Fertilizante Npk 46.00.00 Com 5k,3105,3102 3105 3104,0.88,False,False
+test_v2.csv,v064,Chocadeira,8436,2309 8436 3102,0.279,False,True

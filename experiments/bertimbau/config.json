@@ -1,0 +1,70 @@
+{
+  "experiment": "bertimbau_v1",
+  "pretrained": "neuralmind/bert-base-portuguese-cased",
+  "pretrained_revision": "94d69c95f98f7d5b2a8700c420230ae10def0baa",
+  "fine_tune": {
+    "pretrained": "neuralmind/bert-base-portuguese-cased",
+    "revision": "94d69c95f98f7d5b2a8700c420230ae10def0baa",
+    "max_length": 128,
+    "batch_size": 16,
+    "gradient_accumulation": 1,
+    "learning_rate": 3e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "max_epochs": 10,
+    "max_grad_norm": 1.0,
+    "mixed_precision": true,
+    "seed": 0
+  },
+  "selection": {
+    "input_modes": [
+      "raw",
+      "normalized"
+    ],
+    "max_epochs": 10,
+    "best_mode": "normalized",
+    "best_epoch": 10,
+    "cv_macro_f1": 0.8715,
+    "temperature": 0.5391
+  },
+  "token_lengths": {
+    "raw": {
+      "p50": 20,
+      "p99": 64,
+      "max": 118,
+      "truncated_share": 0.0
+    },
+    "normalized": {
+      "p50": 18,
+      "p99": 61,
+      "max": 103,
+      "truncated_share": 0.0
+    }
+  },
+  "library_versions": {
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.20.2",
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "pyarrow": "23.0.1",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3"
+  },
+  "hardware": {
+    "device": "cuda",
+    "cpu_threads": 2,
+    "gpu": "Tesla T4",
+    "gpu_memory_gb": 15.6
+  },
+  "timing_seconds": {
+    "cross_validation": 430,
+    "final_training": 50
+  },
+  "peak_gpu_memory_gb": 2.35,
+  "inference": {
+    "model_size_mb": 436,
+    "gpu_ms_per_text": 13.95,
+    "cpu_ms_per_text": 66.39
+  }
+}

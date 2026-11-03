@@ -19,6 +19,7 @@ Outputs:
                                                breakdowns and every test error
     reports/predictions/<name>__<test>.csv     one row per test example
     reports/predictions/<name>__<test>_confusion.csv
+    reports/predictions/<name>__out_of_fold_proba.npy
 """
 
 from __future__ import annotations
@@ -89,6 +90,9 @@ def main() -> None:
     calibration = calibrate_out_of_fold(texts, labels, out_of_fold, classes, seed=args.seed)
 
     PREDICTIONS_DIR.mkdir(parents=True, exist_ok=True)
+    # Raw out-of-fold probabilities, rows in training order and columns in class order,
+    # so other models can be compared with this one on the same folds.
+    np.save(PREDICTIONS_DIR / f"{args.name}__out_of_fold_proba.npy", out_of_fold)
     tests = []
     for path in args.test:
         test = load_frozen_test(path)

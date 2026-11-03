@@ -96,7 +96,7 @@ def expected_calibration_error(
     return float(error)
 
 
-def _macro_scores(
+def macro_scores(
     y_true: NDArray[np.str_], y_pred: NDArray[np.str_], labels: Sequence[str]
 ) -> tuple[float, float, float]:
     """Return macro precision, recall and F1 over the given labels."""
@@ -125,7 +125,7 @@ def evaluate(
     predicted = _ranked_labels(proba, labels)[:, 0]
     hits1 = top_k_hits(truth, proba, labels, 1)
     hits3 = top_k_hits(truth, proba, labels, 3)
-    precision, recall, f1 = _macro_scores(truth, predicted, sorted(set(truth)))
+    precision, recall, f1 = macro_scores(truth, predicted, sorted(set(truth)))
 
     samples = bootstrap_indices(len(truth), n_bootstrap, seed)
     boot_top1 = hits1[samples].mean(axis=1)
@@ -134,7 +134,7 @@ def evaluate(
     # every test position would count a position missing from the resample as F1 = 0
     # and drag the interval below the real value when positions have few rows.
     boot_macro = np.array(
-        [_macro_scores(truth[s], predicted[s], sorted(set(truth[s]))) for s in samples]
+        [macro_scores(truth[s], predicted[s], sorted(set(truth[s]))) for s in samples]
     )
 
     return EvaluationResult(
