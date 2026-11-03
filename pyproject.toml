@@ -17,6 +17,7 @@ dependencies = [
     "scikit-learn>=1.5,<2",
     "joblib>=1.3",
     "scipy>=1.11",
+    "skops>=0.11",
     "pydantic>=2.7,<3",
     "fastapi>=0.115,<1",
     "uvicorn[standard]>=0.30,<1",
@@ -29,6 +30,10 @@ train = [
     "transformers>=4.44,<6",
     "datasets>=2.20",
     "accelerate>=0.33",
+]
+# Building and uploading the Hugging Face repositories (scripts/export_hf.py, publish_hf.py).
+publish = [
+    "huggingface_hub>=0.34",
 ]
 # Model comparison and inference benchmark (scripts/compare_models.py, benchmark_inference.py).
 analysis = [

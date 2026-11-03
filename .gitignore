@@ -16,6 +16,8 @@ data/interim/*
 data/processed/*
 !data/**/.gitkeep
 /models/
+# Folders built for the Hugging Face Hub (scripts/export_hf.py)
+/dist/
 *.safetensors
 *.onnx
 *.joblib

@@ -1,7 +1,7 @@
 # ADR 0003 — Escolha do modelo de produção
 
 - **Data:** 2026-11-03
-- **Status:** proposta, aguardando decisão da Amanda
+- **Status:** aceita em 2026-11-03 (opção 1, aprovada pela Amanda)
 
 ## Contexto
 
