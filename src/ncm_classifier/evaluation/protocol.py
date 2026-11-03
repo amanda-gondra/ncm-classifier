@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Final
 
 import numpy as np
+import pandas as pd
 from numpy.typing import NDArray
 from sklearn.model_selection import StratifiedKFold
 
@@ -55,3 +56,22 @@ def sha256_text(path: Path) -> str:
 
 def sha256_bytes(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def frozen_checksum(path: Path) -> str:
+    """Checksum recorded when the test file was frozen, in `<name>.sha256` next to it."""
+    recorded = path.with_suffix(".sha256").read_text(encoding="utf-8").split()
+    if len(recorded) != 2 or recorded[1] != path.name:
+        raise ValueError(f"malformed checksum file for {path.name}")
+    return recorded[0]
+
+
+def load_frozen_test(path: Path) -> pd.DataFrame:
+    """Read a frozen test set, refusing it if it changed or has unreviewed rows."""
+    if sha256_text(path) != frozen_checksum(path):
+        raise ValueError(f"{path.name} differs from its frozen checksum")
+    test = pd.read_csv(path, dtype=str, keep_default_na=False)
+    pending = int((test["reviewed"] != "true").sum())
+    if pending:
+        raise ValueError(f"{path.name}: {pending} rows not reviewed yet; refusing to evaluate")
+    return test

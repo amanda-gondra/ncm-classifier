@@ -34,6 +34,8 @@ dev = [
     "pytest>=8",
     "httpx>=0.27",
     "ruff>=0.6",
+    # Keeps notebooks/*.ipynb generated from their reviewable notebooks/*.py source.
+    "jupytext>=1.16",
 ]
 
 [tool.setuptools.packages.find]
@@ -53,3 +55,6 @@ select = ["E", "F", "I", "B", "UP", "SIM", "N", "S"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
+# Notebook cells import where they are used (E402), show their last expression as output (B018),
+# check the Python of the remote kernel (UP036) and run git with fixed arguments (S603, S607).
+"notebooks/*.py" = ["E402", "B018", "UP036", "S603", "S607"]

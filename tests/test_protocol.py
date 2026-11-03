@@ -1,11 +1,13 @@
 from pathlib import Path
 
 import numpy as np
+import pytest
 
 from ncm_classifier.evaluation.protocol import (
     FOLDS,
     fold_ids,
     folds_fingerprint,
+    load_frozen_test,
     make_folds,
     sha256_bytes,
     sha256_text,
@@ -34,6 +36,31 @@ def test_fingerprint_is_stable_and_detects_changes() -> None:
     assert folds_fingerprint(IDS, LABELS) == reference
     assert folds_fingerprint(IDS, LABELS, seed=1) != reference
     assert folds_fingerprint(IDS[::-1], LABELS) != reference
+
+
+def _frozen_file(directory: Path, content: bytes) -> Path:
+    path = directory / "test_x.csv"
+    path.write_bytes(content)
+    path.with_suffix(".sha256").write_text(f"{sha256_text(path)}  test_x.csv\n", encoding="utf-8")
+    return path
+
+
+def test_frozen_test_is_loaded_when_unchanged_and_reviewed(tmp_path: Path) -> None:
+    path = _frozen_file(tmp_path, b"id,text,position,reviewed\nt1,ureia,3102,true\n")
+    assert load_frozen_test(path)["id"].tolist() == ["t1"]
+
+
+def test_changed_frozen_test_is_refused(tmp_path: Path) -> None:
+    path = _frozen_file(tmp_path, b"id,text,position,reviewed\nt1,ureia,3102,true\n")
+    path.write_bytes(b"id,text,position,reviewed\nt1,ureia,3105,true\n")
+    with pytest.raises(ValueError, match="frozen checksum"):
+        load_frozen_test(path)
+
+
+def test_unreviewed_rows_are_refused(tmp_path: Path) -> None:
+    path = _frozen_file(tmp_path, b"id,text,position,reviewed\nt1,ureia,3102,false\n")
+    with pytest.raises(ValueError, match="not reviewed"):
+        load_frozen_test(path)
 
 
 def test_text_hash_ignores_line_endings(tmp_path: Path) -> None:

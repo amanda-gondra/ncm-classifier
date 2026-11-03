@@ -37,6 +37,7 @@ from sklearn.model_selection import GridSearchCV, cross_val_predict
 from ncm_classifier.evaluation.protocol import (
     FOLDS,
     folds_fingerprint,
+    load_frozen_test,
     make_folds,
     sha256_bytes,
     sha256_text,
@@ -48,14 +49,6 @@ logger = logging.getLogger(__name__)
 
 C_GRID: Final = (1.0, 3.0, 10.0, 30.0)
 PREDICTIONS_DIR: Final = Path("reports/predictions")
-
-
-def load_test(path: Path) -> pd.DataFrame:
-    test = pd.read_csv(path, dtype=str, keep_default_na=False)
-    pending = int((test["reviewed"] != "true").sum())
-    if pending:
-        raise SystemExit(f"{path.name}: {pending} rows not reviewed yet; refusing to evaluate")
-    return test
 
 
 def main() -> None:
@@ -98,7 +91,7 @@ def main() -> None:
     PREDICTIONS_DIR.mkdir(parents=True, exist_ok=True)
     tests = []
     for path in args.test:
-        test = load_test(path)
+        test = load_frozen_test(path)
         evaluation = evaluate_split(
             path.name,
             test["id"].tolist(),
