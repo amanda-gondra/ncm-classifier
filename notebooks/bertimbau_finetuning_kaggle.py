@@ -41,7 +41,7 @@
 # %% tags=["parameters"]
 EXPERIMENT = "bertimbau_v1"
 REPO_URL = "https://github.com/amanda-gondra/ncm-classifier.git"
-REPO_COMMIT = "REPLACE_WITH_COMMIT"
+REPO_COMMIT = "529bf1ceca77d5c46cf9a1663419824150a72878"
 REPO_DIR = "/kaggle/working/ncm-classifier"
 INPUT_ROOT = "/kaggle/input"
 OUTPUT_DIR = "/kaggle/working/experiments/bertimbau"
