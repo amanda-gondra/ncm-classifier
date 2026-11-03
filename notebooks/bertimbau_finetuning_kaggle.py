@@ -135,16 +135,24 @@ hardware, repo_head
 
 # %%
 import json
+import os
 
 import numpy as np
 import pandas as pd
 
 from ncm_classifier.evaluation.protocol import load_frozen_test
 
-train_matches = sorted(Path(INPUT_ROOT).rglob(TRAIN_FILE))
+# Kaggle may mount datasets through symbolic links, so the walk follows them.
+input_files = sorted(
+    Path(folder) / name
+    for folder, _, names in os.walk(INPUT_ROOT, followlinks=True)
+    for name in names
+)
+train_matches = [path for path in input_files if path.name == TRAIN_FILE]
 if len(train_matches) != 1:
     raise FileNotFoundError(
         f"Expected exactly one {TRAIN_FILE} under {INPUT_ROOT}, found {train_matches}. "
+        f"Files under {INPUT_ROOT}: {[str(path) for path in input_files[:50]]}. "
         "Add the private dataset with Add Input."
     )
 train_path = train_matches[0]
