@@ -58,6 +58,18 @@ Texts were collected in October 2026. Many marketplace URLs are search-result pa
 over time; the text in the file is the snapshot that was reviewed. Product pages are preferred
 for new rows.
 
+### Rights and redistribution
+
+- `marketplace` texts (Mercado Livre, MF Rural, Magazine Luiza and other stores) and
+  `public_procurement` texts belong to their authors or publishers. They are kept here only so
+  the experiments can be reproduced and audited, with the URL of each source, for study and
+  research. They are not offered under this repository's MIT license.
+- They are **not** part of the published dataset on the Hugging Face Hub, which has only the
+  official NCM texts and the synthetic rows (see `docs/adr/0003-escolha-do-modelo.md` and the
+  dataset card).
+- Any rights holder can ask for a text to be removed by opening an issue; it will be removed from
+  the files and the affected results will be recomputed.
+
 ### Known gaps
 
 - `t039` was removed: its label depended on context that is not in the text.
