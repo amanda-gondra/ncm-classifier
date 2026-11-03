@@ -19,8 +19,11 @@ dependencies = [
     "scipy>=1.11",
     "skops>=0.11",
     "pydantic>=2.7,<3",
+    "pydantic-settings>=2.4,<3",
     "fastapi>=0.115,<1",
     "uvicorn[standard]>=0.30,<1",
+    # The API downloads the published model at a fixed revision.
+    "huggingface_hub>=0.34",
 ]
 
 [project.optional-dependencies]
@@ -31,10 +34,6 @@ train = [
     "datasets>=2.20",
     "accelerate>=0.33",
 ]
-# Building and uploading the Hugging Face repositories (scripts/export_hf.py, publish_hf.py).
-publish = [
-    "huggingface_hub>=0.34",
-]
 # Model comparison and inference benchmark (scripts/compare_models.py, benchmark_inference.py).
 analysis = [
     "matplotlib>=3.8",
@@ -42,8 +41,10 @@ analysis = [
 ]
 dev = [
     "pytest>=8",
+    "pytest-cov>=5",
     "httpx>=0.27",
     "ruff>=0.6",
+    "mypy>=1.11",
     # Keeps notebooks/*.ipynb generated from their reviewable notebooks/*.py source.
     "jupytext>=1.16",
 ]
@@ -51,9 +52,33 @@ dev = [
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+# Official descriptions of the classified positions, read by the API.
+"ncm_classifier.data" = ["positions.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+markers = [
+    "hub: downloads the published model from the Hugging Face Hub (set NCM_RUN_HUB_TESTS=1)",
+]
+
+[tool.coverage.run]
+source = ["ncm_classifier"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/ncm_classifier/api", "src/ncm_classifier/inference", "src/ncm_classifier/data/positions.py"]
+# Third-party libraries without type information.
+[[tool.mypy.overrides]]
+module = ["sklearn.*", "skops.*", "scipy.*", "joblib.*"]
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 100

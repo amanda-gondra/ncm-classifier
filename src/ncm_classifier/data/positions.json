@@ -1,0 +1,155 @@
+{
+  "ncm_table": "Vigente em 30/10/2026",
+  "legal_act": "Resolução Gecex nº 926/2026",
+  "level": "position",
+  "positions": {
+    "0102": {
+      "formatted": "01.02",
+      "description": "Animais vivos da espécie bovina."
+    },
+    "0103": {
+      "formatted": "01.03",
+      "description": "Animais vivos da espécie suína."
+    },
+    "0104": {
+      "formatted": "01.04",
+      "description": "Animais vivos das espécies ovina e caprina."
+    },
+    "0105": {
+      "formatted": "01.05",
+      "description": "Aves da espécie Gallus domesticus, patos, gansos, perus, peruas e galinhas-d'angola (pintadas), das espécies domésticas, vivos."
+    },
+    "0407": {
+      "formatted": "04.07",
+      "description": "Ovos de aves, com casca, frescos, conservados ou cozidos."
+    },
+    "0511": {
+      "formatted": "05.11",
+      "description": "Produtos de origem animal, não especificados nem compreendidos noutras posições; animais mortos dos Capítulos 1 ou 3, impróprios para alimentação humana."
+    },
+    "0713": {
+      "formatted": "07.13",
+      "description": "Legumes de vagem, secos, em grão, mesmo pelados ou partidos."
+    },
+    "1005": {
+      "formatted": "10.05",
+      "description": "Milho."
+    },
+    "1006": {
+      "formatted": "10.06",
+      "description": "Arroz."
+    },
+    "1007": {
+      "formatted": "10.07",
+      "description": "Sorgo de grão."
+    },
+    "1201": {
+      "formatted": "12.01",
+      "description": "Soja, mesmo triturada."
+    },
+    "1209": {
+      "formatted": "12.09",
+      "description": "Sementes, frutos e esporos, para semeadura (sementeira)."
+    },
+    "1213": {
+      "formatted": "12.13",
+      "description": "Palhas e cascas de cereais, em bruto, mesmo picadas, moídas, prensadas ou em pellets."
+    },
+    "1214": {
+      "formatted": "12.14",
+      "description": "Rutabagas, beterrabas forrageiras, raízes forrageiras, feno, alfafa (luzerna), trevo, sanfeno, couves forrageiras, tremoço, ervilhaca e produtos forrageiros semelhantes, mesmo em pellets."
+    },
+    "2302": {
+      "formatted": "23.02",
+      "description": "Sêmeas, farelos e outros resíduos, mesmo em pellets, da peneiração, moagem ou de outros tratamentos de cereais ou de leguminosas."
+    },
+    "2304": {
+      "formatted": "23.04",
+      "description": "Tortas (bagaços) e outros resíduos sólidos, mesmo triturados ou em pellets, da extração do óleo de soja."
+    },
+    "2309": {
+      "formatted": "23.09",
+      "description": "Preparações do tipo utilizado na alimentação de animais."
+    },
+    "2501": {
+      "formatted": "25.01",
+      "description": "Sal (incluindo o sal de mesa e o sal desnaturado) e cloreto de sódio puro, mesmo em solução aquosa ou adicionados de agentes antiaglomerantes ou de agentes que assegurem uma boa fluidez; água do mar."
+    },
+    "3101": {
+      "formatted": "31.01",
+      "description": "Adubos (fertilizantes) de origem animal ou vegetal, mesmo misturados entre si ou tratados quimicamente; adubos (fertilizantes) resultantes da mistura ou do tratamento químico de produtos de origem animal ou vegetal."
+    },
+    "3102": {
+      "formatted": "31.02",
+      "description": "Adubos (fertilizantes) minerais ou químicos, nitrogenados (azotados)."
+    },
+    "3103": {
+      "formatted": "31.03",
+      "description": "Adubos (fertilizantes) minerais ou químicos, fosfatados."
+    },
+    "3104": {
+      "formatted": "31.04",
+      "description": "Adubos (fertilizantes) minerais ou químicos, potássicos."
+    },
+    "3105": {
+      "formatted": "31.05",
+      "description": "Adubos (fertilizantes) minerais ou químicos, que contenham dois ou três dos seguintes elementos fertilizantes: nitrogênio (azoto), fósforo e potássio; outros adubos (fertilizantes); produtos do presente Capítulo apresentados em tabletes ou formas semelhantes, ou ainda em embalagens de peso bruto não superior a 10 kg."
+    },
+    "3808": {
+      "formatted": "38.08",
+      "description": "Inseticidas, rodenticidas, fungicidas, herbicidas, inibidores de germinação e reguladores de crescimento para plantas, desinfetantes e produtos semelhantes, apresentados em formas ou embalagens para venda a retalho ou como preparações ou ainda sob a forma de artigos, tais como fitas, mechas e velas sulfuradas e papel mata-moscas."
+    },
+    "7217": {
+      "formatted": "72.17",
+      "description": "Fios de ferro ou aço não ligado."
+    },
+    "7313": {
+      "formatted": "73.13",
+      "description": "Arame farpado, de ferro ou aço; arames ou tiras, retorcidos, mesmo farpados, de ferro ou aço, do tipo utilizado em cercas."
+    },
+    "7314": {
+      "formatted": "73.14",
+      "description": "Telas metálicas (incluindo as telas contínuas ou sem fim), grades e redes, de fios de ferro ou aço; chapas e tiras, distendidas, de ferro ou aço."
+    },
+    "7317": {
+      "formatted": "73.17",
+      "description": "Tachas, pregos, percevejos, escápulas (pregos para tacos), grampos ondulados ou biselados e artigos semelhantes, de ferro fundido, ferro ou aço, mesmo com a cabeça de outra matéria, exceto cobre."
+    },
+    "8201": {
+      "formatted": "82.01",
+      "description": "Pás, alviões, picaretas, enxadas, sachos, forcados, forquilhas, ancinhos e raspadeiras; machados, podões e ferramentas semelhantes com gume; tesouras de podar de qualquer tipo; foices e foicinhas, facas para feno ou para palha, tesouras para sebes, cunhas e outras ferramentas manuais para agricultura, horticultura ou silvicultura."
+    },
+    "8424": {
+      "formatted": "84.24",
+      "description": "Aparelhos mecânicos (mesmo manuais) para projetar, dispersar ou pulverizar líquidos ou pós; extintores, mesmo carregados; pistolas aerográficas e aparelhos semelhantes; máquinas e aparelhos de jato de areia, de jato de vapor e aparelhos de jato semelhantes."
+    },
+    "8432": {
+      "formatted": "84.32",
+      "description": "Máquinas e aparelhos de uso agrícola, hortícola ou florestal, para preparação ou trabalho do solo ou para cultura; rolos para gramados (relvados) ou para campos de esporte."
+    },
+    "8433": {
+      "formatted": "84.33",
+      "description": "Máquinas e aparelhos para colheita ou debulha de produtos agrícolas, incluindo as enfardadeiras de palha ou forragem; cortadores de grama (relva) e ceifeiras; máquinas para limpar ou selecionar ovos, fruta ou outros produtos agrícolas, exceto as da posição 84.37."
+    },
+    "8434": {
+      "formatted": "84.34",
+      "description": "Máquinas de ordenhar e máquinas e aparelhos para a indústria de laticínios."
+    },
+    "8436": {
+      "formatted": "84.36",
+      "description": "Outras máquinas e aparelhos para agricultura, horticultura, silvicultura, avicultura ou apicultura, incluindo os germinadores equipados com dispositivos mecânicos ou térmicos e as chocadeiras e criadeiras para avicultura."
+    },
+    "8543": {
+      "formatted": "85.43",
+      "description": "Máquinas e aparelhos elétricos com função própria, não especificados nem compreendidos noutras posições do presente Capítulo."
+    },
+    "8701": {
+      "formatted": "87.01",
+      "description": "Tratores (exceto os carros-tratores da posição 87.09)."
+    },
+    "8716": {
+      "formatted": "87.16",
+      "description": "Reboques e semirreboques, para quaisquer veículos; outros veículos não autopropulsados; suas partes."
+    }
+  }
+}

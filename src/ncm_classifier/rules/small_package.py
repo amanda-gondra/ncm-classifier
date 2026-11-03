@@ -51,7 +51,9 @@ def is_small_package(text: str) -> bool:
 
 
 def apply_small_package_rule(
-    texts: Sequence[str], proba: NDArray[np.float64], classes: Sequence[str]
+    texts: Sequence[str],
+    proba: NDArray[np.float64],
+    classes: Sequence[str] | NDArray[np.str_],
 ) -> tuple[NDArray[np.float64], NDArray[np.bool_]]:
     """Return the adjusted probabilities and a mask of the rows the rule changed."""
     labels = np.asarray(classes, dtype=str)

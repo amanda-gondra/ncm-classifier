@@ -1,0 +1,34 @@
+# Only pyproject.toml, README.md, requirements-api.txt and src/ are needed to build the API image.
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+
+# Data, models and experiment outputs (the model comes from the Hugging Face Hub)
+data/
+models/
+experiments/
+reports/
+dist/
+notebooks/
+publishing/
+docs/
+configs/
+scripts/
+tests/
+
+# Tooling and caches
+.git/
+.github/
+.venv/
+venv/
+**/__pycache__/
+**/*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/

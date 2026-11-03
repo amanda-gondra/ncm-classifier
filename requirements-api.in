@@ -1,0 +1,6 @@
+# Pins added on top of pyproject.toml for the API image (compiled into requirements-api.txt):
+#   uv pip compile pyproject.toml requirements-api.in --python-version 3.12 \
+#       --python-platform x86_64-manylinux_2_28 -o requirements-api.txt
+# The published model was saved with these versions; loading it with others is not guaranteed.
+scikit-learn==1.9.1
+skops==0.16.0
