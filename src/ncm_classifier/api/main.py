@@ -9,6 +9,7 @@ this module is imported) and tests can pass their own settings and service.
 Middlewares, from the outside in:
     CORS            closed unless ALLOWED_ORIGINS lists origins
     RequestContext  request id, X-Request-ID header, one access log line
+    RateLimit       429 above RATE_LIMIT_PER_MINUTE requests per client to /v1/
     BodyLimit       413 for bodies above MAX_REQUEST_BODY_BYTES
 """
 
@@ -23,6 +24,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from ncm_classifier.api.config import Settings, get_settings
 from ncm_classifier.api.errors import register_exception_handlers
 from ncm_classifier.api.lifespan import lifespan
+from ncm_classifier.api.middleware.rate_limit import RateLimitMiddleware
 from ncm_classifier.api.middleware.request_context import (
     REQUEST_ID_HEADER,
     RequestContextMiddleware,
@@ -47,11 +49,13 @@ na versão fixa **{settings.model_revision}**.
 
 **Limites:** até {settings.max_text_length} caracteres por descrição,
 até {settings.max_batch_size} descrições por pedido e até
-{settings.max_request_body_bytes} bytes no corpo da requisição.
+{settings.max_request_body_bytes} bytes no corpo da requisição;
+até {settings.rate_limit_per_minute} pedidos por minuto às rotas `/v1/` (0 = sem limite).
 
 **Erros** têm sempre o formato `{{"error": {{"code", "message", "request_id", "details"}}}}`:
-400 JSON inválido · 413 corpo grande demais · 422 validação · 500 erro interno ·
-503 modelo carregando ou indisponível. Toda resposta traz o cabeçalho `X-Request-ID`.
+400 JSON inválido · 413 corpo grande demais · 422 validação · 429 limite de pedidos ·
+500 erro interno · 503 modelo carregando ou indisponível. Toda resposta traz o cabeçalho
+`X-Request-ID`.
 """
 
 
@@ -87,6 +91,7 @@ def create_app(
 
     # add_middleware puts each new middleware outside the previous ones.
     app.add_middleware(RequestBodyLimitMiddleware, max_body_bytes=settings.max_request_body_bytes)
+    app.add_middleware(RateLimitMiddleware, requests_per_minute=settings.rate_limit_per_minute)
     app.add_middleware(RequestContextMiddleware)
     app.add_middleware(
         CORSMiddleware,

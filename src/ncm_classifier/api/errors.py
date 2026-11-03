@@ -5,6 +5,7 @@
     405 method_not_allowed  wrong method for the route
     413 payload_too_large   body above MAX_REQUEST_BODY_BYTES (see middleware)
     422 validation_error    body does not match the schema or the limits
+    429 rate_limited        above RATE_LIMIT_PER_MINUTE (see middleware), with Retry-After
     500 internal_error      unexpected failure; details stay in the server log
     503 model_unavailable   the model is loading or failed to load
 

@@ -13,6 +13,7 @@ Variables:
     MAX_TEXT_LENGTH          characters per description
     MAX_BATCH_SIZE           descriptions per request
     MAX_REQUEST_BODY_BYTES   size of the request body
+    RATE_LIMIT_PER_MINUTE    requests per client per minute to /v1/ (0: no limit)
     LOG_LEVEL                logging level
 """
 
@@ -46,6 +47,8 @@ class Settings(BaseSettings):
     max_batch_size: int = Field(default=20, ge=1, le=1_000)
     # 20 x 500 characters x up to 4 bytes each in UTF-8 = 40 KB, plus JSON overhead.
     max_request_body_bytes: int = Field(default=65_536, ge=1_024)
+    # Requests per client per minute to /v1/ routes; 0 turns the limit off.
+    rate_limit_per_minute: int = Field(default=120, ge=0)
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
     @field_validator("model_revision")

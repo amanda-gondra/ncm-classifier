@@ -31,6 +31,7 @@ logger = logging.getLogger(__name__)
 ERROR_RESPONSES: dict[int | str, dict[str, Any]] = {
     400: {"model": ErrorResponse, "description": "Body is not valid JSON."},
     413: {"model": ErrorResponse, "description": "Body larger than the configured limit."},
+    429: {"model": ErrorResponse, "description": "Too many requests; see Retry-After."},
     422: {"model": ErrorResponse, "description": "Empty text, text or batch over the limits."},
     500: {"model": ErrorResponse, "description": "Unexpected internal error."},
     503: {"model": ErrorResponse, "description": "Model still loading or unavailable."},
