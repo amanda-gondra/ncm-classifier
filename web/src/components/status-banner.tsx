@@ -32,7 +32,7 @@ export function StatusBanner({ status, onRetry }: Props) {
   if (status === "ready") {
     return (
       <Alert role="status">
-        <CircleCheck aria-hidden className="text-emerald-600" />
+        <CircleCheck aria-hidden className="text-primary" />
         <AlertTitle>API pronta</AlertTitle>
         <AlertDescription>O modelo está carregado e pode classificar.</AlertDescription>
       </Alert>

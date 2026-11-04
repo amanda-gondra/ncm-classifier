@@ -1,37 +1,31 @@
-import { ClassifierApp } from "@/components/classifier-app";
-import { LINKS } from "@/lib/config";
+import { Architecture } from "@/components/landing/architecture";
+import { DemoSection } from "@/components/landing/demo-section";
+import { Hero } from "@/components/landing/hero";
+import { Highlights } from "@/components/landing/highlights";
+import { HowItWorks } from "@/components/landing/how-it-works";
+import { ResultsSection } from "@/components/landing/results-section";
+import { SiteFooter } from "@/components/landing/site-footer";
+import { SiteHeader } from "@/components/landing/site-header";
 
 export default function Home() {
   return (
     <>
-      <header className="border-b">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8">
-          <h1 className="font-heading text-2xl font-semibold tracking-tight">Classificador NCM</h1>
-          <p className="max-w-2xl text-muted-foreground">
-            Digite a descrição de um produto e veja as posições NCM (4 dígitos) mais prováveis,
-            com confiança calibrada e o aviso de quando vale revisar manualmente.
-          </p>
-        </div>
-      </header>
-
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
-        <ClassifierApp />
+      <a
+        href="#demonstracao"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2"
+      >
+        Ir para a demonstração
+      </a>
+      <SiteHeader />
+      <main className="flex-1">
+        <Hero />
+        <Highlights />
+        <HowItWorks />
+        <DemoSection />
+        <ResultsSection />
+        <Architecture />
       </main>
-
-      <footer className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-muted-foreground">
-          <p>
-            Ferramenta de demonstração. As sugestões não substituem a análise de um profissional
-            nem a consulta à tabela NCM vigente.
-          </p>
-          <p>
-            Projeto de portfólio de Amanda Gondra ·{" "}
-            <a href={LINKS.github} className="underline underline-offset-3">
-              código-fonte
-            </a>
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

@@ -9,6 +9,10 @@ export const API_URL = (
 export const MAX_TEXT_LENGTH = 500;
 export const MAX_BATCH_SIZE = 20;
 
+// Public address of this site (GitHub Pages), used for canonical and share-image URLs.
+// The base path (/ncm-classifier) is added by Next from PAGES_BASE_PATH at build time.
+export const SITE_ORIGIN = "https://amanda-gondra.github.io";
+
 export const LINKS = {
   github: "https://github.com/amanda-gondra/ncm-classifier",
   model: "https://huggingface.co/AmandaGondra/ncm-classifier",

@@ -2,7 +2,7 @@
 
 // Form for one description or a batch (one per line), with the API limits checked
 // before sending and clickable examples to try the model quickly.
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Sparkles } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -115,27 +115,31 @@ export function PredictionForm({ onSubmit, pending, disabled }: Props) {
         <TabsContent value="batch">{field("batch")}</TabsContent>
       </Tabs>
 
-      <div className="flex flex-col gap-2">
-        <p className="text-xs text-muted-foreground">Exemplos para testar:</p>
-        <ul className="flex flex-wrap gap-2">
-          {EXAMPLES.map((example) => (
-            <li key={example}>
-              <Button type="button" size="xs" variant="outline" onClick={() => addExample(example)}>
-                {example}
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-3">
-        <Button type="submit" size="lg" disabled={disabled || pending}>
-          {pending && <LoaderCircle data-icon="inline-start" className="animate-spin" aria-hidden />}
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+        <Button type="submit" size="lg" disabled={disabled || pending} className="h-11 px-6 text-base">
+          {pending ? (
+            <LoaderCircle data-icon="inline-start" className="animate-spin" aria-hidden />
+          ) : (
+            <Sparkles data-icon="inline-start" aria-hidden />
+          )}
           {pending ? "Classificando…" : "Classificar"}
         </Button>
         {disabled && !pending && (
           <p className="text-xs text-muted-foreground">Aguarde a API ficar pronta.</p>
         )}
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <p className="text-xs text-muted-foreground">Ou experimente um exemplo:</p>
+        <ul className="flex flex-wrap gap-2">
+          {EXAMPLES.map((example) => (
+            <li key={example}>
+              <Button type="button" size="sm" variant="outline" onClick={() => addExample(example)}>
+                {example}
+              </Button>
+            </li>
+          ))}
+        </ul>
       </div>
     </form>
   );
