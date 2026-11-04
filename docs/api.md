@@ -124,6 +124,6 @@ python scripts/verify_deployment.py --url https://<serviço>.onrender.com
 - 512 MB de RAM e CPU compartilhada. A API usa cerca de 100 MB.
 - O serviço dorme depois de 15 minutos sem uso. A primeira requisição depois disso leva perto
   de um minuto.
-- Nenhum segredo é necessário, porque o modelo é público. A origem da interface da etapa 9 vai
-  em `ALLOWED_ORIGINS`, no painel da Render.
+- Nenhum segredo é necessário, porque o modelo é público. A origem da [interface web](../web/README.md),
+  `https://amanda-gondra.github.io`, fica em `ALLOWED_ORIGINS` no `render.yaml`.
 - O plano gratuito não garante disponibilidade, e as condições podem mudar.

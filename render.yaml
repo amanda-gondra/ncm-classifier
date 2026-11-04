@@ -13,6 +13,6 @@ services:
     envVars:
       - key: PORT
         value: "7860"
-      # Origins of the web interface (stage 9), set in the dashboard once it exists.
+      # Origin of the web interface on GitHub Pages (web/). Public value, not a secret.
       - key: ALLOWED_ORIGINS
-        sync: false
+        value: "https://amanda-gondra.github.io"

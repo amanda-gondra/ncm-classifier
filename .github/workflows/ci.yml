@@ -39,6 +39,43 @@ jobs:
       - name: API coverage of at least 90%
         run: coverage report --include="src/ncm_classifier/api/*" --fail-under=90
 
+      - name: OpenAPI schema used by the web interface is up to date
+        run: python scripts/export_openapi.py --check
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript types match openapi.json
+        run: |
+          npm run gen:api
+          git diff --exit-code -- src/lib/api/schema.d.ts
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test
+
+      - name: Static build
+        run: npm run build
+
   release-checks:
     if: github.event_name == 'workflow_dispatch'
     needs: test

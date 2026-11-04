@@ -1,0 +1,758 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "NCM Classifier API",
+    "description": "\nSugere posições NCM (4 dígitos) a partir de descrições comerciais de produtos agropecuários,\nusando o modelo publicado [`AmandaGondra/ncm-classifier`](https://huggingface.co/AmandaGondra/ncm-classifier)\nna versão fixa **v0.1.0**.\n\n> **Aviso fiscal.** Sugestões de apoio, não decisões fiscais. A responsabilidade pela classificação fiscal permanece com quem emite a nota; a revisão por profissional habilitado pode ser necessária.\n\n**Limites:** até 500 caracteres por descrição,\naté 20 descrições por pedido e até\n65536 bytes no corpo da requisição;\naté 120 pedidos por minuto às rotas `/v1/` (0 = sem limite).\n\n**Erros** têm sempre o formato `{\"error\": {\"code\", \"message\", \"request_id\", \"details\"}}`:\n400 JSON inválido · 413 corpo grande demais · 422 validação · 429 limite de pedidos ·\n500 erro interno · 503 modelo carregando ou indisponível. Toda resposta traz o cabeçalho\n`X-Request-ID`.\n",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/predictions": {
+      "post": {
+        "tags": [
+          "predictions"
+        ],
+        "summary": "Suggest NCM positions for product descriptions",
+        "description": "Send exactly one of `description` (one text) or `descriptions` (a batch). Each result has up to three NCM positions with calibrated confidence, a manual review flag and whether the 31.05 small-package rule applied. Suggestions support, and do not replace, the fiscal classification.",
+        "operationId": "create_predictions_v1_predictions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Body is not valid JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body larger than the configured limit.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests; see Retry-After.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Empty text, text or batch over the limits.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected internal error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Model still loading or unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/model": {
+      "get": {
+        "tags": [
+          "model"
+        ],
+        "summary": "Served model, evaluation results and limits",
+        "operationId": "model_info_v1_model_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelInfoResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Model still loading or unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Operational state of the API and the model",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Model loading or unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CalibrationInfo": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method"
+          },
+          "temperature": {
+            "type": "number",
+            "title": "Temperature"
+          },
+          "review_threshold": {
+            "type": "number",
+            "title": "Review Threshold"
+          },
+          "review_target_accuracy": {
+            "type": "number",
+            "title": "Review Target Accuracy"
+          },
+          "fitted_on": {
+            "type": "string",
+            "title": "Fitted On"
+          }
+        },
+        "type": "object",
+        "required": [
+          "method",
+          "temperature",
+          "review_threshold",
+          "review_target_accuracy",
+          "fitted_on"
+        ],
+        "title": "CalibrationInfo"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "examples": [
+              "validation_error"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          },
+          "details": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            },
+            "type": "array",
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody"
+      },
+      "ErrorDetail": {
+        "properties": {
+          "field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "ErrorDetail"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "HealthModel": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "loading",
+              "ready",
+              "unavailable"
+            ],
+            "title": "State"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "title": "HealthModel"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "starting",
+              "unavailable"
+            ],
+            "title": "Status"
+          },
+          "model": {
+            "$ref": "#/components/schemas/HealthModel"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "model"
+        ],
+        "title": "HealthResponse"
+      },
+      "Interval": {
+        "properties": {
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "low": {
+            "type": "number",
+            "title": "Low"
+          },
+          "high": {
+            "type": "number",
+            "title": "High"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "low",
+          "high"
+        ],
+        "title": "Interval"
+      },
+      "ModelInfoResponse": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "repo_id": {
+            "type": "string",
+            "title": "Repo Id"
+          },
+          "revision": {
+            "type": "string",
+            "title": "Revision"
+          },
+          "architecture": {
+            "type": "string",
+            "title": "Architecture"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ScopeInfo"
+          },
+          "metrics": {
+            "items": {
+              "$ref": "#/components/schemas/TestMetrics"
+            },
+            "type": "array",
+            "title": "Metrics",
+            "description": "Frozen test sets, calibrated + 31.05 rule, 95% bootstrap intervals."
+          },
+          "calibration": {
+            "$ref": "#/components/schemas/CalibrationInfo"
+          },
+          "rule_3105": {
+            "$ref": "#/components/schemas/RuleInfo"
+          },
+          "release": {
+            "$ref": "#/components/schemas/ReleaseInfo"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "default": "Sugestões de apoio, não decisões fiscais. A responsabilidade pela classificação fiscal permanece com quem emite a nota; a revisão por profissional habilitado pode ser necessária."
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "repo_id",
+          "revision",
+          "architecture",
+          "scope",
+          "metrics",
+          "calibration",
+          "rule_3105",
+          "release"
+        ],
+        "title": "ModelInfoResponse"
+      },
+      "PositionInfo": {
+        "properties": {
+          "ncm": {
+            "type": "string",
+            "title": "Ncm"
+          },
+          "formatted": {
+            "type": "string",
+            "title": "Formatted"
+          },
+          "official_description": {
+            "type": "string",
+            "title": "Official Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ncm",
+          "formatted",
+          "official_description"
+        ],
+        "title": "PositionInfo"
+      },
+      "PredictionRequest": {
+        "properties": {
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "description": "One description, up to 500 chars."
+          },
+          "descriptions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "maxLength": 500,
+                  "minLength": 1
+                },
+                "type": "array",
+                "maxItems": 20,
+                "minItems": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Descriptions",
+            "description": "1 to 20 descriptions of up to 500 chars."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "PredictionRequest",
+        "examples": [
+          {
+            "description": "Adubo NPK 20-05-20 saco 50kg"
+          },
+          {
+            "descriptions": [
+              "Adubo NPK 20-05-20 saco 50kg",
+              "Ureia agrícola, pacote 1 kg",
+              "Arame farpado 500 m"
+            ]
+          }
+        ]
+      },
+      "PredictionResponse": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/PredictionResult"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "default": "Sugestões de apoio, não decisões fiscais. A responsabilidade pela classificação fiscal permanece com quem emite a nota; a revisão por profissional habilitado pode ser necessária."
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_id",
+          "model_version",
+          "results"
+        ],
+        "title": "PredictionResponse"
+      },
+      "PredictionResult": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Index",
+            "description": "Position of the description in the request."
+          },
+          "predictions": {
+            "items": {
+              "$ref": "#/components/schemas/Suggestion"
+            },
+            "type": "array",
+            "title": "Predictions",
+            "description": "Up to three suggestions, best first."
+          },
+          "requires_manual_review": {
+            "type": "boolean",
+            "title": "Requires Manual Review",
+            "description": "True when the first suggestion's confidence is below the review threshold."
+          },
+          "rule_3105_applied": {
+            "type": "boolean",
+            "title": "Rule 3105 Applied",
+            "description": "True when the 31.05 rule (packages of 10 kg or less) changed the result."
+          },
+          "applied_rule": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied Rule",
+            "examples": [
+              "ncm-3105-small-package"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "index",
+          "predictions",
+          "requires_manual_review",
+          "rule_3105_applied"
+        ],
+        "title": "PredictionResult"
+      },
+      "ReleaseInfo": {
+        "properties": {
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "code_commit": {
+            "type": "string",
+            "title": "Code Commit"
+          },
+          "github": {
+            "type": "string",
+            "title": "Github"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version",
+          "date",
+          "code_commit",
+          "github"
+        ],
+        "title": "ReleaseInfo"
+      },
+      "RuleInfo": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "default": "ncm-3105-small-package"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "limit_kg": {
+            "type": "number",
+            "title": "Limit Kg"
+          },
+          "target": {
+            "type": "string",
+            "title": "Target"
+          }
+        },
+        "type": "object",
+        "required": [
+          "description",
+          "limit_kg",
+          "target"
+        ],
+        "title": "RuleInfo"
+      },
+      "ScopeInfo": {
+        "properties": {
+          "level": {
+            "type": "string",
+            "title": "Level"
+          },
+          "ncm_table": {
+            "type": "string",
+            "title": "Ncm Table"
+          },
+          "legal_act": {
+            "type": "string",
+            "title": "Legal Act"
+          },
+          "positions": {
+            "items": {
+              "$ref": "#/components/schemas/PositionInfo"
+            },
+            "type": "array",
+            "title": "Positions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "level",
+          "ncm_table",
+          "legal_act",
+          "positions"
+        ],
+        "title": "ScopeInfo"
+      },
+      "Suggestion": {
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Rank",
+            "description": "1 is the most likely position."
+          },
+          "ncm": {
+            "type": "string",
+            "title": "Ncm",
+            "description": "NCM position, 4 digits.",
+            "examples": [
+              "3105"
+            ]
+          },
+          "level": {
+            "type": "string",
+            "const": "position",
+            "title": "Level",
+            "default": "position"
+          },
+          "formatted": {
+            "type": "string",
+            "title": "Formatted",
+            "examples": [
+              "31.05"
+            ]
+          },
+          "official_description": {
+            "type": "string",
+            "title": "Official Description",
+            "description": "Text of the position in the official table."
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "description": "Calibrated probability."
+          }
+        },
+        "type": "object",
+        "required": [
+          "rank",
+          "ncm",
+          "formatted",
+          "official_description",
+          "confidence"
+        ],
+        "title": "Suggestion"
+      },
+      "TestMetrics": {
+        "properties": {
+          "test_set": {
+            "type": "string",
+            "title": "Test Set"
+          },
+          "rows": {
+            "type": "integer",
+            "title": "Rows"
+          },
+          "top1": {
+            "$ref": "#/components/schemas/Interval"
+          },
+          "top3": {
+            "$ref": "#/components/schemas/Interval"
+          },
+          "macro_f1": {
+            "$ref": "#/components/schemas/Interval"
+          },
+          "ece": {
+            "type": "number",
+            "title": "Ece"
+          },
+          "review_rate": {
+            "$ref": "#/components/schemas/Interval"
+          },
+          "accepted_top1": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Interval"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "test_set",
+          "rows",
+          "top1",
+          "top3",
+          "macro_f1",
+          "ece",
+          "review_rate",
+          "accepted_top1"
+        ],
+        "title": "TestMetrics"
+      }
+    }
+  }
+}
