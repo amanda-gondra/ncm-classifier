@@ -69,8 +69,8 @@ export function ResultsSection() {
           </p>
         </SectionHeading>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          <article className="flex flex-col gap-4 rounded-xl border bg-card p-5">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <article className="flex min-w-0 flex-col gap-4 rounded-xl border bg-card p-5">
             <h3 className="font-heading text-lg font-semibold">O modelo simples ganhou</h3>
             <p className="text-sm text-muted-foreground">
               Os dois modelos foram treinados e avaliados com o mesmo protocolo. Nas{" "}
@@ -78,13 +78,13 @@ export function ResultsSection() {
               cerca de {speedup} vezes mais rápido em CPU e foi para produção.
             </p>
             <div className="overflow-x-auto">
-              <table className="w-full min-w-md text-sm">
+              <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b text-left text-muted-foreground">
                     <th scope="col" className="py-2 pr-3 font-medium">Modelo</th>
                     <th scope="col" className="py-2 pr-3 text-right font-medium">Acerto top-1</th>
                     <th scope="col" className="py-2 pr-3 text-right font-medium">Latência</th>
-                    <th scope="col" className="py-2 text-right font-medium">Tamanho</th>
+                    <th scope="col" className="hidden py-2 text-right font-medium sm:table-cell">Tamanho</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -101,7 +101,9 @@ export function ResultsSection() {
                       <td className="py-2.5 pr-3 text-right tabular-nums">
                         {formatDecimal(model.latency, 1)} ms
                       </td>
-                      <td className="py-2.5 text-right tabular-nums">{formatDecimal(model.disk, 1)} MB</td>
+                      <td className="hidden py-2.5 text-right tabular-nums sm:table-cell">
+                        {formatDecimal(model.disk, 1)} MB
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -117,7 +119,7 @@ export function ResultsSection() {
             </p>
           </article>
 
-          <article className="flex flex-col gap-4 rounded-xl border bg-card p-5">
+          <article className="flex min-w-0 flex-col gap-4 rounded-xl border bg-card p-5">
             <h3 className="font-heading text-lg font-semibold">
               {TOTAL_TRAINING} descrições de treino, de três fontes
             </h3>
