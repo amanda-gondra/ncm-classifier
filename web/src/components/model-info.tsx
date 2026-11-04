@@ -1,29 +1,43 @@
 // What the model is and how well it did on the frozen test sets, exactly as the API
 // reports it (/v1/model). Intervals are 95% bootstrap confidence intervals.
 import { ExternalLink } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { ModelInfo as ModelInfoData, TestMetrics } from "@/lib/api/client";
 import { LINKS } from "@/lib/config";
-import { formatInterval, formatPercent } from "@/lib/format";
+import { formatDecimal, formatPercent, formatRange } from "@/lib/format";
 
 type Props = {
   model: ModelInfoData | null;
   error: string | null;
 };
 
-const METRIC_ROWS: { label: string; render: (metrics: TestMetrics) => string }[] = [
-  { label: "Acerto top-1", render: (m) => formatInterval(m.top1) },
-  { label: "Acerto top-3", render: (m) => formatInterval(m.top3) },
-  { label: "F1 macro", render: (m) => formatInterval(m.macro_f1) },
-  { label: "Enviados à revisão", render: (m) => formatInterval(m.review_rate) },
+type Interval = TestMetrics["top1"];
+
+// Point value on top, its 95% interval below in smaller text.
+function IntervalCell({ interval }: { interval: Interval | null }) {
+  if (!interval) return <>—</>;
+  return (
+    <>
+      <span className="font-medium">{formatPercent(interval.value)}</span>
+      <span className="block text-xs text-muted-foreground">{formatRange(interval)}</span>
+    </>
+  );
+}
+
+const METRIC_ROWS: { label: string; render: (metrics: TestMetrics) => ReactNode }[] = [
+  { label: "Acerto top-1", render: (m) => <IntervalCell interval={m.top1} /> },
+  { label: "Acerto top-3", render: (m) => <IntervalCell interval={m.top3} /> },
+  { label: "F1 macro", render: (m) => <IntervalCell interval={m.macro_f1} /> },
+  { label: "Enviados à revisão", render: (m) => <IntervalCell interval={m.review_rate} /> },
   {
     label: "Acerto top-1 sem revisão",
-    render: (m) => (m.accepted_top1 ? formatInterval(m.accepted_top1) : "—"),
+    render: (m) => <IntervalCell interval={m.accepted_top1} />,
   },
-  { label: "ECE (erro de calibração)", render: (m) => m.ece.toFixed(3) },
+  { label: "ECE (erro de calibração)", render: (m) => formatDecimal(m.ece, 3) },
 ];
 
 const EXTERNAL_LINKS = [
@@ -109,7 +123,7 @@ function ModelDetails({ model }: { model: ModelInfoData }) {
       <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-sm">
         <dt className="text-muted-foreground">Calibração</dt>
         <dd>
-          {calibration.method}, T = {calibration.temperature.toFixed(2)}
+          {calibration.method}, T = {formatDecimal(calibration.temperature, 2)}
         </dd>
         <dt className="text-muted-foreground">Revisão</dt>
         <dd>
