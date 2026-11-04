@@ -17,6 +17,10 @@ confiança calibrada e com um aviso quando o caso deve ir para revisão manual.
 > **Aviso.** É uma ferramenta de apoio, não um parecer fiscal. A responsabilidade pela
 > classificação permanece com quem emite a nota.
 
+![Demonstração: a descrição "Adubo NPK 20-05-20 saco 50kg" é classificada e a página mostra as 3 posições NCM mais prováveis com a confiança de cada uma](docs/media/demo.gif)
+
+Mais capturas em [`docs/media/`](docs/media/README.md).
+
 ```bash
 curl -X POST https://ncm-classifier-api.onrender.com/v1/predictions \
   -H "Content-Type: application/json" \
@@ -211,8 +215,11 @@ tests/            pytest: unidade, API e integração
 ## Qualidade
 
 A cada push, a CI roda ruff, mypy, pytest com cobertura (mínimo de 90% na API), confere se o
-esquema OpenAPI do site está atualizado e roda lint, tipos, testes e build do site. Uma execução
-manual também testa a API com o modelo baixado do Hugging Face e a imagem Docker.
+esquema OpenAPI do site está atualizado e roda lint, tipos, testes e build do site. Os números
+mostrados no site são conferidos contra os relatórios em `reports/`. Uma execução manual também
+testa a API com o modelo baixado do Hugging Face e a imagem Docker, e o workflow **API health**
+registra a disponibilidade da API publicada a cada 6 horas
+([detalhes e limites](docs/api.md#monitoramento-e-divulgação)).
 
 ## Decisões
 
