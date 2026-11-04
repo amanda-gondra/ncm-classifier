@@ -97,6 +97,11 @@ No GitHub Actions:
 
 ## Implantação gratuita na Render
 
+**No ar em https://ncm-classifier-api.onrender.com** ([documentação](https://ncm-classifier-api.onrender.com/docs)).
+O primeiro deploy, de 2026-11-03, a partir do commit `0370383`, foi verificado com
+`verify_deployment.py`: a API publicada reproduziu o top-1 e a regra 31.05 da avaliação nas 146
+linhas do test_v1.
+
 Os Spaces Docker e Gradio do Hugging Face passaram a exigir o plano PRO (ADR 0004). A API roda
 num serviço web gratuito da Render, construído a partir do mesmo `Dockerfile`, conforme
 `render.yaml`.
