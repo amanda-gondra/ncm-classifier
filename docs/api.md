@@ -127,3 +127,23 @@ python scripts/verify_deployment.py --url https://<serviço>.onrender.com
 - Nenhum segredo é necessário, porque o modelo é público. A origem da [interface web](../web/README.md),
   `https://amanda-gondra.github.io`, fica em `ALLOWED_ORIGINS` no `render.yaml`.
 - O plano gratuito não garante disponibilidade, e as condições podem mudar.
+
+## Monitoramento e divulgação
+
+O workflow [`api-health.yml`](../.github/workflows/api-health.yml) chama `GET /health` a cada 6
+horas e registra no resumo da execução o estado, a versão do modelo e quantos segundos a API
+levou para ficar pronta. Ele espera até 3 minutos, porque pode encontrar o serviço dormindo.
+
+**Ele não mantém a API acordada, de propósito.** O plano gratuito da Render desliga o serviço
+após 15 minutos sem tráfego, e chamadas a cada poucos minutos só para impedir isso
+contornariam a regra do plano. Por isso o intervalo é longo: o objetivo é registrar a
+disponibilidade, não evitar o sono.
+
+**Antes de divulgar o site** (um post, uma entrevista), aqueça a API à mão:
+GitHub → Actions → **API health** → **Run workflow**. Marque **full** para também conferir as
+predições do test_v1 com `verify_deployment.py`. A API fica pronta por 15 minutos a partir da
+última requisição, e cada visitante renova esse prazo.
+
+Enquanto ela acorda, quem abre o site já vê um resultado real gravado no topo da página, e a
+demonstração avisa que está aguardando. Para disponibilidade contínua, o caminho correto é um
+plano pago da Render (instância sem desligamento), não um ping.

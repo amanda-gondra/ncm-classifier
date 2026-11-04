@@ -1,0 +1,75 @@
+name: API health
+
+# Monitors the public API and records each check in the run summary.
+#
+# - Scheduled run, every 6 hours: one health check, waiting up to 3 minutes for a sleeping
+#   free instance to wake up. It does not keep the service awake: Render spins a free web
+#   service down after 15 minutes without traffic, and this check respects that.
+# - Manual run ("Run workflow"): the same check, to warm the API up right before sharing
+#   the site; with "full" checked, it also re-runs the deployment verification on test_v1.
+#
+# Only public endpoints are called; no token or secret is used.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Also verify the predictions of test_v1 (scripts/verify_deployment.py)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  API_URL: https://ncm-classifier-api.onrender.com
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Wait for /health and record the result
+        run: |
+          started=$(date +%s)
+          status="unreachable"
+          for attempt in $(seq 1 36); do
+            body=$(curl -s --max-time 20 "$API_URL/health" || true)
+            status=$(echo "$body" | jq -r '.status // "unreachable"' 2>/dev/null || echo "unreachable")
+            [ "$status" = "ok" ] && break
+            sleep 5
+          done
+          elapsed=$(( $(date +%s) - started ))
+          version=$(echo "$body" | jq -r '.model.version // "-"' 2>/dev/null || echo "-")
+          {
+            echo "### API health"
+            echo ""
+            echo "| Check | Result |"
+            echo "|---|---|"
+            echo "| Time (UTC) | $(date -u '+%Y-%m-%d %H:%M') |"
+            echo "| Status | \`$status\` |"
+            echo "| Model version | \`$version\` |"
+            echo "| Seconds until ready | $elapsed |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "status=$status version=$version seconds=$elapsed"
+          test "$status" = "ok"
+
+  verify:
+    if: github.event_name == 'workflow_dispatch' && inputs.full
+    needs: health
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install the package
+        run: pip install -e ".[dev]"
+
+      - name: Verify the deployment against the recorded evaluation
+        run: python scripts/verify_deployment.py --url "$API_URL"
