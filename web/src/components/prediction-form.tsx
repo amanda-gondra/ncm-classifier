@@ -2,7 +2,7 @@
 
 // Form for one description or a batch (one per line), with the API limits checked
 // before sending and clickable examples to try the model quickly.
-import { LoaderCircle, Sparkles } from "lucide-react";
+import { FileText, List, LoaderCircle, Sparkles } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -107,9 +107,15 @@ export function PredictionForm({ onSubmit, pending, disabled }: Props) {
           }
         }}
       >
-        <TabsList aria-label="Modo de entrada">
-          <TabsTrigger value="single">Uma descrição</TabsTrigger>
-          <TabsTrigger value="batch">Várias descrições</TabsTrigger>
+        <TabsList aria-label="Modo de entrada" variant="line" className="mb-2">
+          <TabsTrigger value="single" className="px-3 data-active:text-primary">
+            <FileText aria-hidden className="hidden sm:block" />
+            Uma descrição
+          </TabsTrigger>
+          <TabsTrigger value="batch" className="px-3 data-active:text-primary">
+            <List aria-hidden className="hidden sm:block" />
+            Várias descrições
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="single">{field("single")}</TabsContent>
         <TabsContent value="batch">{field("batch")}</TabsContent>
@@ -130,7 +136,7 @@ export function PredictionForm({ onSubmit, pending, disabled }: Props) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-xs text-muted-foreground">Ou experimente um exemplo:</p>
+        <p className="text-xs text-muted-foreground">Exemplos para testar:</p>
         <ul className="flex flex-wrap gap-2">
           {EXAMPLES.map((example) => (
             <li key={example}>

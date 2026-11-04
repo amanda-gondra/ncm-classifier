@@ -3,7 +3,6 @@
 import { ExternalLink } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { ModelInfo as ModelInfoData, TestMetrics } from "@/lib/api/client";
@@ -49,17 +48,15 @@ const EXTERNAL_LINKS = [
 
 export function ModelInfo({ model, error }: Props) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Sobre o modelo</CardTitle>
-        <CardDescription>
-          {model ? `${model.name} ${model.version} · ${model.architecture}` : "Dados publicados pela API."}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        {model ? <ModelDetails model={model} /> : <ModelPlaceholder error={error} />}
-        <Separator />
-        <ul className="flex flex-col gap-1.5 text-sm">
+    <div className="flex flex-col gap-5">
+      <p className="text-sm text-muted-foreground">
+        {model
+          ? `${model.name} ${model.version} · ${model.architecture} · dados lidos da API (GET /v1/model)`
+          : "Dados publicados pela API."}
+      </p>
+      {model ? <ModelDetails model={model} /> : <ModelPlaceholder error={error} />}
+      <Separator />
+      <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {EXTERNAL_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -74,9 +71,8 @@ export function ModelInfo({ model, error }: Props) {
               </a>
             </li>
           ))}
-        </ul>
-      </CardContent>
-    </Card>
+      </ul>
+    </div>
   );
 }
 
@@ -100,8 +96,9 @@ function ModelDetails({ model }: { model: ModelInfoData }) {
         {scope.legal_act}).
       </p>
 
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       {model.metrics.map((metrics) => (
-        <div key={metrics.test_set} className="overflow-x-auto">
+        <div key={metrics.test_set} className="min-w-0 overflow-x-auto">
           <table className="w-full text-sm">
             <caption className="mb-1 text-left text-xs text-muted-foreground">
               Teste congelado <code>{metrics.test_set}</code> · {metrics.rows} linhas · IC 95%
@@ -119,8 +116,10 @@ function ModelDetails({ model }: { model: ModelInfoData }) {
           </table>
         </div>
       ))}
+      </div>
 
-      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-sm">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <dl className="grid min-w-0 grid-cols-[auto_1fr] content-start gap-x-3 gap-y-1 text-sm">
         <dt className="text-muted-foreground">Calibração</dt>
         <dd>
           {calibration.method}, T = {formatDecimal(calibration.temperature, 2)}
@@ -146,7 +145,7 @@ function ModelDetails({ model }: { model: ModelInfoData }) {
         </dd>
       </dl>
 
-      <details className="text-sm">
+      <details className="min-w-0 text-sm">
         <summary className="cursor-pointer font-medium">Posições cobertas</summary>
         <ul className="mt-2 flex max-h-64 flex-col gap-1 overflow-y-auto">
           {scope.positions.map((position) => (
@@ -157,6 +156,7 @@ function ModelDetails({ model }: { model: ModelInfoData }) {
           ))}
         </ul>
       </details>
+      </div>
     </>
   );
 }

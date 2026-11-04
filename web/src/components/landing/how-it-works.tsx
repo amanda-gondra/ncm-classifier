@@ -1,55 +1,39 @@
-// The problem, in the words of someone who issues invoices, and the five steps a
-// description goes through, in the words of someone who builds models.
+// Three steps, in plain words. The model details stay in the demonstration's details block.
+import { ArrowDown, ArrowRight, CircleCheck, Cpu, FileText } from "lucide-react";
+import { Fragment } from "react";
+
 import { SectionHeading } from "@/components/landing/section-heading";
 
 const STEPS = [
-  {
-    title: "Normalização do texto",
-    text: "Minúsculas, acentos, abreviações e unidades padronizadas. A mesma função é usada no treino e na API.",
-  },
-  {
-    title: "TF-IDF de palavras e caracteres",
-    text: "Pedaços de palavras capturam siglas, erros de digitação e fórmulas como “20-05-20”.",
-  },
-  {
-    title: "Regressão logística",
-    text: "Um classificador linear dá uma probabilidade para cada uma das posições do escopo.",
-  },
-  {
-    title: "Calibração e regra 31.05",
-    text: "A temperatura ajusta as probabilidades à taxa real de acerto. Adubo em embalagem de até 10 kg vai para a 31.05.",
-  },
-  {
-    title: "Limiar de revisão",
-    text: "Abaixo de um limiar escolhido no treino, o caso é marcado para revisão manual.",
-  },
+  { icon: FileText, title: "Descreva o produto", text: "Como no anúncio ou na nota." },
+  { icon: Cpu, title: "O modelo analisa o texto", text: "Palavras, siglas, pesos e fórmulas." },
+  { icon: CircleCheck, title: "Receba as 3 sugestões", text: "Com confiança e aviso de revisão." },
 ];
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" aria-labelledby="how-title" className="border-b">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14">
-        <SectionHeading titleId="how-title" eyebrow="Como funciona" title="Da descrição do anúncio ao código da nota">
-          <p>
-            Toda NF-e exige o código NCM de cada produto, escolhido entre mais de 10 mil subitens da
-            tabela oficial. Quem vende insumos e produtos agropecuários tem em mãos descrições como
-            “ADUBO 20 5 20 SC 50KG”, que pouco se parecem com o texto legal. O NCM Classifier sugere a
-            posição de 4 dígitos e diz quando a sugestão merece uma segunda olhada.
-          </p>
-        </SectionHeading>
-
-        <ol className="grid gap-4 md:grid-cols-5">
-          {STEPS.map((step, index) => (
-            <li key={step.title} className="flex flex-col gap-2 rounded-xl border bg-card p-4">
-              <span
-                aria-hidden
-                className="flex size-8 items-center justify-center rounded-full bg-secondary text-sm font-semibold text-primary"
-              >
-                {index + 1}
-              </span>
-              <h3 className="font-semibold">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">{step.text}</p>
-            </li>
+    <section id="como-funciona" aria-labelledby="how-title">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-4 py-16">
+        <SectionHeading titleId="how-title" eyebrow="Como funciona" title="Do texto à classificação, em segundos" centered />
+        <ol className="flex w-full max-w-4xl flex-col items-center gap-4 md:flex-row md:items-start md:justify-between">
+          {STEPS.map(({ icon: Icon, title, text }, index) => (
+            <Fragment key={title}>
+              {index > 0 && (
+                <li aria-hidden className="flex items-center text-muted-foreground/60 md:mt-6">
+                  <ArrowDown className="size-5 md:hidden" />
+                  <ArrowRight className="hidden size-6 md:block" />
+                </li>
+              )}
+              <li className="flex max-w-56 flex-col items-center gap-3 text-center">
+                <span aria-hidden className="flex size-14 items-center justify-center rounded-2xl bg-secondary text-primary">
+                  <Icon className="size-7" />
+                </span>
+                <h3 className="font-semibold">
+                  {index + 1}. {title}
+                </h3>
+                <p className="text-sm text-muted-foreground">{text}</p>
+              </li>
+            </Fragment>
           ))}
         </ol>
       </div>

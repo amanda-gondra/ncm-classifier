@@ -50,6 +50,8 @@ describe("published facts", () => {
     expect(metrics.top3.value).toBe(PUBLISHED_TEST.top3);
     expect(headline.accepted_top1.value).toBe(PUBLISHED_TEST.acceptedTop1);
     expect(headline.review_rate.value).toBe(PUBLISHED_TEST.reviewRate);
+    expect(headline.macro_f1.value).toBe(PUBLISHED_TEST.macroF1);
+    expect(headline.ece).toBe(PUBLISHED_TEST.ece);
   });
 
   it("match the production model report on test_v2", () => {

@@ -1,5 +1,5 @@
-// A real answer of the published API, recorded so the top of the page can show a result
-// at once, even while the free API instance is asleep. Not edited: values as returned.
+// A real answer of the published API, recorded for the share image (/og-image.png), which
+// is generated at build time and cannot call the API. Not edited: values as returned.
 //
 // Request: POST https://ncm-classifier-api.onrender.com/v1/predictions on 2026-11-04,
 // body {"descriptions": [...]} with the examples in EXAMPLES; this is the first result.

@@ -11,19 +11,18 @@ A página não tem servidor próprio nem segredos: é HTML, CSS e JavaScript ger
 
 | Parte | Origem |
 |---|---|
-| Topo, faixa de diferenciais, como funciona, resultados, arquitetura | conteúdo estático; números em `src/lib/project-facts.ts` |
-| Exemplo do topo ("Ureia agrícola, pacote 1 kg") | resposta real da API, gravada em `src/lib/sample-prediction.ts` |
-| Demonstração: sugestões, confiança, revisão manual, regra 31.05 | API, ao vivo |
-| Painel "Sobre o modelo" | API (`GET /v1/model`), ao vivo |
-| Imagem de compartilhamento (`/og-image.png`) e ícone (`/icon.png`) | gerados no build, com os mesmos números e o mesmo exemplo |
+| Textos, números do topo, como funciona, resultados, infraestrutura | conteúdo estático; números em `src/lib/project-facts.ts` |
+| "Experimente agora" (topo) e demonstração | API, ao vivo; o estado da API é verificado uma vez para a página toda |
+| "Detalhes do modelo e métricas" | API (`GET /v1/model`), ao vivo |
+| Imagem de compartilhamento (`/og-image.png`) e ícone (`/icon.png`) | gerados no build; a imagem usa uma resposta real gravada em `src/lib/sample-prediction.ts` |
 
 Os números estáticos não são digitados à mão sem conferência: `src/lib/project-facts.test.ts`
 compara cada um com os relatórios versionados do repositório (`reports/baseline_v1.json`,
 `reports/comparison/*.json`, `positions.json`) e falha se algum divergir. O mesmo teste confere
 que o exemplo gravado usa as descrições oficiais do catálogo.
 
-O topo mostra um resultado mesmo com a API dormindo; a demonstração mostra
-"A API está acordando…" e tenta de novo sozinha até o modelo ficar pronto.
+Com a API dormindo, o topo e a demonstração avisam que o servidor está acordando e tentam de
+novo sozinhos até o modelo ficar pronto; os botões de classificar só são liberados nessa hora.
 
 ## Desenvolvimento
 

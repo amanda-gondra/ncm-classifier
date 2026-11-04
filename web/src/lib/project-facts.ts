@@ -13,6 +13,8 @@ export const PUBLISHED_TEST = {
   top3: 0.9932,
   acceptedTop1: 0.9846,
   reviewRate: 0.1096,
+  macroF1: 0.9447,
+  ece: 0.0753,
 } as const;
 
 export const SECOND_TEST = {

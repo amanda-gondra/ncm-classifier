@@ -12,7 +12,7 @@ export const SECTIONS = [
   { id: "como-funciona", label: "Como funciona" },
   { id: "demonstracao", label: "Demonstração" },
   { id: "resultados", label: "Resultados" },
-  { id: "arquitetura", label: "Arquitetura" },
+  { id: "infraestrutura", label: "Infraestrutura" },
 ] as const;
 
 export function SiteHeader() {

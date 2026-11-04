@@ -1,36 +1,22 @@
 "use client";
 
-// The interactive part of the page: API status, the form, the results and the model panel.
-// The page itself is static HTML; everything here runs in the browser and calls the API.
+// The full demonstration: the form (one description or a batch), the API state, the
+// results and, closed by default, the model details read from /v1/model.
+import { BarChart3, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { useSharedApiStatus } from "@/components/api-status-provider";
+import { ErrorAlert } from "@/components/error-alert";
 import { ModelInfo } from "@/components/model-info";
 import { PredictionForm } from "@/components/prediction-form";
 import { PredictionResults } from "@/components/prediction-results";
-import { StatusBanner } from "@/components/status-banner";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { useApiStatus } from "@/hooks/use-api-status";
-import {
-  ApiError,
-  getModelInfo,
-  predict,
-  type ModelInfo as ModelInfoData,
-  type PredictionResponse,
-} from "@/lib/api/client";
-
-type Submission = { descriptions: string[]; response: PredictionResponse };
-
-function toApiError(error: unknown): ApiError {
-  return error instanceof ApiError
-    ? error
-    : new ApiError("Ocorreu um erro inesperado.", null, "unexpected_error");
-}
+import { StatusPanel } from "@/components/status-panel";
+import { usePrediction } from "@/hooks/use-prediction";
+import { getModelInfo, type ModelInfo as ModelInfoData } from "@/lib/api/client";
 
 export function ClassifierApp() {
-  const { status, retry } = useApiStatus();
-  const [submission, setSubmission] = useState<Submission | null>(null);
-  const [error, setError] = useState<ApiError | null>(null);
-  const [pending, setPending] = useState(false);
+  const { status, retry } = useSharedApiStatus();
+  const { submission, error, pending, submit } = usePrediction();
   const [model, setModel] = useState<ModelInfoData | null>(null);
   const [modelError, setModelError] = useState<string | null>(null);
 
@@ -50,22 +36,6 @@ export function ClassifierApp() {
     return () => controller.abort();
   }, [status, model]);
 
-  const handleSubmit = async (descriptions: string[]) => {
-    setPending(true);
-    setError(null);
-    try {
-      const response = await predict(descriptions);
-      setSubmission({ descriptions, response });
-    } catch (caught) {
-      const apiError = toApiError(caught);
-      setError(apiError);
-      // The server may have gone back to sleep: show the waking state again.
-      if (apiError.isTemporary) retry();
-    } finally {
-      setPending(false);
-    }
-  };
-
   const announcement = pending
     ? "Classificando…"
     : submission
@@ -73,45 +43,44 @@ export function ClassifierApp() {
       : "";
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-      <div className="flex min-w-0 flex-col gap-6">
-        <StatusBanner status={status} onRetry={retry} />
-        <PredictionForm
-          onSubmit={(descriptions) => void handleSubmit(descriptions)}
-          pending={pending}
-          disabled={status !== "ready"}
-        />
-        {error && <ErrorAlert error={error} />}
-        <p className="sr-only" aria-live="polite">
-          {announcement}
-        </p>
-        {submission && (
-          <PredictionResults descriptions={submission.descriptions} response={submission.response} />
-        )}
-      </div>
-      <aside className="min-w-0">
-        <ModelInfo model={model} error={modelError} />
-      </aside>
-    </div>
-  );
-}
-
-function ErrorAlert({ error }: { error: ApiError }) {
-  return (
-    <Alert variant="destructive">
-      <AlertTitle>Não foi possível classificar</AlertTitle>
-      <AlertDescription>
-        <p>
-          {error.message}
-          {error.retryAfterSeconds !== null &&
-            ` Tente de novo em ${error.retryAfterSeconds} segundo(s).`}
-        </p>
-        {error.requestId && (
-          <p className="text-xs">
-            Código da requisição: <code>{error.requestId}</code>
+    <div className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="flex min-w-0 flex-col gap-6">
+          <div className="rounded-xl border bg-card p-5">
+            <PredictionForm
+              onSubmit={(descriptions) => void submit(descriptions)}
+              pending={pending}
+              disabled={status !== "ready"}
+            />
+          </div>
+          {error && <ErrorAlert error={error} />}
+          <p className="sr-only" aria-live="polite">
+            {announcement}
           </p>
-        )}
-      </AlertDescription>
-    </Alert>
+          {submission && (
+            <PredictionResults descriptions={submission.descriptions} response={submission.response} />
+          )}
+        </div>
+        <div className="min-w-0">
+          <StatusPanel status={status} modelVersion={model?.version ?? null} onRetry={retry} />
+        </div>
+      </div>
+
+      <details className="group rounded-xl border bg-card">
+        <summary className="flex cursor-pointer list-none items-center gap-4 p-5 [&::-webkit-details-marker]:hidden">
+          <BarChart3 aria-hidden className="size-6 shrink-0 text-primary" />
+          <span className="flex flex-1 flex-col">
+            <span className="font-semibold">Detalhes do modelo e métricas</span>
+            <span className="text-sm text-muted-foreground">
+              Métricas com intervalo de confiança, calibração, regra 31.05 e posições cobertas.
+            </span>
+          </span>
+          <ChevronDown aria-hidden className="size-5 shrink-0 transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="border-t p-5">
+          <ModelInfo model={model} error={modelError} />
+        </div>
+      </details>
+    </div>
   );
 }

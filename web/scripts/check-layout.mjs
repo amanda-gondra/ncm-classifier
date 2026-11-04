@@ -12,7 +12,7 @@ const { values: args } = parseArgs({
 });
 
 const WIDTHS = [320, 360, 390, 768, 1280];
-const SECTIONS = ["inicio", "como-funciona", "demonstracao", "resultados", "arquitetura"];
+const SECTIONS = ["inicio", "experimente", "como-funciona", "demonstracao", "resultados", "infraestrutura"];
 const browserPath = [
   process.env.BROWSER_PATH,
   "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
@@ -35,6 +35,17 @@ try {
     await page.goto(args.url, { waitUntil: "networkidle" });
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     report(overflow <= 0, `${width}px: no horizontal scroll (${overflow}px extra)`);
+    if (overflow > 0) {
+      // The outermost elements that stick out of the viewport, to find the cause.
+      const culprits = await page.evaluate(() =>
+        [...document.querySelectorAll("body *")]
+          .filter((node) => node.getBoundingClientRect().right > window.innerWidth + 1)
+          .filter((node) => node.parentElement.getBoundingClientRect().right <= window.innerWidth + 1)
+          .slice(0, 5)
+          .map((node) => `${node.tagName.toLowerCase()} "${node.textContent.trim().slice(0, 40)}"`),
+      );
+      for (const culprit of culprits) console.log(`       sticks out: ${culprit}`);
+    }
     const missing = [];
     for (const id of SECTIONS) {
       if ((await page.locator(`#${id}`).count()) !== 1) missing.push(id);
