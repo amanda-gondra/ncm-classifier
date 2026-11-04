@@ -40,10 +40,12 @@ train = [
     "datasets>=2.20",
     "accelerate>=0.33",
 ]
-# Model comparison and inference benchmark (scripts/compare_models.py, benchmark_inference.py).
+# Model comparison, inference benchmark and demo GIF
+# (scripts/compare_models.py, benchmark_inference.py, build_demo_gif.py).
 analysis = [
     "matplotlib>=3.8",
     "psutil>=5.9",
+    "pillow>=10",
 ]
 dev = [
     "ncm-classifier[api,data]",

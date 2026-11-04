@@ -28,6 +28,9 @@ data/processed/*
 # Notebooks
 .ipynb_checkpoints/
 
+# GIF frames captured by web/scripts/capture-media.mjs (the GIF itself is versioned)
+/docs/media/frames/
+
 # OS / editors
 .DS_Store
 Thumbs.db
