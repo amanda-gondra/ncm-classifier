@@ -6,10 +6,11 @@ na Render, tiradas em 2026-11-04 com o modelo `v0.1.0`. Nenhum resultado foi edi
 | Arquivo | O que mostra | Tamanho |
 |---|---|---|
 | `home-desktop.png` | primeira tela no computador (1280×800, escala 2×) | 2560×1600 |
+| `home-result-desktop.png` | a mesma tela depois de classificar "Adubo NPK 20-05-20 saco 50kg" em "Experimente agora" | 2560×1600 |
 | `home-mobile.png` | primeira tela no celular (390×844, escala 3×) | 1170×2532 |
-| `demo-desktop.png` | demonstração após classificar "Adubo NPK 20-05-20 saco 50kg" | seção inteira, 2× |
-| `demo-mobile.png` | resultado da mesma classificação no celular | 1170×2532 |
-| `demo.gif` | fluxo completo: topo, digitação, classificação e resultado | 960 px de largura |
+| `result-mobile.png` | resultado da mesma classificação no celular | 1170×2532 |
+| `demo-desktop.png` | seção de demonstração completa, com o resultado | seção inteira, 2× |
+| `demo.gif` | fluxo: primeira tela, digitação em "Experimente agora" e resultado | 960 px de largura |
 
 A imagem que aparece quando o link é compartilhado não está aqui: ela é gerada no build do site
 e servida em https://amanda-gondra.github.io/ncm-classifier/og-image.png.
