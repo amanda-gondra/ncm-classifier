@@ -11,6 +11,7 @@ const RESOURCES = [
 ];
 
 const AUTHOR = [
+  { href: "https://www.linkedin.com/in/amandagondra", label: "LinkedIn" },
   { href: "https://github.com/amanda-gondra", label: "GitHub" },
   { href: "https://huggingface.co/AmandaGondra", label: "Hugging Face" },
 ];
