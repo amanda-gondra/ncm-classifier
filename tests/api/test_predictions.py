@@ -6,6 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from ncm_classifier.api.config import Settings
+from ncm_classifier.api.errors import _detail_message
 from ncm_classifier.api.main import create_app
 from ncm_classifier.data.positions import load_positions
 
@@ -77,6 +78,40 @@ def test_invalid_requests_are_refused_before_the_model(client, predictor, payloa
     assert predictor.calls == []
 
 
+@pytest.mark.parametrize(
+    ("payload", "field", "message"),
+    [
+        ({"description": "x" * 501}, "description", "Texto com mais de 500 caracteres."),
+        ({"descriptions": ["ureia"] * 21}, "descriptions", "Envie no máximo 20 descrições."),
+        (
+            {"descriptions": ["ok", "  ", " "]},
+            "descriptions",
+            "Descrições vazias ou só com espaços nas posições 2, 3.",
+        ),
+        (
+            {"description": "a", "descriptions": ["b"]},
+            None,
+            "Envie exatamente um dos campos: 'description' ou 'descriptions'.",
+        ),
+        ({"text": "ureia"}, "text", "Campo não aceito."),
+        ({"description": 42}, "description", "Deve ser um texto."),
+    ],
+)
+def test_validation_messages_are_in_portuguese(client, payload, field, message) -> None:
+    # The web interface shows these messages to people as they come.
+    error = client.post(URL, json=payload).json()["error"]
+    assert error["message"] == "A requisição não segue o formato ou os limites esperados."
+    assert {"field": field, "message": message} in error["details"]
+
+
+def test_unexpected_validation_errors_get_a_generic_message() -> None:
+    assert _detail_message({"type": "bool_parsing", "msg": "Input should be a valid boolean"}) == (
+        "Valor inválido."
+    )
+    # A known type whose context lacks the number keeps the message generic, never half-filled.
+    assert _detail_message({"type": "string_too_long", "ctx": {}}) == "Valor inválido."
+
+
 def test_limits_come_from_the_settings(make_service) -> None:
     settings = Settings(_env_file=None, max_text_length=10, max_batch_size=2)
     service = make_service(settings)
@@ -98,7 +133,7 @@ def test_predictor_failure_is_a_standard_500(client) -> None:
     assert response.status_code == 500
     assert response.json()["error"] == {
         "code": "internal_error",
-        "message": "Internal error.",
+        "message": "Erro interno.",
         "request_id": response.json()["error"]["request_id"],
         "details": [],
     }
@@ -109,9 +144,11 @@ def test_unknown_route_uses_the_error_format(client) -> None:
     response = client.get("/v1/unknown")
     assert response.status_code == 404
     assert response.json()["error"]["code"] == "not_found"
+    assert response.json()["error"]["message"] == "Rota não encontrada."
 
 
 def test_wrong_method_uses_the_error_format(client) -> None:
     response = client.get(URL)
     assert response.status_code == 405
     assert response.json()["error"]["code"] == "method_not_allowed"
+    assert response.json()["error"]["message"] == "Método não permitido nesta rota."

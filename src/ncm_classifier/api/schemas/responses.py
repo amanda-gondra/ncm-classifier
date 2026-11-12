@@ -20,22 +20,24 @@ RULE_3105_ID = "ncm-3105-small-package"
 
 
 class Suggestion(BaseModel):
-    rank: int = Field(ge=1, description="1 is the most likely position.")
-    ncm: str = Field(description="NCM position, 4 digits.", examples=["3105"])
+    rank: int = Field(ge=1, description="1 é a posição mais provável.")
+    ncm: str = Field(description="Posição NCM, 4 dígitos.", examples=["3105"])
     level: Literal["position"] = "position"
     formatted: str = Field(examples=["31.05"])
-    official_description: str = Field(description="Text of the position in the official table.")
-    confidence: float = Field(ge=0.0, le=1.0, description="Calibrated probability.")
+    official_description: str = Field(description="Texto da posição na tabela oficial.")
+    confidence: float = Field(ge=0.0, le=1.0, description="Probabilidade calibrada.")
 
 
 class PredictionResult(BaseModel):
-    index: int = Field(ge=0, description="Position of the description in the request.")
-    predictions: list[Suggestion] = Field(description="Up to three suggestions, best first.")
+    index: int = Field(ge=0, description="Posição da descrição no pedido, a partir de 0.")
+    predictions: list[Suggestion] = Field(
+        description="Até três sugestões, a mais provável primeiro."
+    )
     requires_manual_review: bool = Field(
-        description="True when the first suggestion's confidence is below the review threshold."
+        description="Verdadeiro quando a confiança da primeira sugestão fica abaixo do limiar."
     )
     rule_3105_applied: bool = Field(
-        description="True when the 31.05 rule (packages of 10 kg or less) changed the result."
+        description="Verdadeiro quando a regra 31.05 (embalagens até 10 kg) mudou o resultado."
     )
     applied_rule: str | None = Field(default=None, examples=[RULE_3105_ID])
 
@@ -117,7 +119,9 @@ class ModelInfoResponse(BaseModel):
     architecture: str
     scope: ScopeInfo
     metrics: list[TestMetrics] = Field(
-        description="Frozen test sets, calibrated + 31.05 rule, 95% bootstrap intervals."
+        description=(
+            "Testes congelados, com calibração e regra 31.05; intervalos de 95% por bootstrap."
+        )
     )
     calibration: CalibrationInfo
     rule_3105: RuleInfo

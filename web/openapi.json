@@ -9,10 +9,10 @@
     "/v1/predictions": {
       "post": {
         "tags": [
-          "predictions"
+          "classificação"
         ],
-        "summary": "Suggest NCM positions for product descriptions",
-        "description": "Send exactly one of `description` (one text) or `descriptions` (a batch). Each result has up to three NCM positions with calibrated confidence, a manual review flag and whether the 31.05 small-package rule applied. Suggestions support, and do not replace, the fiscal classification.",
+        "summary": "Sugere posições NCM para descrições de produtos",
+        "description": "Envie exatamente um dos campos: `description` (um texto) ou `descriptions` (um lote). Cada resultado traz até três posições NCM com confiança calibrada, o aviso de revisão manual e se a regra 31.05 (embalagens até 10 kg) foi aplicada. As sugestões apoiam a classificação fiscal; não a substituem.",
         "operationId": "create_predictions_v1_predictions_post",
         "requestBody": {
           "content": {
@@ -36,7 +36,7 @@
             }
           },
           "400": {
-            "description": "Body is not valid JSON.",
+            "description": "O corpo não é um JSON válido.",
             "content": {
               "application/json": {
                 "schema": {
@@ -46,7 +46,7 @@
             }
           },
           "413": {
-            "description": "Body larger than the configured limit.",
+            "description": "Corpo maior que o limite configurado.",
             "content": {
               "application/json": {
                 "schema": {
@@ -56,7 +56,7 @@
             }
           },
           "429": {
-            "description": "Too many requests; see Retry-After.",
+            "description": "Pedidos demais; veja o cabeçalho Retry-After.",
             "content": {
               "application/json": {
                 "schema": {
@@ -66,7 +66,7 @@
             }
           },
           "422": {
-            "description": "Empty text, text or batch over the limits.",
+            "description": "Texto vazio, ou texto ou lote acima dos limites.",
             "content": {
               "application/json": {
                 "schema": {
@@ -76,7 +76,7 @@
             }
           },
           "500": {
-            "description": "Unexpected internal error.",
+            "description": "Erro interno inesperado.",
             "content": {
               "application/json": {
                 "schema": {
@@ -86,7 +86,7 @@
             }
           },
           "503": {
-            "description": "Model still loading or unavailable.",
+            "description": "Modelo ainda carregando ou indisponível.",
             "content": {
               "application/json": {
                 "schema": {
@@ -101,9 +101,9 @@
     "/v1/model": {
       "get": {
         "tags": [
-          "model"
+          "modelo"
         ],
-        "summary": "Served model, evaluation results and limits",
+        "summary": "Modelo em uso, resultados da avaliação e limites",
         "operationId": "model_info_v1_model_get",
         "responses": {
           "200": {
@@ -117,7 +117,7 @@
             }
           },
           "503": {
-            "description": "Model still loading or unavailable.",
+            "description": "Modelo ainda carregando ou indisponível.",
             "content": {
               "application/json": {
                 "schema": {
@@ -132,9 +132,9 @@
     "/health": {
       "get": {
         "tags": [
-          "health"
+          "saúde"
         ],
-        "summary": "Operational state of the API and the model",
+        "summary": "Estado da API e do modelo",
         "operationId": "health_health_get",
         "responses": {
           "200": {
@@ -148,7 +148,7 @@
             }
           },
           "503": {
-            "description": "Model loading or unavailable.",
+            "description": "Modelo carregando ou indisponível.",
             "content": {
               "application/json": {
                 "schema": {
@@ -376,7 +376,7 @@
             },
             "type": "array",
             "title": "Metrics",
-            "description": "Frozen test sets, calibrated + 31.05 rule, 95% bootstrap intervals."
+            "description": "Testes congelados, com calibração e regra 31.05; intervalos de 95% por bootstrap."
           },
           "calibration": {
             "$ref": "#/components/schemas/CalibrationInfo"
@@ -445,7 +445,7 @@
               }
             ],
             "title": "Description",
-            "description": "One description, up to 500 chars."
+            "description": "Uma descrição, com até 500 caracteres."
           },
           "descriptions": {
             "anyOf": [
@@ -464,7 +464,7 @@
               }
             ],
             "title": "Descriptions",
-            "description": "1 to 20 descriptions of up to 500 chars."
+            "description": "De 1 a 20 descrições, cada uma com até 500 caracteres."
           }
         },
         "additionalProperties": false,
@@ -520,7 +520,7 @@
             "type": "integer",
             "minimum": 0.0,
             "title": "Index",
-            "description": "Position of the description in the request."
+            "description": "Posição da descrição no pedido, a partir de 0."
           },
           "predictions": {
             "items": {
@@ -528,17 +528,17 @@
             },
             "type": "array",
             "title": "Predictions",
-            "description": "Up to three suggestions, best first."
+            "description": "Até três sugestões, a mais provável primeiro."
           },
           "requires_manual_review": {
             "type": "boolean",
             "title": "Requires Manual Review",
-            "description": "True when the first suggestion's confidence is below the review threshold."
+            "description": "Verdadeiro quando a confiança da primeira sugestão fica abaixo do limiar."
           },
           "rule_3105_applied": {
             "type": "boolean",
             "title": "Rule 3105 Applied",
-            "description": "True when the 31.05 rule (packages of 10 kg or less) changed the result."
+            "description": "Verdadeiro quando a regra 31.05 (embalagens até 10 kg) mudou o resultado."
           },
           "applied_rule": {
             "anyOf": [
@@ -657,12 +657,12 @@
             "type": "integer",
             "minimum": 1.0,
             "title": "Rank",
-            "description": "1 is the most likely position."
+            "description": "1 é a posição mais provável."
           },
           "ncm": {
             "type": "string",
             "title": "Ncm",
-            "description": "NCM position, 4 digits.",
+            "description": "Posição NCM, 4 dígitos.",
             "examples": [
               "3105"
             ]
@@ -683,14 +683,14 @@
           "official_description": {
             "type": "string",
             "title": "Official Description",
-            "description": "Text of the position in the official table."
+            "description": "Texto da posição na tabela oficial."
           },
           "confidence": {
             "type": "number",
             "maximum": 1.0,
             "minimum": 0.0,
             "title": "Confidence",
-            "description": "Calibrated probability."
+            "description": "Probabilidade calibrada."
           }
         },
         "type": "object",

@@ -24,7 +24,7 @@ from ncm_classifier.api.schemas.responses import (
     TestMetrics,
 )
 
-router = APIRouter(prefix="/v1", tags=["model"])
+router = APIRouter(prefix="/v1", tags=["modelo"])
 
 RULE_DESCRIPTION = (
     "Mercadorias do Capítulo 31 em embalagens de peso bruto não superior a 10 kg pertencem à "
@@ -55,8 +55,10 @@ def _test_metrics(test: dict[str, Any]) -> TestMetrics:
 @router.get(
     "/model",
     response_model=ModelInfoResponse,
-    summary="Served model, evaluation results and limits",
-    responses={503: {"model": ErrorResponse, "description": "Model still loading or unavailable."}},
+    summary="Modelo em uso, resultados da avaliação e limites",
+    responses={
+        503: {"model": ErrorResponse, "description": "Modelo ainda carregando ou indisponível."}
+    },
 )
 def model_info(service: ReadyServiceDep) -> ModelInfoResponse:
     bundle = service.bundle

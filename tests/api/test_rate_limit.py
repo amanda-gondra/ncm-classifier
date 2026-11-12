@@ -30,6 +30,9 @@ def test_requests_above_the_limit_get_a_standard_429(make_service, predictor) ->
     client.__exit__(None, None, None)
     assert statuses == [200, 200, 200, 429]
     assert refused.json()["error"]["code"] == "rate_limited"
+    assert refused.json()["error"]["message"] == (
+        "Mais de 3 pedidos por minuto. Tente de novo em instantes."
+    )
     assert refused.json()["error"]["request_id"] == refused.headers["X-Request-ID"]
     assert 1 <= int(refused.headers["Retry-After"]) <= 60
     assert len(predictor.calls) == 3

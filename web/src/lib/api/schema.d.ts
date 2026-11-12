@@ -14,8 +14,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * Suggest NCM positions for product descriptions
-         * @description Send exactly one of `description` (one text) or `descriptions` (a batch). Each result has up to three NCM positions with calibrated confidence, a manual review flag and whether the 31.05 small-package rule applied. Suggestions support, and do not replace, the fiscal classification.
+         * Sugere posições NCM para descrições de produtos
+         * @description Envie exatamente um dos campos: `description` (um texto) ou `descriptions` (um lote). Cada resultado traz até três posições NCM com confiança calibrada, o aviso de revisão manual e se a regra 31.05 (embalagens até 10 kg) foi aplicada. As sugestões apoiam a classificação fiscal; não a substituem.
          */
         post: operations["create_predictions_v1_predictions_post"];
         delete?: never;
@@ -31,7 +31,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Served model, evaluation results and limits */
+        /** Modelo em uso, resultados da avaliação e limites */
         get: operations["model_info_v1_model_get"];
         put?: never;
         post?: never;
@@ -48,7 +48,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Operational state of the API and the model */
+        /** Estado da API e do modelo */
         get: operations["health_health_get"];
         put?: never;
         post?: never;
@@ -143,7 +143,7 @@ export interface components {
             scope: components["schemas"]["ScopeInfo"];
             /**
              * Metrics
-             * @description Frozen test sets, calibrated + 31.05 rule, 95% bootstrap intervals.
+             * @description Testes congelados, com calibração e regra 31.05; intervalos de 95% por bootstrap.
              */
             metrics: components["schemas"]["TestMetrics"][];
             calibration: components["schemas"]["CalibrationInfo"];
@@ -180,12 +180,12 @@ export interface components {
         PredictionRequest: {
             /**
              * Description
-             * @description One description, up to 500 chars.
+             * @description Uma descrição, com até 500 caracteres.
              */
             description?: string | null;
             /**
              * Descriptions
-             * @description 1 to 20 descriptions of up to 500 chars.
+             * @description De 1 a 20 descrições, cada uma com até 500 caracteres.
              */
             descriptions?: string[] | null;
         };
@@ -207,22 +207,22 @@ export interface components {
         PredictionResult: {
             /**
              * Index
-             * @description Position of the description in the request.
+             * @description Posição da descrição no pedido, a partir de 0.
              */
             index: number;
             /**
              * Predictions
-             * @description Up to three suggestions, best first.
+             * @description Até três sugestões, a mais provável primeiro.
              */
             predictions: components["schemas"]["Suggestion"][];
             /**
              * Requires Manual Review
-             * @description True when the first suggestion's confidence is below the review threshold.
+             * @description Verdadeiro quando a confiança da primeira sugestão fica abaixo do limiar.
              */
             requires_manual_review: boolean;
             /**
              * Rule 3105 Applied
-             * @description True when the 31.05 rule (packages of 10 kg or less) changed the result.
+             * @description Verdadeiro quando a regra 31.05 (embalagens até 10 kg) mudou o resultado.
              */
             rule_3105_applied: boolean;
             /**
@@ -271,12 +271,12 @@ export interface components {
         Suggestion: {
             /**
              * Rank
-             * @description 1 is the most likely position.
+             * @description 1 é a posição mais provável.
              */
             rank: number;
             /**
              * Ncm
-             * @description NCM position, 4 digits.
+             * @description Posição NCM, 4 dígitos.
              * @example 3105
              */
             ncm: string;
@@ -293,12 +293,12 @@ export interface components {
             formatted: string;
             /**
              * Official Description
-             * @description Text of the position in the official table.
+             * @description Texto da posição na tabela oficial.
              */
             official_description: string;
             /**
              * Confidence
-             * @description Calibrated probability.
+             * @description Probabilidade calibrada.
              */
             confidence: number;
         };
@@ -347,7 +347,7 @@ export interface operations {
                     "application/json": components["schemas"]["PredictionResponse"];
                 };
             };
-            /** @description Body is not valid JSON. */
+            /** @description O corpo não é um JSON válido. */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -356,7 +356,7 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Body larger than the configured limit. */
+            /** @description Corpo maior que o limite configurado. */
             413: {
                 headers: {
                     [name: string]: unknown;
@@ -365,7 +365,7 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Empty text, text or batch over the limits. */
+            /** @description Texto vazio, ou texto ou lote acima dos limites. */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -374,7 +374,7 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Too many requests; see Retry-After. */
+            /** @description Pedidos demais; veja o cabeçalho Retry-After. */
             429: {
                 headers: {
                     [name: string]: unknown;
@@ -383,7 +383,7 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Unexpected internal error. */
+            /** @description Erro interno inesperado. */
             500: {
                 headers: {
                     [name: string]: unknown;
@@ -392,7 +392,7 @@ export interface operations {
                     "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
-            /** @description Model still loading or unavailable. */
+            /** @description Modelo ainda carregando ou indisponível. */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -421,7 +421,7 @@ export interface operations {
                     "application/json": components["schemas"]["ModelInfoResponse"];
                 };
             };
-            /** @description Model still loading or unavailable. */
+            /** @description Modelo ainda carregando ou indisponível. */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -450,7 +450,7 @@ export interface operations {
                     "application/json": components["schemas"]["HealthResponse"];
                 };
             };
-            /** @description Model loading or unavailable. */
+            /** @description Modelo carregando ou indisponível. */
             503: {
                 headers: {
                     [name: string]: unknown;

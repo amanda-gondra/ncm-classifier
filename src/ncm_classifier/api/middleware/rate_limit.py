@@ -77,7 +77,8 @@ class RateLimitMiddleware:
             response = error_response(
                 429,
                 "rate_limited",
-                f"More than {self.requests_per_minute} requests per minute. Try again later.",
+                f"Mais de {self.requests_per_minute} pedidos por minuto. "
+                "Tente de novo em instantes.",
                 scope.get("state", {}).get("request_id"),
                 headers={"Retry-After": str(retry_after)},
             )

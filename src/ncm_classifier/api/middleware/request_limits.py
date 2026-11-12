@@ -68,7 +68,7 @@ class RequestBodyLimitMiddleware:
         response = error_response(
             413,
             "payload_too_large",
-            f"Request body is larger than {self.max_body_bytes} bytes.",
+            f"O corpo da requisição passa de {self.max_body_bytes} bytes.",
             request_id,
         )
         await response(scope, receive, send)

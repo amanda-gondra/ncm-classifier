@@ -49,7 +49,7 @@ class PredictionRequestBase(BaseModel):
     @classmethod
     def _description_has_text(cls, value: str | None) -> str | None:
         if value is not None and not value.strip():
-            raise ValueError("description must not be empty or only spaces")
+            raise ValueError("A descrição não pode ficar vazia nem ter só espaços.")
         return value
 
     @field_validator("descriptions")
@@ -58,13 +58,15 @@ class PredictionRequestBase(BaseModel):
         if value is not None:
             blank = [i for i, text in enumerate(value) if not text.strip()]
             if blank:
-                raise ValueError(f"descriptions at positions {blank} are empty or only spaces")
+                # Positions as people count them (1, 2, 3...), like the web interface.
+                positions = ", ".join(str(i + 1) for i in blank)
+                raise ValueError(f"Descrições vazias ou só com espaços nas posições {positions}.")
         return value
 
     @model_validator(mode="after")
     def _exactly_one_field(self) -> PredictionRequestBase:
         if (self.description is None) == (self.descriptions is None):
-            raise ValueError("send exactly one of 'description' or 'descriptions'")
+            raise ValueError("Envie exatamente um dos campos: 'description' ou 'descriptions'.")
         return self
 
     def texts(self) -> list[str]:
@@ -80,7 +82,10 @@ def build_prediction_request(
     fields: dict[str, Any] = {
         "description": (
             text | None,
-            Field(default=None, description=f"One description, up to {max_text_length} chars."),
+            Field(
+                default=None,
+                description=f"Uma descrição, com até {max_text_length} caracteres.",
+            ),
         ),
         "descriptions": (
             list[text] | None,
@@ -88,7 +93,10 @@ def build_prediction_request(
                 default=None,
                 min_length=1,
                 max_length=max_batch_size,
-                description=f"1 to {max_batch_size} descriptions of up to {max_text_length} chars.",
+                description=(
+                    f"De 1 a {max_batch_size} descrições, cada uma com até "
+                    f"{max_text_length} caracteres."
+                ),
             ),
         ),
     }

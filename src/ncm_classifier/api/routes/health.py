@@ -15,7 +15,7 @@ from ncm_classifier.api.dependencies import ServiceDep
 from ncm_classifier.api.schemas.responses import HealthModel, HealthResponse
 from ncm_classifier.api.services.predictor_service import ModelState
 
-router = APIRouter(tags=["health"])
+router = APIRouter(tags=["saúde"])
 
 ApiStatus = Literal["ok", "starting", "unavailable"]
 StateName = Literal["loading", "ready", "unavailable"]
@@ -30,8 +30,8 @@ _STATUS: Final[dict[ModelState, tuple[ApiStatus, StateName, int]]] = {
 @router.get(
     "/health",
     response_model=HealthResponse,
-    summary="Operational state of the API and the model",
-    responses={503: {"model": HealthResponse, "description": "Model loading or unavailable."}},
+    summary="Estado da API e do modelo",
+    responses={503: {"model": HealthResponse, "description": "Modelo carregando ou indisponível."}},
 )
 def health(service: ServiceDep, response: Response) -> HealthResponse:
     state = service.state

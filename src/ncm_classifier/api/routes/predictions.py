@@ -29,12 +29,15 @@ from ncm_classifier.inference.predictor import Prediction
 logger = logging.getLogger(__name__)
 
 ERROR_RESPONSES: dict[int | str, dict[str, Any]] = {
-    400: {"model": ErrorResponse, "description": "Body is not valid JSON."},
-    413: {"model": ErrorResponse, "description": "Body larger than the configured limit."},
-    429: {"model": ErrorResponse, "description": "Too many requests; see Retry-After."},
-    422: {"model": ErrorResponse, "description": "Empty text, text or batch over the limits."},
-    500: {"model": ErrorResponse, "description": "Unexpected internal error."},
-    503: {"model": ErrorResponse, "description": "Model still loading or unavailable."},
+    400: {"model": ErrorResponse, "description": "O corpo não é um JSON válido."},
+    413: {"model": ErrorResponse, "description": "Corpo maior que o limite configurado."},
+    429: {"model": ErrorResponse, "description": "Pedidos demais; veja o cabeçalho Retry-After."},
+    422: {
+        "model": ErrorResponse,
+        "description": "Texto vazio, ou texto ou lote acima dos limites.",
+    },
+    500: {"model": ErrorResponse, "description": "Erro interno inesperado."},
+    503: {"model": ErrorResponse, "description": "Modelo ainda carregando ou indisponível."},
 }
 
 
@@ -61,17 +64,17 @@ def to_result(index: int, prediction: Prediction, service: PredictorService) -> 
 
 
 def build_predictions_router(request_model: type[PredictionRequestBase]) -> APIRouter:
-    router = APIRouter(prefix="/v1", tags=["predictions"])
+    router = APIRouter(prefix="/v1", tags=["classificação"])
 
     @router.post(
         "/predictions",
         response_model=PredictionResponse,
-        summary="Suggest NCM positions for product descriptions",
+        summary="Sugere posições NCM para descrições de produtos",
         description=(
-            "Send exactly one of `description` (one text) or `descriptions` (a batch). "
-            "Each result has up to three NCM positions with calibrated confidence, "
-            "a manual review flag and whether the 31.05 small-package rule applied. "
-            "Suggestions support, and do not replace, the fiscal classification."
+            "Envie exatamente um dos campos: `description` (um texto) ou `descriptions` (um "
+            "lote). Cada resultado traz até três posições NCM com confiança calibrada, o aviso "
+            "de revisão manual e se a regra 31.05 (embalagens até 10 kg) foi aplicada. As "
+            "sugestões apoiam a classificação fiscal; não a substituem."
         ),
         responses=ERROR_RESPONSES,
     )
