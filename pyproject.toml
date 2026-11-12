@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ncm-classifier"
 version = "0.1.0"
-description = "Suggests NCM codes from commercial product descriptions (Brazilian agribusiness)."
+description = "Sugere a posição NCM de produtos do agronegócio a partir da descrição comercial."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

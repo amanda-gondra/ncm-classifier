@@ -12,6 +12,9 @@ o Hugging Face recusou o pedido com `402 Payment Required` e esta mensagem:
 > Static Spaces are free for everyone, but hosting Gradio and Docker Spaces on free cpu-basic
 > requires a PRO subscription.
 
+Em português: Spaces estáticos são gratuitos para todos, mas hospedar Spaces Gradio e Docker no
+cpu-basic gratuito exige uma assinatura PRO.
+
 Nada foi criado nem cobrado. O projeto tem a restrição de custo zero.
 
 ## Decisão
