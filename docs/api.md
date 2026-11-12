@@ -140,7 +140,7 @@ contornariam a regra do plano. Por isso o intervalo é longo: o objetivo é regi
 disponibilidade, não evitar o sono.
 
 **Antes de divulgar o site** (um post, uma entrevista), aqueça a API à mão:
-GitHub → Actions → **API health** → **Run workflow**. Marque **full** para também conferir as
+GitHub → Actions → **Saúde da API** → **Run workflow**. Marque **full** para também conferir as
 predições do test_v1 com `verify_deployment.py`. A API fica pronta por 15 minutos a partir da
 última requisição, e cada visitante renova esse prazo.
 

@@ -1,4 +1,4 @@
-name: API health
+name: Saúde da API
 
 # Monitors the public API and records each check in the run summary.
 #

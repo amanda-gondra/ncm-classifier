@@ -217,7 +217,7 @@ tests/            pytest: unidade, API e integração
 A cada push, a CI roda ruff, mypy, pytest com cobertura (mínimo de 90% na API), confere se o
 esquema OpenAPI do site está atualizado e roda lint, tipos, testes e build do site. Os números
 mostrados no site são conferidos contra os relatórios em `reports/`. Uma execução manual também
-testa a API com o modelo baixado do Hugging Face e a imagem Docker, e o workflow **API health**
+testa a API com o modelo baixado do Hugging Face e a imagem Docker, e o workflow **Saúde da API**
 registra a disponibilidade da API publicada a cada 6 horas
 ([detalhes e limites](docs/api.md#monitoramento-e-divulgação)).
 

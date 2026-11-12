@@ -25,4 +25,4 @@ cd ..
 python scripts/build_demo_gif.py        # monta demo.gif e apaga os quadros
 ```
 
-Antes de capturar, rode o workflow **API health** à mão, para a API já estar acordada.
+Antes de capturar, rode o workflow **Saúde da API** à mão, para a API já estar acordada.

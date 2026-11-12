@@ -1,77 +1,82 @@
-# Labeled data
+# Dados rotulados
 
-| File | What it is | Used for |
+| Arquivo | O que é | Uso |
 |---|---|---|
-| `test_v1.csv` | Real descriptions, frozen with a checksum | Evaluation only |
-| `train_real_v1.csv` | Real descriptions from pages that never fed the test set | Training |
-| `train_synthetic_v1.csv` | Descriptions written by an LLM (Claude Opus 5.5), marked `synthetic` | Training, decided by experiment |
+| `test_v1.csv` | Descrições reais, congeladas com checksum | Só avaliação |
+| `test_v2.csv` | Descrições reais de fontes novas, coletadas depois dos sintéticos e congeladas com checksum | Só avaliação |
+| `train_real_v1.csv` | Descrições reais de páginas que nunca alimentaram os testes | Treino |
+| `train_synthetic_v1.csv` | Descrições escritas por um LLM (Claude Opus 5.5), marcadas como `synthetic` | Treino, decidido por experimento |
 
-Training rows are only used after a human sets `reviewed` to `true`. The official NCM
-descriptions are a third training source, built from the table by
-`scripts/build_train_set.py`, so they are not stored here.
+As linhas de treino só são usadas depois que uma pessoa marca `reviewed` como `true`. As
+descrições oficiais da tabela NCM são uma terceira fonte de treino, montada a partir da tabela por
+`scripts/build_train_set.py`, por isso não ficam guardadas aqui.
 
-Synthetic rows imitate the way products are written in ads and public tenders (abbreviations,
-upper case, missing accents). They include small-package fertilizers on purpose, to teach the
-31.05 rule. Whether they help is measured, not assumed: the model is trained with and without
-them and both results are reported.
+As linhas sintéticas imitam o jeito como os produtos aparecem em anúncios e licitações (abreviações,
+maiúsculas, falta de acentos). Elas incluem de propósito adubos em embalagens pequenas, para ensinar
+a regra 31.05. Se elas ajudam é medido, não suposto: o modelo é treinado com e sem elas, e os dois
+resultados são publicados.
 
-## `test_v1.csv` — frozen test set
+## Testes congelados (`test_v1.csv` e `test_v2.csv`)
 
-Real product descriptions copied verbatim from public sources, used **only for evaluation**.
-The model never trains on these rows.
+Descrições reais de produtos, copiadas sem alteração de fontes públicas e usadas **só para
+avaliação**. O modelo nunca treina com essas linhas, e o SHA-256 de cada arquivo (`.sha256`) é
+conferido antes de qualquer leitura. O `test_v1` cobre todas as posições do escopo; o `test_v2` foi
+coletado depois, em fontes novas, para medir sem viés o efeito dos sintéticos, que foram escritos
+depois de ver o `test_v1`.
 
-| Column | Meaning |
+| Coluna | Significado |
 |---|---|
-| `id` | Stable identifier. Ids are never reused or renumbered. |
-| `text` | Description exactly as published by the source. |
-| `position` | Target class: NCM/HS position (4 digits). |
-| `source_type` | `public_procurement` or `marketplace`. |
-| `source_url` | Page where the text was found. |
-| `label_rule` | Why the text belongs to the position (the heading text or legal note applied). |
-| `reviewed` | `true` once a human has checked the text, the source and the label. |
+| `id` | Identificador estável. Um id nunca é reaproveitado nem renumerado. |
+| `text` | Descrição exatamente como a fonte publicou. |
+| `position` | Classe-alvo: posição NCM/SH (4 dígitos). |
+| `source_type` | `public_procurement` (licitação pública) ou `marketplace` (loja ou anúncio). |
+| `source_url` | Página onde o texto foi encontrado. |
+| `label_rule` | Por que o texto pertence à posição (o texto da posição ou a nota legal aplicada). |
+| `reviewed` | `true` depois que uma pessoa conferiu o texto, a fonte e o rótulo. |
 
-### What the source proves, and what it does not
+Os arquivos de treino têm as mesmas colunas.
 
-The source proves that the description exists in the real world. It does **not** prove the
-fiscal classification. The label comes from the heading text of the NCM and its legal notes
-(General Rule 1), written in `label_rule`, and is checked by a human reviewer.
+### O que a fonte prova, e o que não prova
 
-### Scope of a "correct" label
+A fonte prova que a descrição existe no mundo real. Ela **não** prova a classificação fiscal. O
+rótulo vem do texto da posição na NCM e das notas legais (Regra Geral 1), está escrito em
+`label_rule` e é conferido por uma pessoa.
 
-Labels are validated at the **4-digit position** level only. They are not a validation of the
-full 8-digit NCM code, and this project is a decision-support tool, not a fiscal opinion.
+### Alcance de um rótulo "correto"
 
-### Labeling conventions
+Os rótulos são validados só no nível da **posição de 4 dígitos**. Eles não validam o código NCM
+completo de 8 dígitos, e este projeto é uma ferramenta de apoio à decisão, não um parecer fiscal.
 
-- **Text is kept verbatim**, typos included (for example, `t055` says "barro" where it means
-  "barra"). Real descriptions contain errors, and the model must handle them.
-- **Fertilizer package size:** when the text does not state the package, the product is read as
-  sold in bulk or in packages above 10 kg, and keeps the position of the fertilizer itself.
-  Only texts that state a gross weight of 10 kg or less go to 31.05.
-- **"Sal mineral" and supplements:** in the Brazilian market the term names a mixture of salt
-  and minerals prepared for animal feed, so it goes to 23.09. Plain salt sold for cattle, with
-  no added minerals in the text, goes to 25.01.
+### Convenções de rotulagem
 
-### Sources
+- **O texto fica como foi publicado**, com erros de digitação (por exemplo, a `t055` diz "barro"
+  quando quer dizer "barra"). Descrições reais têm erros, e o modelo precisa lidar com eles.
+- **Embalagem de adubo:** quando o texto não informa a embalagem, o produto é tratado como vendido a
+  granel ou em embalagens acima de 10 kg, e fica na posição do próprio adubo. Só vão para a 31.05
+  os textos que informam peso bruto de até 10 kg.
+- **"Sal mineral" e suplementos:** no mercado brasileiro, o termo designa uma mistura de sal e
+  minerais preparada para alimentação animal, por isso vai para a 23.09. Sal comum vendido para
+  gado, sem minerais acrescentados no texto, vai para a 25.01.
 
-Texts were collected in October 2026. Many marketplace URLs are search-result pages, which change
-over time; the text in the file is the snapshot that was reviewed. Product pages are preferred
-for new rows.
+### Fontes
 
-### Rights and redistribution
+Os textos foram coletados em outubro de 2026. Muitos endereços de marketplace são páginas de
+resultados de busca, que mudam com o tempo; o texto do arquivo é a versão que foi revisada. Para
+linhas novas, páginas de produto têm preferência.
 
-- `marketplace` texts (Mercado Livre, MF Rural, Magazine Luiza and other stores) and
-  `public_procurement` texts belong to their authors or publishers. They are kept here only so
-  the experiments can be reproduced and audited, with the URL of each source, for study and
-  research. They are not offered under this repository's MIT license.
-- They are **not** part of the published dataset on the Hugging Face Hub, which has only the
-  official NCM texts and the synthetic rows (see `docs/adr/0003-escolha-do-modelo.md` and the
-  dataset card).
-- Any rights holder can ask for a text to be removed by opening an issue; it will be removed from
-  the files and the affected results will be recomputed.
+### Direitos e redistribuição
 
-### Known gaps
+- Os textos `marketplace` (Mercado Livre, MF Rural, Magazine Luiza e outras lojas) e
+  `public_procurement` pertencem aos seus autores ou publicadores. Eles ficam aqui só para que os
+  experimentos possam ser reproduzidos e auditados, com o endereço de cada fonte, para estudo e
+  pesquisa. Eles não estão cobertos pela licença MIT deste repositório.
+- Eles **não** fazem parte do dataset publicado no Hugging Face Hub, que tem só os textos oficiais
+  da NCM e as linhas sintéticas (veja `docs/adr/0003-escolha-do-modelo.md` e o cartão do dataset).
+- Quem tiver direitos sobre um texto pode pedir a remoção abrindo uma issue; o texto sai dos
+  arquivos e os resultados afetados são recalculados.
 
-- `t039` was removed: its label depended on context that is not in the text.
-- Descriptions whose position depends on facts the text does not give, and that no convention
-  above settles, are kept out of the set.
+### Lacunas conhecidas
+
+- A `t039` foi removida: o rótulo dependia de um contexto que não está no texto.
+- Descrições cuja posição depende de fatos que o texto não traz, e que nenhuma convenção acima
+  resolve, ficam fora do conjunto.
